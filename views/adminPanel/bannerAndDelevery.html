@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GreenCoins</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/style.css">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/et-line-font/et-line-font.css">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/simple-lineicon/simple-line-icons.css">
+    <link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/skins/_all-skins.min.css?v=1">
+</head>
+
+<body class="sidebar-mini skin-black-light">
+    <div class="wrapper boxed-wrapper">
+        <header class="main-header">
+            <a href="javascript:;" class="logo blue-bg d-none">
+                <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span>
+                <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span>
+            </a>
+            <nav class="navbar blue-bg navbar-static-top">
+                <ul class="nav navbar-nav pull-left">
+                    <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <%- include ('left_layout.html') %>
+
+            <div class="content-wrapper">
+                <div class="content-header sty-one">
+                    <h1>Banners & Delevery Charges</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Banner List</a></li>
+                    </ol>
+                </div>
+
+
+                <div class="content">
+                    <div class="card">
+                        <div class="card-body row">
+                            <form action="/uploadBanner" class="col-md-6" method="post" enctype="multipart/form-data">
+                                <div class="modal-body row">
+                                    <div class="form-group col-4">
+                                        <input class="form-control" type="file" name="banner" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <button class="btn btn-primary"> insert</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form action="/insertDeleveryCharges" class="col-md-6" method="post">
+                                <div class="modal-body row">
+                                    <div class="form-group col-3">
+                                        <input class="form-control" type="text" name="from" placeholder="From Weight" required>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <input class="form-control" type="text" name="to" placeholder="To Weight" required>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <input class="form-control" type="text" name="rate" placeholder="Amount" required>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <button class="btn btn-primary"> insert</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="col-md-6">
+                                <div class="table-responsive">
+                                    Total Banner: <%= data.length%>
+                                    <table class="table table-hover table-bordered" id="personnel">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>banner</th>
+                                                <th>date</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            <% if(data.length){ %>
+                                                <% for (var i=0; i < data.length; i++) { j=i+1%>
+                                                    <tr>
+                                                        <td>
+                                                            <%=j%>
+                                                        </td>
+                                                        <td>
+                                                            <img src="<%=bImgUrl%>/<%=data[i].banner%>" alt="<%=data[i].banner%>" height="100px">
+                                                        </td>
+                                                        <td>
+                                                            <%=data[i].date%>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-danger" onclick="deleteBanner('<%=data[i]._id%>')" type="button">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                                    <%}else{%>
+                                                    <tr>
+                                                        <td colspan="13">
+                                                            <center style="font-weight: 500;"> No Record Found !
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <div class="col-md-6">
+                                <div class="table-responsive">
+                                    Total Delevery: <%= data1.length%>
+                                    <table class="table table-hover table-bordered" id="personnel">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>From Weight</th>
+                                                <th>To Weight</th>
+                                                <th>Amount</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            <% if(data1.length){ %>
+                                                <% for (var i=0; i < data1.length; i++) { j=i+1%>
+                                                    <tr>
+                                                        <td>
+                                                            <%=j%>
+                                                        </td>
+                                                        <td>
+                                                            <%=data1[i].from%> KG
+                                                        </td>
+                                                        <td>
+                                                            <%=data1[i].to%> KG
+                                                        </td>
+                                                        <td>
+                                                            <%=data1[i].rate%> RS
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-danger" onclick="deleteDelevery('<%=data1[i]._id%>')" type="button">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                                    <%}else{%>
+                                                    <tr>
+                                                        <td colspan="13">
+                                                            <center style="font-weight: 500;"> No Record Found !
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">Version 1.0</div>
+        Copyright © 2018 . All rights reserved.
+    </footer>
+    </div>
+
+    <script src="<%=BaseUrl%>/adminPanel/js/jquery.min.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/js/bizadmin.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/highlight.js"></script>
+    <script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/main.js"></script>
+    <script>
+        function deleteBanner(id) {
+            var conform = confirm("You wants to Delete Banner Image!");
+            if (conform == true) {
+                $.ajax({
+                    type: "GET",
+                    url: '<%=BaseUrl%>/deleteBanner?id='+id,
+                    success: function (data) {
+                        if (data.error == 'N') {
+                            location.reload()
+                        } else {
+                            confirm(data.msg)
+                        }
+                    }
+                })
+            }
+        }
+
+        function deleteDelevery(id) {
+            var conform = confirm("You wants to Delete Delevery");
+            if (conform == true) {
+                $.ajax({
+                    type: "GET",
+                    url: '<%=BaseUrl%>/deleteDelevery?id='+id,
+                    success: function (data) {
+                        if (data.error == 'N') {
+                            location.reload()
+                        } else {
+                            confirm(data.msg)
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

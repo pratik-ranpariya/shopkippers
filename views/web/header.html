@@ -1,0 +1,202 @@
+<style>
+   ._2M8cLY {
+      display: inline-block;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.23);
+      width: 100%;
+      height: 36px;
+      max-width: 564px;
+      position: relative;
+   }
+   ._2M8cLY ._2oO9oE {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-flex: auto;
+      -ms-flex: auto;
+      flex: auto;
+      border-radius: 2px;
+      background-color: #fff;
+   }
+   .col-12-12 {
+      width: 100%;
+   }
+   ._2M8cLY ._2oO9oE ._3OO5Xc {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+   }._2M8cLY ._2oO9oE ._3704LK {
+      padding: 0 16px;
+      border-radius: 2px 0 0 2px;
+      border: 0;
+      outline: 0 none;
+      font-size: 14px;
+      height: 36px;
+      width: 100%;
+   }
+   ._2M8cLY ._2oO9oE .L0Z3Pu {
+      -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      border: 1px solid #fff;
+      background-color: #fff;
+      height: 36px;
+      width: 114px;
+      border-radius: 2px;
+      cursor: pointer;
+      padding: 4px 12px 0 8px;
+   }
+</style>
+<header id="header">
+    <div class="header-banner"></div>
+    <nav class="header-nav">
+       <div class="container mylogo">
+          <div class="left-nav">
+             <div id="cznavcmsblock" class="nav-cms-block">
+                <div class="navcms-area">
+                   <!-- <div class="navcms-half navcms1">
+                      <div class="navcms-content">
+                         <div class="navcms-heading">Free Shipping Worldwide</div>
+                      </div>
+                   </div>
+                   <div class="navcms-half navcms2">
+                      <div class="navcms-content">
+                         <div class="navcms-heading">Online 24/7 Supports</div>
+                      </div>
+                   </div> -->
+                   <div class="navcms-half navcms2">
+                      <div class="navcms-content">
+                   <form class="_2M8cLY header-form-search" action="/search" method="GET">
+                      <div class="col-12-12 _2oO9oE">
+                         <div class="_3OO5Xc">
+                            <input type="text" value="<%if(count.search.search != null){%><%=count.search.search%><%}%>" class="_3704LK" title="Search for products, brands and more" name="search" autocomplete="off" placeholder="Search for products, brands and more">
+                         </div>
+                         <button class="L0Z3Pu" type="submit">
+                            <svg width="20" height="20" viewBox="0 0 17 18" class="" xmlns="http://www.w3.org/2000/svg">
+                               <g fill="#2874F1" fill-rule="evenodd">
+                                  <path class="_34RNph" d="m11.618 9.897l4.225 4.212c.092.092.101.232.02.313l-1.465 1.46c-.081.081-.221.072-.314-.02l-4.216-4.203"></path>
+                                  <path class="_34RNph" d="m6.486 10.901c-2.42 0-4.381-1.956-4.381-4.368 0-2.413 1.961-4.369 4.381-4.369 2.42 0 4.381 1.956 4.381 4.369 0 2.413-1.961 4.368-4.381 4.368m0-10.835c-3.582 0-6.486 2.895-6.486 6.467 0 3.572 2.904 6.467 6.486 6.467 3.582 0 6.486-2.895 6.486-6.467 0-3.572-2.904-6.467-6.486-6.467"></path>
+                               </g>
+                            </svg>
+                         </button>
+                         
+                      </div>
+                   </form>
+                   </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="right-nav">
+             <div class="user-info dropdown js-dropdown">
+                <span class="user-info-title expand-more _gray-darker" data-toggle="dropdown">
+                   <%if(userData){%><span class="account_text shopping-cart"><%=userData.firstname%></span><%}else{%><span class="account_text shopping-cart">My Account</span><%}%></span>
+                <ul class="dropdown-menu">
+                   <li><%if(userData){%><a class="dropdown-item" href="/profile" title="Log in to your customer account" rel="nofollow"><span>My profile</span></a><%}else{%>
+                     <a class="dropdown-item" href="/login" title="Log in to your customer account" rel="nofollow"><span>Sign in</span></a></li><%}%>
+                   <li>
+                      <div class="head-wishlist"><a class="ap-btn-wishlist dropdown-item" href="/wishlist" title="Wishlist" rel="nofollow"><i class="material-icons"></i><span>Wishlist</span></a></div>
+                   </li>
+                   <%if(userData){%>
+                   <li>
+                     <div class="head-logout"><a class="ap-btn-logout dropdown-item" href="/logout" title="logout" rel="nofollow"><i class="material-icons"></i><span>Logout</span></a></div>
+                  </li>
+                  <%}%>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </nav>
+    <div class="header-top">
+       <style type="text/css">
+          /* @media (min-width: 1200px){
+             .mylogo {
+               width: 1180px;
+               max-width: 100%;
+            }
+         } */
+      </style>
+       <div class="container mylogo">
+          <div class="header_logo"><a href="/"><img class="logo img-responsive" src="#" alt="Stanley - Tools Store"></a></div>
+          <div id="desktop_cart">
+             <div class="blockcart cart-preview inactive" data-refresh-url="#">
+                <div class="header blockcart-header dropdown js-dropdown">
+                   <a class="shopping-cart" rel="nofollow" href="/cart">
+                      <span class="mobile_count"><%if(userData){%><%=userData.cartCount%><%}else{%>0<%}%></span>
+                      <span class="cart-products-count hidden-sm-down">
+                        <%if(userData){%><%=userData.cartCount%><%}else{%> 0 <%}%> Item
+                      </span>
+                   </a>
+                </div>
+             </div>
+          </div>
+          <div class="header-top-inner">
+             <div class="text-xs-left mobile hidden-lg-up mobile-menu">
+                <div class="menu-icon">
+                   <div class="cat-title">Menu</div>
+                </div>
+                <div id="mobile_top_menu_wrapper" class="row hidden-lg-up">
+                   <div class="mobile-menu-inner">
+                      <div class="menu-icon">
+                         <div class="cat-title">Menu</div>
+                      </div>
+                      <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
+                   </div>
+                </div>
+             </div>
+             <div class="menu col-lg-12 js-top-menu position-static hidden-md-down" id="_desktop_top_menu">
+                <ul class="top-menu  container" id="top-menu" data-depth="0">
+
+                  <% for(var i = 0; i < category.length; i++ ) {%>
+                  <li class="category" id="category-<%=category[i]._id%>">
+                     <a class="dropdown-item" href="<%=BaseUrl%>/productList?cid=<%=category[i]._id%>&page=1" data-depth="0">
+                        <span class="pull-xs-right hidden-lg-up">
+                           <span data-target="#<%=category[i]._id%>" data-toggle="collapse" class="navbar-toggler collapse-icons">
+                              <i class="fa-icon add">
+                              </i>
+                              <i class="fa-icon remove">
+                              </i>
+                           </span>
+                        </span>
+                        <%= category[i].name %>
+                     </a>
+                     <div class="popover sub-menu js-sub-menu collapse" id="<%=category[i]._id%>">
+                        <ul class="top-menu" data-depth="1">
+                           <% for(var j = 0; j < (category[i].subcate).length; j++){ %>
+                           <li class="category-<%=category[i].subcate[j]._id%>">
+                              <a class="dropdown-item dropdown-submenu" href="<%=BaseUrl%>/productList?cid=<%=category[i]._id%>&scid=<%=category[i].subcate[j]._id%>&page=1" data-depth="1">
+                                 <span class="pull-xs-right hidden-lg-up">
+                                    <span data-target="#<%=category[i].subcate[j]._id%>" data-toggle="collapse" class="navbar-toggler collapse-icons">
+                                       <i class="fa-icon add">
+                                       </i>
+                                       <i class="fa-icon remove">
+                                       </i>
+                                    </span>
+                                 </span>
+                                 <%= category[i].subcate[j].name %>
+                              </a>
+                              <div class="collapse" id="<%=category[i].subcate[j]._id%>">
+                                 <ul class="top-menu  " data-depth="2">
+                                    <% for(var k = 0; k < (category[i].subcate[j].petacate).length; k++){ %>
+                                    <li class="category" id="category-<%= category[i].subcate[j].petacate[k]._id %>">
+                                       <a class="dropdown-item" href="<%=BaseUrl%>/productList?cid=<%=category[i]._id%>&scid=<%=category[i].subcate[j]._id%>&pcid=<%= category[i].subcate[j].petacate[k]._id %>&page=1" data-depth="2">
+                                          <%= category[i].subcate[j].petacate[k].name %> 
+                                       </a>
+                                    </li>
+                                    <% } %>
+                                 </ul>
+                              </div>
+                           </li>
+                           <% } %>
+                        </ul>
+                     </div>
+                  </li>
+                  <% } %>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+ </header>

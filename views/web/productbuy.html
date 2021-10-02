@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="http://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+   <link href="http://fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+   <link rel="stylesheet" href="/web/assets/css/style.css" type="text/css" media="all">
+   <script type="text/javascript">
+      var buttoncompare_title_add = "Add to Compare";
+      var buttoncompare_title_remove = "Remove from Compare";
+      var buttonwishlist_title_add = "Add to Wishlist";
+      var buttonwishlist_title_remove = "Remove from WishList";
+      var comparator_max_item = 3;
+      var compared_products = [];
+      var isLogged = false;
+      var prestashop = {};
+      var productcompare_add = "The product has been added to list compare";
+      var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+      var productcompare_remove = "The product was successfully removed from list compare";
+      var productcompare_url = "index8589.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+      var productcompare_viewlistcompare = "View list compare";
+      var wishlist_add = "The product was successfully added to your wishlist";
+      var wishlist_cancel_txt = "Cancel";
+      var wishlist_confirm_del_txt = "Delete selected item?";
+      var wishlist_del_default_txt = "Cannot delete default wishlist";
+      var wishlist_email_txt = "Email";
+      var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+      var wishlist_ok_txt = "Ok";
+      var wishlist_quantity_required = "You must enter a quantity";
+      var wishlist_remove = "The product was successfully removed from your wishlist";
+      var wishlist_reset_txt = "Reset";
+      var wishlist_send_txt = "Send";
+      var wishlist_send_wishlist_txt = "Send wishlist";
+      var wishlist_url = "index8589.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+      var wishlist_viewwishlist = "View your wishlist";
+   </script>
+</head>
+
+<body id="product"
+   class="lang-en country-de currency-usd layout-full-width page-product tax-display-enabled product-id-1 product-consectetur-hampden product-id-category-3 product-id-manufacturer-3 product-id-supplier-0 product-on-sale product-available-for-order">
+   <main id="page">
+      <%- include('header.html'); %>
+      <aside id="notifications">
+         <div class="container">
+         </div>
+      </aside>
+      <section id="wrapper">
+         <style>
+            .thumbnail {
+               object-fit: contain;
+               width: 480px;
+               height: 450px;
+               cursor: pointer;
+               opacity: 1;
+               margin-top: 5px;
+               margin-bottom: 5px;
+               border: 1px solid #dcdcdc;
+               text-align: center;
+            }
+
+            .thumbnail-slider {
+               object-fit: contain;
+               width: 350px;
+               height: 100px;
+               cursor: pointer;
+               opacity: 1;
+               margin-top: 5px;
+               margin-bottom: 5px;
+               border: 1px solid #dcdcdc;
+               text-align: center;
+            }
+         </style>
+         <div class="container">
+            <div id="columns_inner">
+               <div id="content-wrapper">
+                  <section id="main" itemscope itemtype="https://schema.org/Product">
+                     <meta itemprop="url" content="#">
+                     <div class="row">
+                        <div class="pp-left-column col-xs-12 col-sm-5 col-md-5">
+                           <section class="page-content" id="content">
+                              <div class="product-leftside">
+                                 <div class="images-container">
+                                    <div class="images-container-slider">
+                                       <div class="product-cover">
+                                          <img class="thumbnail js-qv-product-cover zoom-product"
+                                             src="<%=imgUrl%>/<%=product.productImage[0]%>" alt="" title=""
+                                             width="width:100%;"
+                                             data-zoom-image="<%=imgUrl%>/<%=product.productImage[0]%>"
+                                             itemprop="image">
+                                          <div class="layer" data-toggle="modal" data-target="#product-modal">
+                                             <i class="fa fa-arrows-alt zoom-in"></i>
+                                          </div>
+                                       </div>
+                                       <!-- Define Number of product for SLIDER -->
+                                       <div class="js-qv-mask mask additional_slider">
+                                          <ul
+                                             class="cz-carousel product_list additional-carousel additional-image-slider">
+
+                                             <li class="thumb-container item">
+                                                <a href="javaScript:void(0)" class="elevatezoom-gallery"
+                                                   data-image="<%=imgUrl%>/<%=product.productImage[0]%>"
+                                                   data-zoom-image="<%=imgUrl%>/<%=product.productImage[0]%>">
+                                                   <img class="thumbnail-slider thumb js-thumb selected"
+                                                      data-image-medium-src="<%=imgUrl%>/<%=product.productImage[0]%>"
+                                                      data-image-large-src="<%=imgUrl%>/<%=product.productImage[0]%>"
+                                                      src="<%=imgUrl%>/<%=product.productImage[0]%>" alt="" title=""
+                                                      width="95" itemprop="image">
+                                                </a>
+                                             </li>
+                                             <% for(var i = 1; i < (product.productImage).length; i++ ){ %>
+                                             <li class="thumb-container item ">
+                                                <a href="javaScript:void(0)" class="elevatezoom-gallery"
+                                                   data-image="<%=imgUrl%>/<%=product.productImage[i]%>"
+                                                   data-zoom-image="<%=imgUrl%>/<%=product.productImage[i]%>">
+                                                   <img class="thumbnail-slider thumb js-thumb"
+                                                      data-image-medium-src="<%=imgUrl%>/<%=product.productImage[i]%>"
+                                                      data-image-large-src="<%=imgUrl%>/<%=product.productImage[i]%>"
+                                                      src="<%=imgUrl%>/<%=product.productImage[i]%>" alt="" title=""
+                                                      width="95" itemprop="image">
+                                                </a>
+                                             </li>
+                                             <% } %>
+                                          </ul>
+
+                                          <div class="customNavigation">
+                                             <a class="btn prev additional_prev">&nbsp;</a>
+                                             <a class="btn next additional_next">&nbsp;</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                           </section>
+                        </div>
+                        <style>
+                           ::-webkit-scrollbar {
+                              width: 0px;
+                           }
+
+                           .jss402::-webkit-scrollbar-thumb {
+                              border-radius: 50px;
+                              background-color: #818080;
+                              outline: 00px solid slategrey;
+                           }
+
+                           :root {
+                              --star-size: 15px;
+                              --star-color: #c6c6c6;
+                              --star-background: #ffb700;
+                           }
+
+                           .Stars {
+                              --percent: calc(var(--rating) / 5 * 100%);
+                              display: inline-block;
+                              font-size: var(--star-size);
+                              font-family: system-ui;
+                              line-height: 1;
+                           }
+
+                           .Stars::before {
+                              content: "★★★★★";
+                              letter-spacing: 3px;
+                              background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+                              -webkit-background-clip: text;
+                              -webkit-text-fill-color: transparent;
+                           }
+                        </style>
+                        <div class="pp-right-column col-xs-12  col-sm-7 col-md-7">
+                           <h1 class="h1 productpage_title" itemprop="name"><%= product.productName%></h1>
+                           <div class="comments_note">
+                              <div class="star_content clearfix">
+                                 <div class="Stars" style="--rating: <%=product.rating%>;"
+                                    aria-label="Rating of this product is <%= product.rating %> out of 5"></div>
+
+                                 <span class="total-rating">(<%= product.rating %>) Rating</span>
+                              </div>
+                           </div>
+                           <div class="product-information">
+                              <div class="product-actions">
+                                 <form action="#" method="post" id="add-to-cart-or-refresh">
+                                    <div class="product-variants">
+                                       <div class="product-quantities">
+                                          <label class="label">Available In Stock: </label>
+                                          <%if((product.stock - product.soldCount) != 0){%>
+                                          <span data-stock="<%=product.stock - product.soldCount%>"
+                                             data-allow-oosp="0"><%=product.stock - product.soldCount%> Items</span>
+                                          <%}else{%>
+                                          <span style="color: rgb(210, 48, 30);"
+                                             data-stock="<%=product.stock - product.soldCount%>"
+                                             data-allow-oosp="0"><%=product.stock - product.soldCount%> Items</span>
+                                          <%}%>
+                                          </div>
+
+                                          <div class="product-quantities">
+                                             <label class="label">Delivery Charge: </label>
+                                             <%if(product.delivery != 0){%>
+                                             <span><%=product.delivery%> Rs</span>
+                                             <%}else{%>
+                                             <span>Free</span>
+                                             <%}%>
+                                          </div>
+                                       </div>
+                                       <section class="product-discounts">
+                                       </section>
+                                       <div class="product-prices">
+                                          <div
+                                             class="product-price h5 has-discount"
+                                             itemprop="offers"
+                                             itemscope
+                                             itemtype="https://schema.org/Offer"
+                                             >
+                                             <link itemprop="availability" href="https://schema.org/InStock"/>
+                                             <meta itemprop="priceCurrency" content="USD">
+                                             <div class="current-price">
+                                                <span itemprop="price" content="<%=product.price%>">Rs.
+                                          <%=product.price%></span>
+
+                                       </div>
+                                    </div>
+                              </div>
+                              <div class="product-add-to-cart">
+                                 <%if((product.stock - product.soldCount) != 0){%>
+                                 <div class="product-quantity">
+                                    <div class="add">
+                                       <a style="background: #2b85f4; border: #2b85f4; color: white;" class="btn btn-primary <%if(!userData){%>add-to-cart st-wishlist-button<%}%>"
+                                          type="submit" <%if(userData){%>href="<%=BaseUrl%>/buynow?pid=<%=product._id%>"<%}%>>
+                                          Buy Now
+                                    </a>
+                                    </div>
+                                    <div class="compare">
+                                       <a class="<%if(!userData){%>st-wishlist-button<%}%> btn-product btn" <%if(userData){%>href="/addcart?pid=<%=product._id%>"<%}%> <%if(product.cart == 1){%>style="background: #ff4c4c;"<%}%>>
+                                          <span class="add-to-cart">
+                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                          </span>
+                                       </a>
+                                    </div>
+                                    
+                                    <!-- <div style="display: inline-block;">
+                                       <a class="add-to-cart btn-product btn" href="/addcartProduct?pid=<%=product._id%>">
+                                          <span class="add-to-cart">
+                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                          </span>
+                                       </a>
+                                    </div> -->
+                                    <div class="wishlist">
+                                       <a class="<%if(!userData){%>st-wishlist-button<%}%> btn-product btn" <%if(userData){%> href="
+                                          /addWishlistProduct?pid=<%=product._id%> <%}%>" <%if(product.wishlist == 1){%>style="background: #ff4c4c;"<%}%>>
+                                                <span class="st-wishlist-bt-content">
+                                                <i class="fa fa-heart"></i>
+                                                </span>
+                                                </a>
+                                             </div>
+                                          </div>
+                                          <div class="clearfix"></div>
+                                          
+                                          <span id="product-availability">
+                                             <span class="product-available">
+                                                <i class="material-icons">&#xE5CA;</i>
+                                                In stock
+                                             </span>
+                                          </span>
+                                          <%} else {%> <span
+                                          style="color: black; font-size: 38px; font-weight: 600;">Sold Out</span>
+                                          <h6 style="color: rgb(60, 59, 59);">This item is currently out of stock</h6>
+                                          <%}%>
+                                          <p class="product-minimal-quantity">
+                                          </p>
+                                       </div>
+                                       <div class="product-additional-info">
+                                          <div class="social-sharing">
+                                             <span>Share</span>
+                                             <ul>
+                                                <li class="facebook icon-gray"><a href="#" title="Share" target="_blank">&nbsp;</a></li>
+                                                <li class="twitter icon-gray"><a href="#" title="Tweet" target="_blank">&nbsp;</a></li>
+                                                <li class="googleplus icon-gray"><a href="#" title="Google+" target="_blank">&nbsp;</a></li>
+                                                <li class="pinterest icon-gray"><a href="#" title="Pinterest" target="_blank">&nbsp;</a></li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                                 <div id="block-reassurance">
+                                    <ul>
+                                       <li>
+                                          <div class="block-reassurance-item">
+                                             <img src="modules/blockreassurance/img/ic_verified_user_black_36dp_1x.png" alt="Security policy (edit with Customer reassurance module)">
+                                             <span class="h6">Security policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                       </li>
+                                       <li>
+                                          <div class="block-reassurance-item">
+                                             <img src="modules/blockreassurance/img/ic_local_shipping_black_36dp_1x.png" alt="Delivery policy (edit with Customer reassurance module)">
+                                             <span class="h6">Delivery policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                       </li>
+                                       <li>
+                                          <div class="block-reassurance-item">
+                                             <img src="modules/blockreassurance/img/ic_swap_horiz_black_36dp_1x.png" alt="Return policy (edit with Customer reassurance module)">
+                                             <span class="h6">Return policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <section class="product-tabcontent">
+                           <div class="tabs">
+                              <ul class="nav nav-tabs" style="text-align: left;">
+                                 <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                                 </li>
+                                 
+                              </ul>
+                              <div class="tab-content" id="tab-content">
+                                 <div class="tab-pane fade in active" id="description">
+                                    <div class="product-description">
+                                        <p><%=product.description%></p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                  </section>
+                  <style>
+                     @media screen and (max-width: 992px) {
+                           .thumbnails {
+                              object-fit: contain;
+                              width: 100%;
+                              height: 200px;
+                              cursor: pointer;
+                              opacity: 1;
+                              margin-top: 5px;
+                              margin-bottom: 5px;
+                              /* border: 1px solid #dcdcdc; */
+                           }
+                        }
+
+                        @media screen and (min-width: 993px) {
+                           .thumbnails {
+                              object-fit: contain;
+                              width: 100%;
+                              height: 300px;
+                              cursor: pointer;
+                              opacity: 1;
+                              margin-top: 5px;
+                              margin-bottom: 5px;
+                              /* border: 1px solid #dcdcdc; */
+                           }
+                        }
+                  </style>
+                  <% if(similerProduct){ %>
+                     <section class="newproducts clearfix">
+                        <div class="container">
+                           <h2 class="h1 products-section-title text-uppercase">Similer Product</h2>
+                           <div class="newproducts-wrapper">
+                              <div class="products">
+                                 <ul id="newproduct-carousel" class="cz-carousel product_list">
+                                    <% for(var i = 0; i < similerProduct.length; i++ ) {%>
+                                    <li class="item">
+                                       <div class="product-miniature js-product-miniature">
+                                          <div class="thumbnail-container">
+                                             <a href="<%=BaseUrl%>/productDetail?pid=<%=similerProduct[i]._id%>" class="thumbnails product-thumbnail">
+                                                <img class="thumbnails" src="<%=imgUrl%>/<%=similerProduct[i].productImage[0]%>">
+                                             </a>
+                                          </div>
+                                          <div class="product-description">
+                                             <div class="comments_note">
+                                                <div class="Stars" style="--rating: <%= similerProduct[i].rating %>;" aria-label="Rating of this product is 2.9 out of 5">  
+                                                </div>
+                                                <span class="">(<%= similerProduct[i].rating %>) Rating</span>
+                                             </div>
+                                             <span class="h3 product-title" itemprop="name"><a href="<%=BaseUrl%>/productDetail?pid=<%=similerProduct[i]._id%>" style="                                              
+                                                   word-break: break-all;
+                                                   -webkit-box-orient: vertical;
+                                                   display: block;
+                                                   text-overflow: ellipsis;
+                                                   word-wrap: break-word;
+                                                   overflow: hidden;
+                                                   max-height: 3em;
+                                                   line-height: 1.5em;"><%= similerProduct[i].productName %></a></span>
+                                             <div class="product-price-and-shipping">
+                                                <span itemprop="price" class="price">Rs.<%= similerProduct[i].price %></span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </li>
+                                    <% } %>
+                                 </ul>
+                                 <div class="customNavigation">
+                                    <a class="btn prev newproduct_prev"> 
+                                    </a>
+                                    <a class="btn next newproduct_next"> 
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <% } %>
+
+                  <!-- <%if(similerProduct){%>
+                  <section class="product-accessories clearfix">
+                     <h2 class="h1 products-section-title text-uppercase">
+                        <span>Similer Product</span>
+                     </h2>
+                     <style>
+                        ::-webkit-scrollbar {
+                           width: 0px;
+                        }
+
+                        .jss402::-webkit-scrollbar-thumb {
+                           border-radius: 50px;
+                           background-color: #818080;
+                           outline: 00px solid slategrey;
+                        }
+
+                        :root {
+                           --star-size: 15px;
+                           --star-color: #c6c6c6;
+                           --star-background: #ffb700;
+                        }
+
+                        .Stars {
+                           --percent: calc(var(--rating) / 5 * 100%);
+                           display: inline-block;
+                           font-size: var(--star-size);
+                           font-family: system-ui;
+                           line-height: 1;
+                        }
+
+                        .Stars::before {
+                           content: "★★★★★";
+                           letter-spacing: 3px;
+                           background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+                           -webkit-background-clip: text;
+                           -webkit-text-fill-color: transparent;
+                        }
+
+                        @media screen and (max-width: 992px) {
+                           .thumbnails {
+                              object-fit: contain;
+                              width: 95%;
+                              height: 200px;
+                              cursor: pointer;
+                              opacity: 1;
+                              margin-top: 5px;
+                              margin-bottom: 5px;
+                              border: 1px solid #dcdcdc;
+                           }
+                        }
+
+                        @media screen and (min-width: 993px) {
+                           .thumbnails {
+                              object-fit: contain;
+                              width: 95%;
+                              height: 300px;
+                              cursor: pointer;
+                              opacity: 1;
+                              margin-top: 5px;
+                              margin-bottom: 5px;
+                              border: 1px solid #dcdcdc;
+                           }
+                        }
+                     </style>
+                     <div class="product_accessories-wrapper">
+                        <div class="products">
+                           <ul id="accessories-carousel" class="cz-carousel product_list">
+                              <%for(var i = 0; i < similerProduct.length; i++){%>
+                              <li class="item">
+                                 <div class="product-miniature js-product-miniature">
+                                    <div class="thumbnail-container">
+                                       <a href="<%=BaseUrl%>/productDetail?pid=<%=similerProduct[i]._id%>">
+                                          <img class="lazyload thumbnails"
+                                             data-src="<%=imgUrl%>/<%=similerProduct[i].productImage[0]%>"
+                                             alt="<%= similerProduct[i].productName %>">
+                                       </a>
+                                    </div>
+                                    <div class="product-description">
+                                       <div class="comments_note">
+                                          <div class="Stars" style="--rating: <%=similerProduct[i].rating%>;"
+                                             aria-label="Rating of this product is <%= similerProduct[i].rating %> out of 5">
+                                          </div>
+                                          <span class="">(<%= similerProduct[i].rating %>) Rating</span>
+
+                                          <span class="h3 product-title" itemprop="name">
+                                             <a href="<%=BaseUrl%>/productDetail?pid=<%=similerProduct[i]._id%>"
+                                                style="
+                                                      word-break: break-all;
+                                                     -webkit-box-orient: vertical;
+                                                     display: block;
+                                                     text-overflow: ellipsis;
+                                                     word-wrap: break-word;
+                                                     overflow: hidden;
+                                                     max-height: 4em;
+                                                     line-height: 1.5em;"><%= similerProduct[i].productName %></a></span>
+                                          <div class="product-price-and-shipping">
+                                             <span itemprop="price" class="price">Rs.
+                                                <%= similerProduct[i].price %></span>
+                                          </div>
+                                       </div>
+                                    </div>
+                              </li>
+                              <%}%>
+                                    </ul>
+                                    <div class="customNavigation">
+                                       <a class="btn prev accessories_prev">&nbsp;</a>
+                                       <a class="btn next accessories_next">&nbsp;</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </section>
+                           <%}%> -->
+
+                              <div class="modal fade js-product-images-modal" id="product-modal">
+                                 <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true"><i class="material-icons">close</i></span>
+                                          </button>
+                                       </div>
+                                       <div class="modal-body">
+                                          <figure>
+                                             <img class="js-modal-product-cover product-cover-modal" width="564"
+                                                src="<%=imgUrl%>/<%=product.productImage[0]%>" alt="" title=""
+                                                itemprop="image">
+                                             <figcaption class="image-caption">
+                                                <div id="product-description-short" itemprop="description">
+                                                   <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                                                      blanditiis praesentium voluptatum deleniti atque corrupti quos
+                                                      dolores et quas molestias excepturi.</p>
+                                                </div>
+                                             </figcaption>
+                                          </figure>
+                                          <aside id="thumbnails" class=" js-thumbnails text-xs-center">
+                                             <div class="js-modal-mask mask ">
+                                                <ul class="product-images js-modal-product-images">
+                                                   <% for(var i = 0; i < (product.productImage).length; i++ ){ %>
+                                                   <li class="thumb-container">
+                                                      <img
+                                                         data-image-large-src="<%=imgUrl%>/<%=product.productImage[i]%>"
+                                                         class="thumb js-modal-thumb"
+                                                         src="<%=imgUrl%>/<%=product.productImage[i]%>" alt="" title=""
+                                                         width="224" itemprop="image">
+                                                   </li>
+                                                   <%}%>
+                                          </ul>
+                                       </div>
+                                       <div class="arrows js-modal-arrows">
+                                          <i class="material-icons arrow-up js-modal-arrow-up">&#xE5C7;</i>
+                                          <i class="material-icons arrow-down js-modal-arrow-down">&#xE5C5;</i>
+                                       </div>
+                                    </aside>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <%- include('footer.html') %>
+   </main>
+   <script type="text/javascript" src="/web/assets/js/bottom-c9914414.js"></script>
+</body>
+
+</html>

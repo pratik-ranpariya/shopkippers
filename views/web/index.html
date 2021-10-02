@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+   <!-- Added by HTTrack -->
+   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+   <!-- /Added by HTTrack -->
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Home Page</title>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Stanley - Tools Store</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Codezeel added -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="http://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="http://fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="/web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">var buttoncompare_title_add="Add to Compare";
+         var buttoncompare_title_remove="Remove from Compare";
+         var buttonwishlist_title_add="Add to Wishlist";
+         var buttonwishlist_title_remove="Remove from WishList";
+         var comparator_max_item=3;
+         var compared_products=[];
+         var isLogged=false;
+         var prestashop= {};
+         var productcompare_add="The product has been added to list compare";
+         var productcompare_max_item="You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove="The product was successfully removed from list compare";
+         var productcompare_url="";
+         var productcompare_viewlistcompare="View list compare";
+         var wishlist_add="The product was successfully added to your wishlist";
+         var wishlist_cancel_txt="Cancel";
+         var wishlist_confirm_del_txt="Delete selected item?";
+         var wishlist_del_default_txt="Cannot delete default wishlist";
+         var wishlist_email_txt="Email";
+         var wishlist_loggin_required="You must be logged in to manage your wishlist";
+         var wishlist_ok_txt="Ok";
+         var wishlist_quantity_required="You must enter a quantity";
+         var wishlist_remove="The product was successfully removed from your wishlist";
+         var wishlist_reset_txt="Reset";
+         var wishlist_send_txt="Send";
+         var wishlist_send_wishlist_txt="Send wishlist";
+         var wishlist_url="";
+         var wishlist_viewwishlist="View your wishlist";
+      </script>
+   </head>
+   <body id="index" class="lang-en country-de currency-eur layout-full-width page-index tax-display-enabled">
+      <main id="page">
+         <%- include('header.html'); %>
+         <aside id="notifications">
+            <div class="container"></div>
+         </aside>
+         <section id="wrapper">
+
+         <style>
+            .jss402::-webkit-scrollbar {
+               width: 2px
+            }
+         
+            .jss402::-webkit-scrollbar-track {
+               border-radius: 10px;
+               -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+            }
+         
+            ::-webkit-scrollbar {
+               width: 0px;
+            }
+         
+            .jss402::-webkit-scrollbar-thumb {
+               border-radius: 50px;
+               background-color: #818080;
+               outline: 00px solid slategrey;
+            }
+         
+            :root {
+               --star-size: 15px;
+               --star-color: #c6c6c6;
+               --star-background: #ffb700;
+            }
+         
+            .Stars {
+               --percent: calc(var(--rating) / 5 * 100%);
+               display: inline-block;
+               font-size: var(--star-size);
+               font-family: system-ui;
+               line-height: 1;
+            }
+         
+            .Stars::before {
+               content: "★★★★★";
+               letter-spacing: 3px;
+               background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+            }
+         </style>
+            
+            <div class="home-container">
+               <div id="columns_inner">
+                  <div id="content-wrapper">
+                     <section class="navbar">
+                        <%if(category){%>
+                        <div class="home-container">
+                           <div id="columns_inner">
+                              <div id="content-wrapper">
+                                 <div class="jss402">
+                                    <%for(var i=0; i < category.length; i++){%>
+                                       <%for(var j=0; j < category[i].subcate.length; j++){%>
+                                          <%if(category[i].subcate[j].name != undefined){%>
+                                             <div class="_3Xyq">
+                                                <div class="E7nC">
+                                                   <a href="<%=BaseUrl%>/productList?cid=<%=category[i].subcate[j].cate%>&scid=<%=category[i].subcate[j]._id%>"
+                                                      title="Mobiles">
+                                                      <div class="_3XVN">
+                                                         <img class="_1H9O" src="<%=cimgUrl%>/<%=category[i].subcate[j].image%>"
+                                                            alt="<%=category[i].subcate[j].name%>">
+                                                      </div>
+                                                      <div class="_2zXZ">
+                                                         <%=category[i].subcate[j].name%>
+                                                      </div>
+                                                   </a>
+                                                </div>
+                                             </div>
+                                       <%}}}%>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <%}%>
+                        <style type="text/css">
+                           ._2zXZ {
+                              margin-top: 6px;
+                              font-size: 15px;
+                              color: #222;
+                              display: block;
+                              white-space: nowrap;
+                              overflow: hidden;
+                              max-width: 115px;
+                              text-overflow: ellipsis;
+                           }
+                        
+                           ._1H9O {
+                              width: 95%;
+                           }
+                        
+                           ._3XVN {
+                              width: 80px;
+                              height: 80px;
+                              border-radius: 50%;
+                              overflow: hidden;
+                              cursor: pointer;
+                              display: -webkit-inline-box;
+                              display: -webkit-inline-flex;
+                              display: -ms-inline-flexbox;
+                              display: inline-flex;
+                              -webkit-box-pack: center;
+                              -webkit-justify-content: center;
+                              -ms-flex-pack: center;
+                              justify-content: center;
+                              -webkit-box-align: center;
+                              -webkit-align-items: center;
+                              -ms-flex-align: center;
+                              align-items: center;
+                              border: 1px solid #ebebeb;
+                              margin: auto;
+                           }
+                        
+                           @media only screen and (max-width: 992px) {
+                              .E7nC {
+                                 display: -webkit-box;
+                                 display: -webkit-flex;
+                                 display: -ms-flexbox;
+                                 display: flex;
+                                 margin-left: 15px;
+                                 -webkit-box-orient: vertical;
+                                 -webkit-box-direction: normal;
+                                 -webkit-flex-direction: column;
+                                 -ms-flex-direction: column;
+                                 flex-direction: column;
+                                 text-align: center;
+                              }
+                           }
+                        
+                           @media only screen and (min-width: 993px) {
+                              .E7nC {
+                                 display: -webkit-box;
+                                 display: -webkit-flex;
+                                 display: -ms-flexbox;
+                                 display: flex;
+                                 margin-left: 25px;
+                                 -webkit-box-orient: vertical;
+                                 -webkit-box-direction: normal;
+                                 -webkit-flex-direction: column;
+                                 -ms-flex-direction: column;
+                                 flex-direction: column;
+                                 text-align: center;
+                              }
+                           }
+                        
+                           @media only screen and (max-width: 992px) {
+                              .jss404 {
+                                 color: #808080;
+                                 width: 70px;
+                                 margin: 0;
+                                 font-size: 10px;
+                                 text-align: center;
+                                 font-family: Gotham Book;
+                              }
+                           }
+                        
+                           @media only screen and (min-width: 992px) {
+                              .jss403 {
+                                 margin: 1%;
+                                 font-size: 30px;
+                                 font-weight: 500;
+                                 font-family: gotham;
+                              }
+                           }
+                        
+                           .jss403 {
+                              color: #606060;
+                              margin: 11% 0px 6%;
+                              font-size: 16px;
+                              text-align: center;
+                              font-family: Gotham Medium;
+                           }
+                        
+                           @media only screen and (min-width: 1920px) {
+                              .jss402 {
+                                 justify-content: center;
+                              }
+                           }
+                        
+                           /* @media only screen and (min-width: 992px) {
+                              .jss402 {
+                                 padding: 0px 5px 2%;
+                              }
+                           } */
+                        
+                           @media only screen and (min-width: 1920px) {
+                              .jss402 {
+                                 
+                                 display: flex;
+                                 padding: 15px;
+                                 /* padding-left: 375px; */
+                                 overflow-y: hidden;
+                                 background-color: #fff;
+                              }
+                           }
+
+                           @media (max-width:1919px) and (min-width:993px) {
+                              .jss402 {
+                                 display: flex;
+                                 padding: 2% 5px;
+                                 /* padding-left: 1120px; */
+                                 overflow-y: hidden;
+                                 background-color: #fff;
+                              }
+                           }
+                        
+                           @media only screen and (max-width: 992px) {
+                              .jss402 {
+                                 display: flex;
+                                 padding: 2% 5px;
+                                 /* padding-left: 350px; */
+                                 overflow-y: hidden;
+                                 background-color: #fff;
+                              }
+                           }
+                        
+                           @media only screen and (min-width: 992px) {
+                              .jss405 {
+                                 width: 16%;
+                                 margin: 1%;
+                                 display: flex;
+                                 padding: 2% 2% 2% 2%;
+                                 align-items: center;
+                                 flex-direction: column;
+                              }
+                           }
+                        
+                           .jss405 {
+                              size: 400px;
+                              padding: 2% 7% 2% 2%;
+                              display: flex;
+                              align-items: center;
+                              flex-direction: column;
+                           }
+                        
+                           @media only screen and (min-width: 992px) {
+                              .jss406 {
+                                 width: 53px;
+                                 color: #606060;
+                                 height: 32px;
+                                 margin: 29%;
+                                 opacity: 0.9;
+                                 display: block;
+                                 font-size: 50px;
+                              }
+                           }
+                        
+                           .jss406 {
+                              width: 32px;
+                              color: #606060;
+                              height: 32px;
+                              margin: 10%;
+                              display: block;
+                              font-size: 32px;
+                           }
+                        </style>
+                     </section>
+                     <section id="main">
+                        <section id="content" class="page-home">
+                           <div class="display-top-inner">
+                              <div class="flexslider" data-interval="8000" data-pause="true">
+                                 <div class="loadingdiv spinner"></div>
+                                 <ul class="slides">
+                                    <%for(var i=0; i < banner.length; i++){%>
+                                       <li class="slide"><a href="#" title="sample-1">
+                                             <img class="lazyload" data-src="<%=banner[i].banner%>" alt="<%=banner[i].banner%>" title="Sample 1" /></a>
+                                       </li>
+                                    <%}%>
+                                 </ul>
+                              </div>
+                              <section class="special-products">
+                                 <div class="container">
+                                    <h1 class="h1 products-section-title text-uppercase">Category1 </h1>
+                                    <div class="special-products-wrapper">
+                                       <div class="products">
+                                          <!-- Define Number of product for SLIDER -->
+                                          <ul id="special-carousel" class="cz-carousel product_list">
+                                             <li class="item">
+                                                <div class="product-miniature js-product-miniature" data-id-product="1" data-id-product-attribute="1" itemscope itemtype="http://schema.org/Product">
+                                                   <div class="thumbnail-container">
+                                                      <a href="#" class="thumbnail product-thumbnail">
+                                                         <img class="lazyload" data-src="https://demo.codezeel.com/prestashop/PRS10/PRS100234/img/p/1/1-home_default.jpg" alt="Consectetur Hampden" data-full-size-image-url="https://demo.codezeel.com/prestashop/PRS10/PRS100234/img/p/1/1-large_default.jpg"></a>
+                                                   </div>
+                                                   <div class="product-description">
+                                                      <div class="comments_note">
+                                                         <div class="star_content clearfix">
+                                                            <div class="star star_on"></div>
+                                                            <div class="star star_on"></div>
+                                                            <div class="star star_on"></div>
+                                                            <div class="star star_on"></div>
+                                                            <div class="star star_on"></div>
+                                                         </div>
+                                                         <span class="total-rating">1 Review(s) </span>
+                                                      </div>
+                                                      <span class="h3 product-title" itemprop="name"><a href="index8589.html?id_product=1&id_product_attribute=1&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/1-size-s/8-color-white">Consectetur Hampden</a></span>
+                                                      <div class="product-price-and-shipping"><span class="regular-price">€104.86</span><span class="discount-percentage discount-product">-4%</span><span itemprop="price" class="price">€100.67</span></div>
+                                                      <div class="highlighted-informations hidden-sm-down">
+                                                         <div class="variant-links"><a href="index97e6.html?id_product=1&id_product_attribute=3&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/2-size-m/8-color-white" class="color" title="White" style="background-color: #ffffff"><span class="sr-only">White</span></a><a href="index5f9a.html?id_product=1&id_product_attribute=40&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/2-size-m/10-color-red" class="color" title="Red" style="background-color: #E84C3D"><span class="sr-only">Red</span></a><a href="index5b4b.html?id_product=1&id_product_attribute=2&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/1-size-s/11-color-black" class="color" title="Black" style="background-color: #434A54"><span class="sr-only">Black</span></a><span class="js-count count"></span></div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </li>
+                                          </ul>
+                                          <div class="customNavigation"><a class="btn prev special_prev"> 
+                                             </a><a class="btn next special_next"> 
+                                             </a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </section>
+                           </div>
+                           <section class="bannerAds">
+                              <div id="czbannercmsblock" class="block czbanners">
+                                 <div class="czbanner_container container">
+                                    <div class="cmsbanners">
+                                       <div class="one-half cmsbanner-part1">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner1">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/1ce0c4c1fb501b45.jpg" alt="cms-banner1" class="banner-image1"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Best Hand Tools</div><div class="cms-desc">Shop Sears' wide selection of tools for<br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="one-half cmsbanner-part2">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner2">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/1ce0c4c1fb501b45.jpg" alt="cms-banner2" class="banner-image2"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Tool Accessories</div><div class="cms-desc">Shop Sears' wide selection of tools for <br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="one-half cmsbanner-part2">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner2">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/1ce0c4c1fb501b45.jpg" alt="cms-banner2" class="banner-image2"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Tool Accessories</div><div class="cms-desc">Shop Sears' wide selection of tools for <br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </section>
+                           <div id="czcategorytabs" class="tabs products_block clearfix">
+                              <div class="categorytab block">
+                                 <div class="container">
+                                    <h2 class="h1 products-section-title text-uppercase">Top Products</h2>
+                                    <div class="tab-content">
+                                       <div id="tab_1" class="tab-pane active">
+                                          <div class="products row">
+                                             <ul id="czcategory5-carousel" class="cz-carousel product_list product_slider_grid" data-catid="5">
+                                                <li class="item">
+                                                   <div class="product-miniature js-product-miniature" data-id-product="1" data-id-product-attribute="1" itemscope itemtype="http://schema.org/Product">
+                                                      <div class="thumbnail-container">
+                                                         <a href="index8589.html?id_product=1&id_product_attribute=1&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/1-size-s/8-color-white" class="thumbnail product-thumbnail">
+                                                            <img class="lazyload" data-src="https://rukminim1.flixcart.com/image/660/792/kg8avm80-0/t-shirt/q/q/k/m-lykpcslbo14843-louis-philippe-sport-original-imafwgfrhhqxn4dc.jpeg"></a>
+                                                      </div>
+                                                      <div class="product-description">
+                                                         <div class="comments_note">
+                                                         </div>
+                                                         <span class="h3 product-title" itemprop="name"><a href="index8589.html?id_product=1&id_product_attribute=1&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/1-size-s/8-color-white">Consectetur Hampden</a></span>
+                                                         <div class="product-price-and-shipping"><span class="regular-price">€104.86</span><span class="discount-percentage discount-product">-4%</span><span itemprop="price" class="price">€100.67</span></div>
+                                                         <div class="highlighted-informations hidden-sm-down">
+                                                            <div class="variant-links"><a href="index97e6.html?id_product=1&id_product_attribute=3&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/2-size-m/8-color-white" class="color" title="White" style="background-color: #ffffff"><span class="sr-only">White</span></a><a href="index5f9a.html?id_product=1&id_product_attribute=40&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/2-size-m/10-color-red" class="color" title="Red" style="background-color: #E84C3D"><span class="sr-only">Red</span></a><a href="index5b4b.html?id_product=1&id_product_attribute=2&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=1#/1-size-s/11-color-black" class="color" title="Black" style="background-color: #434A54"><span class="sr-only">Black</span></a><span class="js-count count"></span></div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </li>
+                                             </ul>
+                                             <div class="customNavigation"><a class="btn prev czcategory_prev"> 
+                                                </a><a class="btn next czcategory_next"> 
+                                                </a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <section class="bannerAds">
+                              <div id="czbannercmsblock" class="block czbanners">
+                                 <div class="czbanner_container container">
+                                    <div class="cmsbanners">
+                                       <div class="one-half cmsbanner-part1">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner1">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/084789479074d2b2.jpg" alt="cms-banner1" class="banner-image1"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Best Hand Tools</div>--><!-- <div class="cms-desc">Shop Sears' wide selection of tools for<br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="one-half cmsbanner-part2">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner2">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/084789479074d2b2.jpg" alt="cms-banner2" class="banner-image2"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Tool Accessories</div>--><!-- <div class="cms-desc">Shop Sears' wide selection of tools for <br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="one-half cmsbanner-part2">
+                                          <div class="cmsbanner-inner">
+                                             <div class="cmsbanner cmsbanner2">
+                                                <a href="#" class="banner-anchor"><img src="https://rukminim1.flixcart.com/flap/960/960/image/084789479074d2b2.jpg" alt="cms-banner2" class="banner-image2"></a>
+                                                <div class="cmsbanner-text">
+                                                   <!-- <div class="main-title">Tool Accessories</div>--><!-- <div class="cms-desc">Shop Sears' wide selection of tools for <br>any task Dummy Text</div> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </section>
+                           <style>
+                              .thumbnail {
+                                 object-fit: contain;
+                                 width: 100%;
+                                 height: 300px;
+                                 cursor: pointer;
+                                 opacity: 1;
+                                 margin-top: 5px;
+                                 margin-bottom: 5px;
+                                 /* border: 0.5px solid #dcdcdc; */
+                              }
+                           </style>
+                           <% if(newProduct){ %>
+                           <section class="newproducts clearfix">
+                              <div class="container">
+                                 <h2 class="h1 products-section-title text-uppercase">New products </h2>
+                                 <div class="newproducts-wrapper">
+                                    <div class="products">
+                                       <ul id="newproduct-carousel" class="cz-carousel product_list">
+                                          <% for(var i = 0; i < newProduct.length; i++ ) {%>
+                                          <li class="item">
+                                             <div class="product-miniature js-product-miniature">
+                                                <div class="thumbnail-container">
+                                                   <a href="<%=BaseUrl%>/productDetail?pid=<%=newProduct[i]._id%>" class="thumbnail product-thumbnail">
+                                                      <img class="thumbnail" src="<%=imgUrl%>/<%=newProduct[i].productImage[0]%>">
+                                                   </a>
+                                                </div>
+                                                <div class="product-description">
+                                                   <div class="comments_note">
+                                                      <div class="Stars" style="--rating: <%= newProduct[i].rating %>;" aria-label="Rating of this product is 2.9 out of 5">  
+                                                      </div>
+                                                      <span class="">(<%= newProduct[i].rating %>) Rating</span>
+                                                   </div>
+                                                   <span class="h3 product-title" itemprop="name"><a href="<%=BaseUrl%>/productDetail?pid=<%=newProduct[i]._id%>" style="                                              
+                                                         word-break: break-all;
+                                                         -webkit-box-orient: vertical;
+                                                         display: block;
+                                                         text-overflow: ellipsis;
+                                                         word-wrap: break-word;
+                                                         overflow: hidden;
+                                                         max-height: 3em;
+                                                         line-height: 1.5em;"><%= newProduct[i].productName %></a></span>
+                                                   <div class="product-price-and-shipping">
+                                                      <span itemprop="price" class="price">Rs.<%= newProduct[i].price %></span>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </li>
+                                          <% } %>
+                                       </ul>
+                                       <div class="customNavigation">
+                                          <a class="btn prev newproduct_prev"> 
+                                          </a>
+                                          <a class="btn next newproduct_next"> 
+                                          </a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </section>
+                           <% } %>
+
+                           <section class="brands">
+                           </section>
+                        </section> 
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+
+         <section class="textdetail" style="margin-top: 50px;">
+         <div class="jss114">
+            <div class="jss115 jss117" style="margin-top: 15px;">
+               <h2 class="jss127" style="font-size: unset; margin: unset; padding-top: 10px">MantraDiamond Jewellery - Designed to Match Your Lifestyle</h2>
+               <div class="jss129 jss130">
+                  <div class="jss131">How many times have you wished for your precious jewellery to be trendy enough,
+                     to find a place in your wardrobe and not your locker? To be as dynamic as your changing style and as modern as your stilettos! Jewellery that's affordable enough to experiment with and not just an investment to save for a rainy day.
+                  </div>
+                  <div class="jss131">At MantraDiamond,
+                     we get you! 
+                  </div>
+                  <div class="jss131"><span class="jss134"></span>We design fine jewellery inspired by global runway trends that can be worn every day. Be it neons,
+                     polka dots,
+                     paisleys or ruffles;
+                     if it is trending internationally this season,
+                     you'll find it in our jewellery designs! #wearthenow
+                  </div>
+               </div>
+            </div>
+            <div class="jss115 jss117">
+               <h2 class="jss127" style="font-size: unset; margin: unset; padding-top: 10px">How's MantraDiamond Jewellery
+                  Different?
+               </h2>
+               <div class="jss129 jss130">
+                  <div class="jss131"><span class="jss134">Trendy,
+                     not traditional</span>- Our international fashion watchers enjoy front-row access to Paris,
+                     Milan,
+                     New York and London Fashion weeks and bring global trends back home. Our jewellery designers then interpret these trends in gold,
+                     diamond and gemstones. So,
+                     our designs reflect what's in
+                     your closet! You won't find a heavy choker inspired by heritage here but you'll definitely find a trend-inspired banglet to go with your LBD! 
+                  </div>
+                  <div class="jss131"><span class="jss134">New designs every week,
+                     not after months</span>- If your wardrobe changes so frequently,
+                     why shouldn't your fine jewellery? We launch 300 unique designs every month - close to 10 new
+                     designs every day,
+                     which would be hard to find in any jewellery store. Using new-age technology,
+                     we create numerous designs and launch them at a fast pace. Because we believe in creating original designs that are insta-worthy and not just for investment! 
+                  </div>
+                  <div class="jss131"><span class="jss134">Matching sets,
+                     not single pieces</span>- Pick any piece and get matching designs across categories i.e. if you like a particular bangle,
+                     you can also choose from a set of matching earrings,
+                     rings,
+                     pendants and necklaces on MantraDiamond. We create every design in sets of 4 or 6 to complete your look. Whether you're looking for gold or diamond styles, you get simple pieces for daily
+                     wear here! 
+                  </div>
+               </div>
+            </div>
+            <div class="jss115 jss117">
+               <h2 class="jss127" style="font-size: unset; margin: unset; padding-top: 10px; padding-bottom: 10px">What Can You Find on MantraDiamond? </h2>
+               <div class="jss129" id="123">
+                  <div class="jss131">Light weight jewellery designs that are perfect for everyday wear! With a wide range of gold jewellery designs and diamond jewellery designs,
+                     we offer refreshing options that you won't find elsewhere.
+                  </div>
+                  <div class="jss131">Shopping is fun on MantraDiamond because we give you a wide variety to choose from,
+                     across casualwear,
+                     partywear and workwear. Take a look at our offerings. 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Necklaces for women</a>- From necklets to long fashion chains and lariats,
+                     our necklace designs are perfect to play with and easy to stack up for a refreshing look. 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Latest Bangle designs</a>- Not your usual designs,
+                     our round bangles,
+                     oval bangles,
+                     cuffs and open top bangles are minimal,
+                     modern and definitely make for a great pair-up with your western wear. 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Bracelets for women</a>- Simple bracelets that don't come
+                     in the way,
+                     whether you are driving for a weekend brunch or making a presentation on your laptop. Choose your style from flexible bracelets,
+                     charm bracelets and banglets. 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Pendant designs</a>- How do you like your pendants? Simple? Swaying? Solid? Studded? In Shades of your fave colour? We've got them all!
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Earrings for women</a>- Hoop it or let them dangle - either way,
+                     you will make a trendy point with MantraDiamond's fashionable earrings online. Pick multiple
+                     pairs for your work,
+                     party and casual day plans! 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Rings for women</a>- Think beyond bands! Open top rings,
+                     cocktail rings,
+                     charm rings,
+                     double finger rings,
+                     stack rings and finger sleeves - your options are endless when it comes to stylish rings on MantraDiamond. 
+                  </div>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Chains</a>- Simple chains for ladies that go with everything. You can add a trendy pendant or wear multiple chains of varying lengths to nail that layered look. </div>
+                  <br>
+                  <div class="jss131"><a style="color: #337ab7" class="jss134 jss135">Nosepins</a>- Minimal studs and simple nose rings in playful combinations of gold,
+                     diamond and gemstone to complement your modern wardrobe. 
+                  </div>
+                  <div class="jss131">So,
+                     whether you're looking for something to go with your summer dress or your blazer and trousers,
+                     MantraDiamond's light weight jewellery makes the cut!
+                  </div>
+                  <div class="jss131">Shopping is also easy on MantraDiamond with our user-friendly interface. We provide various filter and sorting options. You can not only filter by diamond jewellery designs,
+                     gold jewellery designs or gemstone jewellery designs but also via motifs,
+                     collections,
+                     fashion seasons,
+                     price range,
+                     gold weight,
+                     colour,
+                     style and occasions. 
+                  </div>
+                  <div class="jss131">What's more, jewellery shopping is completely safe on MantraDiamond! Buying gold jewellery online with
+                     MantraDiamond comes with the assurance of BIS Hallmark. MantraDiamond's diamond jewelry comes with diamond
+                     certificates issued by SGL or IGI Laboratories,
+                     India's foremost diamond certification agencies. So, you
+                     always get the best and the original. 
+                  </div>
+                  <div class="jss131" style="padding-bottom: 10px">When you're looking to buy gold jewellery online or diamond jewellery online, think MantraDiamond. You
+                     won't be disappointed, we promise.
+                  </div>
+               </div>
+            </div>
+         </div>
+        </section>
+      <style type="text/css">.jss128 {
+         color: #808080;
+         padding: 1.6rem 2rem;
+         /*padding-left: 15px;*/
+         padding-right: 5px;
+         text-transform: capitalize;
+         background-color: #F2F1F1;
+      }
+      @media (min-width: 640px) {
+         .jss128 {
+            padding-left: 6%;
+            padding-right: 5%;
+         }
+      }
+      .jss130 {
+         padding-top: 0;
+         padding-bottom: 0;
+      }
+      .jss131 {
+         color: #808080;
+         display: inline-block;
+         font-size: 10px;
+         padding-top: 3px;
+         line-height: 1.25rem;
+      }
+      .jss131 i {
+         font-size: 10px;
+         margin-right: 6px;
+      }
+      @media (min-width: 640px) {
+         .jss131 {
+            font-size: 12px;
+            padding-top: 5px;
+         }
+      }
+      @media (min-width: 410px) {
+         .jss131 {
+            font-size: 12px;
+         }
+      }
+      .jss131:hover {
+         color: #2b85f4;
+         transform: scale(1.019);
+         transition: ease-in-out .3s;
+      }
+      .jss131 i:before {
+         color: #a1a1a1;
+      }
+      .jss132 {
+         color: #808080;
+         font-size: 10px;
+         padding-top: 5px;
+         line-height: 1.25rem;
+      }
+      @media (min-width: 640px) {
+         .jss132 {
+            font-size: 12px;
+         }
+      }
+      .jss133 {
+         width: 100%;
+         height: 75px;
+         position: relative;
+         background: #F4F4F4;
+         margin-top: -8px;
+         max-height: 85px;
+         border-radius: 0;
+      }
+      .jss134 {
+         font-size: 11px;
+         padding-top: 0;
+         /*font-family: Gotham Book;*/
+         /*font-weight: 500;*/
+         /*padding-left: 0px !important;*/
+         padding-right: 0px !important;
+         padding-bottom: 8px !important;
+      }
+      @media (min-width: 640px) {
+         .jss134 {
+            /*padding-left: 16px !important;*/
+            padding-right: 16px !important;
+            padding-bottom: 11px !important;
+         }
+      }
+      @media (min-width: 640px) {
+         .jss129 {
+            /*padding-left: 16px !important;*/
+            padding-right: 16px !important;
+            padding-bottom: 11px !important;
+         }
+      }
+      .jss117 {
+         color: #808080;
+         padding: 0px 15px;
+         font-size: 12px;
+         border-top: solid 2px #fff;
+         background-color: #f7f7f7;
+      }
+      @media (min-width: 640px) {
+         .jss117 {
+            padding: 1rem 6rem;
+            font-size: 12px;
+         }
+      }
+      .jss118 {
+         padding: 10px 0px;
+      }
+      .jss119 {
+         cursor: pointer;
+         line-height: 1.5rem;
+         font-weight: 500;
+      }
+      .jss120 {
+         border-bottom: solid 1px #97979733;
+      }
+      .jss121 {
+         height: auto;
+         overflow: hidden;
+         max-height: 0;
+         transition: ease-in-out .6s;
+         line-height: 1rem;
+      }
+      .jss122 {
+         max-height: 600px;
+         transition: ease-in-out 1s;
+         line-height: 1rem;
+      }
+      .jss123 {
+         padding: 5px 0px;
+      }
+      .jss124 {
+         display: inline-block;
+         transition: ease-in-out .6s;
+         text-align: center;
+         margin-left: 12px;
+      }
+      .jss125 {
+         transform: rotate(90deg);
+         transition: ease-in-out 1s;
+         vertical-align: middle;
+      }
+      .jss126 {
+         font-weight: 500;
+      }
+      .jss127 {
+         color: #2b85f4;
+         display: inline-block;
+         font-weight: normal;
+      }
+      .jss127:hover {
+         color: #2b85f4;
+         transform: scale(1.019);
+         transition: ease-in-out .3s;
+      }
+      .jss114 {
+         /*transform: rotate(90deg);*/
+         transition: ease-in-out 1s;
+         vertical-align: middle;
+      }
+      .jss115 {
+         font-weight: 500;
+      }
+      .jss116 {
+         color: #2b85f4;
+         display: inline-block;
+         font-weight: normal;
+      }
+      .jss116:hover {
+         color: #2b85f4;
+         transform: scale(1.019);
+         transition: ease-in-out .3s;
+      }
+      .mainContent p {
+         font-weight: 400 !important;
+      }
+      .slick-dots {
+         width: 100%;
+         bottom: 1%;
+         margin: 0;
+         display: block;
+         padding: 10px;
+         position: absolute;
+         text-align: center;
+      }
+      .slick-dots li {
+         width: 10px;
+         margin: 0;
+      }
+      .slick-dots li button:before {
+         color: transparent;
+         width: 5px;
+         border: solid 1px white;
+         height: 5px;
+         content: "";
+         font-size: 25px;
+         border-radius: 100%;
+      }
+      .slick-dots li.slick-active button:before {
+         width: 5px;
+         height: 5px;
+         content: "";
+         border-radius: 100%;
+         background-color: white;
+      }
+   </style>
+         <%- include('footer.html') %>
+      </main>
+      <script type="text/javascript" src="/web/assets/js/bottom-a8ad2f14.js"></script>
+   </body>
+</html>

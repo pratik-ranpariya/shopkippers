@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/css/style.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <% include left_layout.html %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>Withdraw Amount List</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="<%=BaseUrl%>/rules">Rules</a></li>
+      </ol>
+    </div>
+    
+    <div class="modal fade" id="modal-default" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="popupTitle">Add Bank Withdraw Amount</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body card-body" id="catbody">
+            <form id="withdrawAdd" method="post">
+              <input type="hidden" name="id"  id="type" value="0">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="control-label">Withdraw Amount</label>
+                    <input class="form-control" id="amount" name="amount" placeholder="Enter Amount" type="text"
+                      required>
+                  </div>
+                  <label style="color: red; font-weight: 500;" id="messageerror"></label>
+                </div>
+                
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <div class="col-md-12">  
+            <div class="col-md-12">
+                <div class="row">
+              <div class="form-group col-md-2">
+                <label>&nbsp;</label>
+                <input type="button" onclick="openModel();"  class="form-control btn btn-sm btn-success" value="Add Bank Withdraw">
+              </div>
+              <div class="form-group col-md-2">
+                <label>&nbsp;</label>
+                <input type="button" onclick="openModel2();"  class="form-control btn btn-sm btn-success" value="Add Paytm Withdraw">
+              </div>
+              </div>
+            </div>
+              
+          <div class="table-responsive">
+             <table class="table table-hover table-bordered" id="personnel">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <!-- <th>2nd</th> -->
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if(data.length){ %>
+                <% for (var i = 0; i < data.length; i++) { j=i+1%>
+                <tr>
+                  <td><%=j%></td>
+                  <td><%if(data[i].type){%> <%= data[i].type %> <%}else{%> - <%}%></td>
+                  <td><%if(data[i].amount){%> <%= data[i].amount %> <%}else{%> 0 <%}%></td>
+                  <td>
+                    <!-- <a href="<%=BaseUrl%>/adduser?id=<%=data[i].uID%>"><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-check"></i></button></a> -->
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('<%=data[i].type%>','<%=data[i].amount%>');"><i class="fa fa-trash-o"></i></button>
+                  </td>
+                </tr>
+                <% } %>
+              <%}else{%>
+                <tr>
+                  <td colspan="13"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <% if (pages > 0) { %>
+                  <ul class="pagination" id="pagination">
+                    <% if (current == 1) { %>
+                      <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/userlist/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/userlist/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/userlist/<%= pages %>">Last</a></li>
+                    <% } %>
+
+                  </ul>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.</footer>
+</div>
+<!-- ./wrapper --> 
+
+<!-- jQuery 3 --> 
+<script src="<%=BaseUrl%>/js/jquery.min.js"></script>  
+<script src="<%=BaseUrl%>/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="<%=BaseUrl%>/js/bizadmin.js"></script> 
+
+<!-- Jquery Sparklines --> 
+<script src="<%=BaseUrl%>/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/plugins/jquery-sparklines/sparkline-int.js"></script> 
+
+<script src="<%=BaseUrl%>/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/plugins/table-expo/tableexport.js"></script>
+<script>
+// $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<!-- bootstrap-switch --> 
+<!-- <script src="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.js"></script>  -->
+<script src="<%=BaseUrl%>/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/plugins/bootstrap-switch/main.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script>
+  $(document).ready(function()
+    {
+      $("#personnel").tablesorter({
+        sortList: [[0,0]],
+        headers: {3:{sorter:false}}
+      });
+    }
+  );
+</script>
+<script>
+ 
+  function openModel(){
+    $('#popupTitle').html('Add Bank Withdraw Amount');
+    $('#modal-default').modal('show');
+    $('#type').val('1');
+  }
+  function openModel2(){
+    $('#popupTitle').html('Add Paytm Withdraw Amount');
+    $('#modal-default').modal('show');
+    $('#type').val('0');
+  }
+
+  // function getReferAmount(url,id, image, name){
+  //   $('#popupTitle').html('Edit Category');
+  //   var form = '    <input type="hidden" name="categoriesId" value="'+id+'">'
+  //             +'    <div class="row">'
+  //             +'      <div class="col-md-12">'
+  //             +'        <div class="form-group">'
+  //             +'          <label class="control-label">Category Name *</label>'
+  //             +'          <input class="form-control" id="name" name="name" value="'+name+'" placeholder="Add Category" type="text" required>'
+  //             +'        </div>'
+  //             +'      </div>'
+  //             +'      <div class="col-md-12">'
+  //             +'        <button type="submit" class="btn btn-success">Submit</button>'
+  //             +'      </div>'
+  //             +'    </div>';
+
+  //   $('#addcatagory').html(form);         
+  //   $('#modal-default').modal('show');
+  // }
+
+    $('.close').on('click', function () {
+      // $('#addcatagory')[0].reset();
+      $('#amount').val('');
+  })
+
+    $('#withdrawAdd').submit(function(e){
+    console.log("e ::::: ",e);
+    e.preventDefault();
+    var amount=$('#amount').val();
+    var id=$('#type').val();
+    // alert(id+'   :::: '+amount)
+    // return;
+    // console.log(amou)
+    // alert(amou);
+    // alert($('form').serialize())
+    var formData = new FormData(this);
+    // alert(amount);
+    console.log("formData  22 :::: ", formData);
+    $.ajax({
+      url: '<%=BaseUrl%>/addWithdrawAmount/'+id,
+      type: 'post',
+      data: {amount : amount },
+      // enctype: 'multipart/form-data',
+      // cache:false,
+      // contentType: false,
+      // processData: false,
+      success: (data)=>{
+        if(data.error == 'Y'){
+          console.log("error :::::::: ", data.msg);
+          $('#messageerror').html(data.msg);
+        }else{
+          location.reload();
+        }
+      },
+      error: (error)=>{
+        console.log("error :::::::: ", error);
+      }
+    })
+  })
+ 
+  function onDelete(type,amount){
+    var tp=0;
+    if(type=='bank'){
+      tp=1
+    }
+  swal({
+    title: "Are you sure?",
+    text: "You wants to Delete "+type+" Amount!!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      $.ajax({
+        url: '<%=BaseUrl%>/deleteWithdrawAmount/'+tp+'/'+amount,
+        type: 'GET',
+        success: (response)=>{
+          console.log(response, response.status);
+          swal("Poof! User has been deleted!", {
+            icon: "success",
+          });
+          // window.location= '<%=BaseUrl%>/userlist/1';
+          location.reload();
+        },
+        error(err){
+          console.log("User deletion error: ",err);
+        }
+      })
+    } else {
+      swal("Your User is safe!");
+    }
+  });
+}
+
+</script>
+</body>
+</html>

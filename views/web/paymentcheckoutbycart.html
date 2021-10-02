@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Stanley - Tools Store</title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="//fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Add to Compare";
+         var buttoncompare_title_remove = "Remove from Compare";
+         var buttonwishlist_title_add = "Add to Wishlist";
+         var buttonwishlist_title_remove = "Remove from WishList";
+         var comparator_max_item = 3;
+         var compared_products = [];
+         var isLogged = true;
+         var prestashop = {};
+         var productcompare_add = "The product has been added to list compare";
+         var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove = "The product was successfully removed from list compare";
+         var productcompare_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+         var productcompare_viewlistcompare = "View list compare";
+         var wishlist_add = "The product was successfully added to your wishlist";
+         var wishlist_cancel_txt = "Cancel";
+         var wishlist_confirm_del_txt = "Delete selected item?";
+         var wishlist_del_default_txt = "Cannot delete default wishlist";
+         var wishlist_email_txt = "Email";
+         var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+         var wishlist_ok_txt = "Ok";
+         var wishlist_quantity_required = "You must enter a quantity";
+         var wishlist_remove = "The product was successfully removed from your wishlist";
+         var wishlist_reset_txt = "Reset";
+         var wishlist_send_txt = "Send";
+         var wishlist_send_wishlist_txt = "Send wishlist";
+         var wishlist_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+         var wishlist_viewwishlist = "View your wishlist";
+      </script>
+   </head>
+   <body id="checkout" class="lang-en country-de currency-eur layout-left-column page-order tax-display-enabled">
+      <main id="page">
+         <%- include('header.html') %>
+         <aside id="notifications">
+            <div class="container">
+            </div>
+         </aside>
+         <section id="wrapper">
+            <nav data-depth="1" class="breadcrumb">
+               <div class="container">
+                  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="#">
+                        <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                     </li>
+                  </ol>
+               </div>
+            </nav>
+            <div class="container ggdg">
+               <section id="content">
+                  <div class="row">
+                     <div class="col-md-8">
+                        <section  id="checkout-personal-information-step" class="checkout-step -reachable -complete">
+                           <h1 class="step-title h3">
+                              <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                              <span class="step-number">1</span>
+                              Personal Information
+                              <a href="/profile" class="step-edit text-muted"><i class="material-icons edit">mode_edit</i> Edit</a>
+                           </h1>
+                        </section>
+                        <section  id="checkout-addresses-step" class="checkout-step -reachable -complete">
+                           <h1 class="step-title h3">
+                              <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                              <span class="step-number">2</span>
+                              Addresses
+                              <a href="/checkout" class="step-edit text-muted"><i class="material-icons edit">mode_edit</i> Edit</a>
+                           </h1>
+                        </section>
+                        <section class="checkout-step -unreachable" id="checkout-payment-step">
+                           <h1 class="step-title h3">
+                              <span class="step-number">3</span> Payment
+                           </h1>
+
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <input type="radio" value="prepaid" name="paymentType">&nbsp;ATM / Debit / Credit card Payment
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <form action="/order" method="post" class="credit-card" style="margin: 0px">
+                                        <div class="form-header">
+                                            <h4 class="title">Credit / Debit / ATM card detail</h4>
+                                        </div>
+
+                                        <input type="hidden" name="type" value="cart">
+                                        <input type="hidden" name="paymentType" value="prepaid">
+                                        <!-- <input type="hidden" name="quantity" value="<%=data.totaitem%>"> -->
+                                        <div class="form-body">
+                                            <input type="text" class="card-number" placeholder="Card Number">
+
+                                            <div class="date-field">
+                                                <div class="month">
+                                                    <select name="Month">
+                                                        <option value="january">January</option>
+                                                        <option value="february">February</option>
+                                                        <option value="march">March</option>
+                                                        <option value="april">April</option>
+                                                        <option value="may">May</option>
+                                                        <option value="june">June</option>
+                                                        <option value="july">July</option>
+                                                        <option value="august">August</option>
+                                                        <option value="september">September</option>
+                                                        <option value="october">October</option>
+                                                        <option value="november">November</option>
+                                                        <option value="december">December</option>
+                                                    </select>
+                                                </div>
+                                                <div class="year">
+                                                    <select name="Year">
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                        
+                                            <div class="card-verification">
+                                                <div class="cvv-input">
+                                                    <input type="text" placeholder="CVV">
+                                                </div>
+                                                <div class="cvv-details">
+                                                    <p>3 or 4 digits usually found <br> on the signature strip</p>
+                                                </div>
+                                            </div>
+                        
+                                            <!-- Buttons -->
+                                            <button type="submit" class="proceed-btn" style="color: white;">Proceed</button>
+                                            <!-- <button type="submit" class="paypal-btn"><a href="#">Pay With</a></button> -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <input type="radio" value="postpaid" name="paymentType">&nbsp;Cash on Delevery
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                                        moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                        Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                        proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                                        aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <style>
+                        
+                            .credit-card {
+                                width: 100%;
+                                height: 400px;
+                                margin: 60px auto 0;
+                                /* border: 1px solid #ddd; */
+                                /* border-radius: 6px; */
+                                /* background-color: #fff; */
+                                /* box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.10); */
+                            }
+                        
+                            .form-header {
+                                height: 60px;
+                                padding: 20px 30px 0;
+                                border-bottom: 1px solid #E1E8EE;
+                            }
+                        
+                            .form-body {
+                                height: 340px;
+                                padding: 30px 30px 20px;
+                            }
+                        
+                            /* Title */
+                        
+                            .title {
+                                margin: 0;
+                                color: #5e6977;
+                                font-size: 18px;
+                            }
+                        
+                            /* Common */
+                        
+                            .card-number,
+                            .cvv-input input,
+                            .month select,
+                            .paypal-btn,
+                            .proceed-btn,
+                            .year select {
+                                height: 42px;
+                            }
+                        
+                            .card-number,
+                            .cvv-input input,
+                            .month select,
+                            .year select {
+                                font-size: 14px;
+                                font-weight: 100;
+                                line-height: 14px;
+                            }
+                        
+                            .card-number,
+                            .cvv-details,
+                            .cvv-input input,
+                            .month select,
+                            .year select {
+                                color: black;
+                                opacity: 1;
+                            }
+                        
+                            /* Card Number */
+                        
+                            .card-number {
+                                width: 100%;
+                                margin-bottom: 20px;
+                                padding-left: 20px;
+                                border: 2px solid #e1e8ee;
+                                border-radius: 6px;
+                            }
+                        
+                            /* Date Field */
+                        
+                            .month select,
+                            .year select {
+                                -moz-appearance: none;
+                                -webkit-appearance: none;
+                                width: 48%;
+                                margin-bottom: 20px;
+                                padding-left: 20px;
+                                border: 2px solid #e1e8ee;
+                                border-radius: 6px;
+                                background: url('caret.png') no-repeat;
+                                background-position: 85% 50%;
+                            }
+                        
+                            .month select {
+                                float: left;
+                            }
+                        
+                            .year select {
+                                float: right;
+                            }
+                        
+                            /* Card Verification Field */
+                        
+                            .cvv-input input {
+                                width: 48%;
+                                float: left;
+                                padding-left: 20px;
+                                border: 2px solid #e1e8ee;
+                                border-radius: 6px;
+                                background: #fff;
+                            }
+                        
+                            .cvv-details {
+                                float: right;
+                                margin-bottom: 20px;
+                                font-size: 12px;
+                                font-weight: 300;
+                                line-height: 16px;
+                            }
+                        
+                            .cvv-details p {
+                                margin-top: 6px;
+                            }
+                        
+                            /* Buttons Section */
+                        
+                            .paypal-btn,
+                            .proceed-btn {
+                                cursor: pointer;
+                                width: 100%;
+                                border-color: transparent;
+                                border-radius: 6px;
+                                font-size: 16px;
+                            }
+                        
+                            .proceed-btn {
+                                margin-bottom: 10px;
+                                background: #2b85f4;
+                            }
+                        
+                            /* .paypal-btn a,
+                            .proceed-btn a {
+                                text-decoration: none;
+                                cursor: pointer;
+                            }*/
+                        
+                             .proceed-btn a {
+                                color: #fff;
+                            } 
+                        
+                            /*.paypal-btn a {
+                                color: rgba(242, 242, 242, 0.7);
+                            }
+                        
+                            .paypal-btn {
+                                padding-right: 95px;
+                                background: url('paypal-logo.svg') no-repeat 65% 56% #009cde;
+                            } */
+                        </style>
+                        </section>
+                     </div>
+                     <div class="col-md-4">
+                        <section id="js-checkout-summary" class="card js-cart">
+                           <div class="card-block">
+                            <div class="cart-summary-products">
+                                <p><%=data.totaitem%> item</p>
+                                <p>
+                                   <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list">
+                                   show details
+                                   </a>
+                                </p>
+                                <div class="collapse" id="cart-summary-product-list">
+                                    <ul class="media-list row">
+                                        <%for(var i=0; i < data.product.length; i++){%>
+                                            <li class="media col-2">
+                                                <a href="/productDetail?pid=<%=data.product[i].pid%>" title="Accusantium doloremque">
+                                                    <img class="media-object" src="<%=imgUrl%>/<%=data.product[i].productImage%>" height="100px" alt="Accusantium doloremque">
+                                                    
+                                                </a>
+                                                quantity: <%=data.product[i].quantity%>
+                                            </li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                             </div>
+                              <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-products">
+                                 <span class="label">Subtotal</span>
+                                 <span class="value"> Rs. <%=data.totalAmount%></span>
+                              </div>
+                              <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
+                                 <span class="label">Shipping</span>
+                                 <%if((data.deleveryCharge) != 0){%>
+                                    <span class="value">Rs. <%= data.deleveryCharge%></span>
+                                    <%}else{%>
+                                    <span class="value">Free</span>
+                                    <%}%>
+                              </div>
+                           </div>
+                           <hr class="separator">
+                           <div class="card-block cart-summary-totals">
+                              <div class="cart-summary-line cart-total">
+                                 <span class="label">Total (tax incl.)</span>
+                                 <span class="value">Rs. <%if(data){%><%=data.withDelivery%><%}else{%>0<%}%></span>
+                              </div>
+                              <div class="cart-summary-line">
+                                 <span class="label sub"></span>
+                                 <span class="value sub"></span>
+                              </div>
+                           </div>
+                           <div class="checkout text-sm-center card-block">
+                              <button type="button" class="btn btn-primary">Checkout</button>
+                            </div>
+                        </section>
+                        <div id="block-reassurance">
+                           <ul>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Security policy (edit with Customer reassurance module)">
+                                    <span class="h6">Security policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Delivery policy (edit with Customer reassurance module)">
+                                    <span class="h6">Delivery policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Return policy (edit with Customer reassurance module)">
+                                    <span class="h6">Return policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+               
+               
+         </section>
+         <%- include('footer.html') %>
+         <script type="text/javascript" src="web/assets/js/bottom-00110c14.js" ></script>
+      </main>
+   </body>
+</html>

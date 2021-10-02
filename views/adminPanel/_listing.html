@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Champion - VerificationDetails List</title>
+<!-- Tell the browser to be responsive to screen width -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="http://3.7.0.231:3030/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/style.css">
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="http://3.7.0.231:3030/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="http://3.7.0.231:3030/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="http://3.7.0.231:3030/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="http://3.7.0.231:3030/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="http://3.7.0.231:3030/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar"> 
+    <!-- sidebar -->
+    <div class="sidebar"> 
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="info">
+          <p><h1>Champion</h1></p>
+          <a href="http://3.7.0.231:3030/logout"><i class="fa fa-power-off fa-2x"></i></a> </div>
+      </div>
+      <!-- sidebar menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class=""> <a href="http://3.7.0.231:3030/dashboard"> <i class="icon-home"></i> &nbsp; &nbsp; <span>Dashboard</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class=""> <a href="http://3.7.0.231:3030/userlist/1"> <i class="fa fa-users"></i> &nbsp; &nbsp; <span>User List</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <!-- <li class=""> <a href="http://3.7.0.231:3030/userlist/1"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Payment</span> <span class="pull-right-container"></span> </a>
+        </li> -->
+<!--        <li class="treeview  "> <a href="#"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Payment</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class=""><a href="http://3.7.0.231:3030/paytmlist/1"><i class="fa fa-bitcoin"></i>  &nbsp; &nbsp; &nbsp;Paytm</a></li>
+            <li class=""><a href="http://3.7.0.231:3030/banklist/1"><i class="fa fa-bank"></i>  &nbsp; &nbsp; &nbsp; Bank</a></li>
+          </ul>
+        </li> -->
+	<li class=""> <a href="http://3.7.0.231:3030/paytmlist/1"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Paytm</span> <span class="pull-right-container"></span> </a>
+        </li>
+	<li class=""> <a href="http://3.7.0.231:3030/banklist/1"> <i class="fa fa-bank"></i> &nbsp; &nbsp; <span>Bank</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class=""> <a href="http://3.7.0.231:3030/orderlist/1"> <i class="fa fa-credit-card-alt"></i> &nbsp; &nbsp; <span>Order List</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class=""> <a href="http://3.7.0.231:3030/rules"> <i class="fa fa-gavel"></i> &nbsp; &nbsp; <span>Rules</span> <span class="pull-right-container"></span> </a>
+        </li>
+      </li>
+     <li class="active"> <a href="http://3.7.0.231:3030/verifylist/1"> <i class="fa fa-check-circle"></i> &nbsp; &nbsp; <span>Verification List</span> <span class="pull-right-container"></span> </a>
+      </li>
+      <li class=""> <a href="http://3.7.0.231:3030/addNotification"> <i class="fa fa-bell"></i> &nbsp; &nbsp; <span>Notification</span> <span class="pull-right-container"></span> </a>
+      </li>
+      <li class=""> <a href="http://3.7.0.231:3030/paytmKey"> <i class="fa fa-key"></i> &nbsp; &nbsp; <span>Paytm Gratification Key</span> <span class="pull-right-container"></span> </a>
+      </li>
+
+      <li class=""> <a href="http://3.7.0.231:3030/marketing"> <i class="fa fa-share-alt-square"></i> &nbsp; &nbsp; <span>Marketing</span> <span class="pull-right-container"></span> </a>
+      </li>
+        <!-- <li class="treeview  "> <a href="#"> <i class="fa fa-users"></i> &nbsp; &nbsp; <span>Vendors</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class=""><a href="http://3.7.0.231:3030/addvendor"><i class="fa fa-angle-right"></i>  &nbsp; Add Vendor</a></li>
+            <li class=""><a href="http://3.7.0.231:3030/vendorlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Vendor List</a></li>
+          </ul>
+        </li>
+        <li class="treeview  "> <a href="#"> <i class="fa fa-th-list"></i> &nbsp; &nbsp; <span>Catagories</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addcatagories"><i class="fa fa-angle-right"></i>  &nbsp; Add Catagories</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/catagorieslist/1"><i class="fa fa-angle-right"></i>  &nbsp; Catagories List</a></li>
+          </ul>
+        </li>
+        <li class="treeview  "> <a href="#"> <i class="fa fa-th-large"></i> &nbsp; &nbsp; <span>Catalog</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addcatalog"><i class="fa fa-angle-right"></i>  &nbsp; Add Catalog</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/cataloglist/1"><i class="fa fa-angle-right"></i>  &nbsp; Catalog List</a></li>
+          </ul>
+        </li>
+        <li class="treeview  "> <a href="#"> <i class="fa fa-table"></i> &nbsp; &nbsp; <span>Product</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addproduct"><i class="fa fa-angle-right"></i>  &nbsp; Add Product</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/productlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Product List</a></li>
+          </ul>
+        </li>
+        <li class="treeview  "> <a href="#"> <i class="fa fa-rocket"></i> &nbsp; &nbsp; <span>Order</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addorder"><i class="fa fa-angle-right"></i>  &nbsp; Add Order</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/orderlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Order List</a></li>
+          </ul>
+        </li>
+        <li class="treeview  "> <a href="#"> <i class="fa fa-list-alt"></i> &nbsp; &nbsp; <span>Banner</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addbanner"><i class="fa fa-angle-right"></i>  &nbsp; Add Banner</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/bannerlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Banner List</a></li>
+          </ul>
+        </li> -->
+        <!-- <li class="treeview  "> <a href="#"> <i class="fa fa-users"></i> &nbsp; &nbsp; <span>Reseller</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display:  ">
+            <li class="" ><a href="http://3.7.0.231:3030/addreseller"><i class="fa fa-angle-right"></i>  &nbsp; Add Reseller</a></li>
+            <li class="" ><a href="http://3.7.0.231:3030/resellerlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Reseller List</a></li>
+          </ul>
+        </li> -->
+        <!-- <li> <a href="addaddress.html"> <i class="fa fa-map-marker"></i> &nbsp; &nbsp; <span>Add Address</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li> <a href="addsender.html"> <i class="fa fa-paper-plane"></i> &nbsp; &nbsp; <span>Add Sender</span> <span class="pull-right-container"></span> </a>
+        </li> -->
+      </ul>
+    </div>
+    <!-- /.sidebar --> 
+  </aside>
+
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>VerificationDetails List</h1>
+      <ol class="breadcrumb">
+        <li><a href="http://3.7.0.231:3030/dashboard">Dashboard</a></li>
+      </ol>
+    </div>
+    
+   
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <div class="col-md-12">
+          <form id="searchform" action="" method="post" onsubmit="return checkvalidateForm();">
+            <div class="row">
+            <div class="form-group col-md-2">
+              <label>Search Type:</label>
+              <select name="by" id="bysort" class="select2 form-control custom-select">
+                <option value="userId" >User ID</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2" id="searchbox">
+              <label>Search:</label>
+              <input type="text" class="form-control" id="orderno" name="search" placeholder="Search" value="">
+            </div>
+            <div class="form-group col-md-2">
+              <label>&nbsp;</label>
+              <input type="submit"  class="form-control btn btn-sm btn-success" value="Search">
+            </div>
+            </div>
+          </form>
+        </div>
+        <br>
+        <div class="col-md-12">  
+          <div class="table-responsive">
+             <table class="table table-hover table-bordered" id="personnel">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+                  <th>User ID</th>
+                  <th>Pan No</th>
+                  <th>A/C No</th>
+		  <th>A/C Name</th>
+		  <th>A/C IFSC</th>
+                  <th>Pan or Aadhar Img</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                
+                
+                <tr>
+                  <td>1</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=0FSgFbpW1pbtc8nbDAXYJwzTV"> 0FSgFbpW1pbtc8nbDAXYJwzTV </a></td>
+                  <td> BGJPJ6524N </td>
+                  <td> 3593101002523 </td>
+		  <td> ajay kumar jassal </td>
+		  <td> CNRB0003593 </td>
+                  <td class="view_data" id="0FSgFbpW1pbtc8nbDAXYJwzTV/////BGJPJ6524N/////3593101002523/////ajay kumar jassal/////CNRB0003593/////http://3.7.0.231:3030/1608789822116_1608351862064.jpg/////1"> <img src="http://3.7.0.231:3030/1608789822116_1608351862064.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>2</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=bXWLQpVsKTlEN5AtVc5ZccXdn"> bXWLQpVsKTlEN5AtVc5ZccXdn </a></td>
+                  <td> GKNPK9341B </td>
+                  <td> 954510110004549 </td>
+		  <td> Adarsh kumar </td>
+		  <td> BKID0009545 </td>
+                  <td class="view_data" id="bXWLQpVsKTlEN5AtVc5ZccXdn/////GKNPK9341B/////954510110004549/////Adarsh kumar/////BKID0009545/////http://3.7.0.231:3030/1608729402032_kycDoc.jpg/////1"> <img src="http://3.7.0.231:3030/1608729402032_kycDoc.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>3</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=RCdAh83LvSfdGVReVM2gyWDvK"> RCdAh83LvSfdGVReVM2gyWDvK </a></td>
+                  <td> AUUPA8650N </td>
+                  <td> 917002012065 </td>
+		  <td> Paytm payment Bank </td>
+		  <td> PYTM0123456 </td>
+                  <td class="view_data" id="RCdAh83LvSfdGVReVM2gyWDvK/////AUUPA8650N/////917002012065/////Paytm payment Bank/////PYTM0123456/////http://3.7.0.231:3030/1608720463238_image-4308eea8-ebfd-4efb-a440-33b57db7ee61.jpg/////1"> <img src="http://3.7.0.231:3030/1608720463238_image-4308eea8-ebfd-4efb-a440-33b57db7ee61.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>4</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=MsNGZlopE0CV4AReUfEAgMdD0"> MsNGZlopE0CV4AReUfEAgMdD0 </a></td>
+                  <td> CTNPK6053P </td>
+                  <td> 918825197128 </td>
+		  <td> sunil kumar </td>
+		  <td> PYTM0123456 </td>
+                  <td class="view_data" id="MsNGZlopE0CV4AReUfEAgMdD0/////CTNPK6053P/////918825197128/////sunil kumar/////PYTM0123456/////http://3.7.0.231:3030/1608652160731_scanner_20201222_091734.jpg/////1"> <img src="http://3.7.0.231:3030/1608652160731_scanner_20201222_091734.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>5</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=sTO7mPJu1foU1p0BcNjIbqoaK"> sTO7mPJu1foU1p0BcNjIbqoaK </a></td>
+                  <td> ERMPB8775C  </td>
+                  <td> 021101540867 </td>
+		  <td> 021101540867 </td>
+		  <td> ICIC0000211 </td>
+                  <td class="view_data" id="sTO7mPJu1foU1p0BcNjIbqoaK/////ERMPB8775C /////021101540867/////021101540867/////ICIC0000211/////http://3.7.0.231:3030/1608641751580_IMG_20201220_182551.jpg/////1"> <img src="http://3.7.0.231:3030/1608641751580_IMG_20201220_182551.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>6</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=86nNGdIBZ1goffwR94OvJT4BV"> 86nNGdIBZ1goffwR94OvJT4BV </a></td>
+                  <td> BPRPK0944N </td>
+                  <td> 20100003581706 </td>
+		  <td> Anil kumar </td>
+		  <td> FSFB0000001 </td>
+                  <td class="view_data" id="86nNGdIBZ1goffwR94OvJT4BV/////BPRPK0944N/////20100003581706/////Anil kumar/////FSFB0000001/////http://3.7.0.231:3030/1608640642975_IMG_20200927_112324_110.jpg/////1"> <img src="http://3.7.0.231:3030/1608640642975_IMG_20200927_112324_110.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>7</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=z8WimZ6Pv481Qfv9wKYD3ctBG"> z8WimZ6Pv481Qfv9wKYD3ctBG </a></td>
+                  <td> AWOPJ8257C </td>
+                  <td> 13610100219014 </td>
+		  <td> FEDERAL BANK </td>
+		  <td> FDRL0001316 </td>
+                  <td class="view_data" id="z8WimZ6Pv481Qfv9wKYD3ctBG/////AWOPJ8257C/////13610100219014/////FEDERAL BANK/////FDRL0001316/////http://3.7.0.231:3030/1608626141206_IMG-20201221-WA0000.jpg/////1"> <img src="http://3.7.0.231:3030/1608626141206_IMG-20201221-WA0000.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>8</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=Nvj0Xv358Aafl6tUCQ1f9e7lQ"> Nvj0Xv358Aafl6tUCQ1f9e7lQ </a></td>
+                  <td> IOMPK0230Q </td>
+                  <td> 39116763339 </td>
+		  <td> State bank of India </td>
+		  <td> 39116763339 </td>
+                  <td class="view_data" id="Nvj0Xv358Aafl6tUCQ1f9e7lQ/////IOMPK0230Q/////39116763339/////State bank of India/////39116763339/////http://3.7.0.231:3030/1608645490384_IMG20201222192729.jpg/////1"> <img src="http://3.7.0.231:3030/1608645490384_IMG20201222192729.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>9</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=98XCIO4UyULuYoULtNgulwf4h"> 98XCIO4UyULuYoULtNgulwf4h </a></td>
+                  <td> EGJPR8710P </td>
+                  <td> 920010004688507 </td>
+		  <td> axis Bank </td>
+		  <td> UTIB0003763 </td>
+                  <td class="view_data" id="98XCIO4UyULuYoULtNgulwf4h/////EGJPR8710P/////920010004688507/////axis Bank/////UTIB0003763/////http://3.7.0.231:3030/1608554308865_IMG20201015230419.jpg/////1"> <img src="http://3.7.0.231:3030/1608554308865_IMG20201015230419.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>10</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=Ys8J05KhI2mI8auv1umJTiV1Q"> Ys8J05KhI2mI8auv1umJTiV1Q </a></td>
+                  <td> HVEPK6236C </td>
+                  <td> 369502010041185 </td>
+		  <td> jitendrakumar </td>
+		  <td> UBIN0536954 </td>
+                  <td class="view_data" id="Ys8J05KhI2mI8auv1umJTiV1Q/////HVEPK6236C/////369502010041185/////jitendrakumar/////UBIN0536954/////http://3.7.0.231:3030/1608550409660_IMG_20201221_153659.jpg/////1"> <img src="http://3.7.0.231:3030/1608550409660_IMG_20201221_153659.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>11</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=eTcq1Qyt2ySJ3iJRu0DGwV88a"> eTcq1Qyt2ySJ3iJRu0DGwV88a </a></td>
+                  <td> AHFPJ6562J </td>
+                  <td> 53037556100 </td>
+		  <td> RAKESH KUMAR JAIN  </td>
+		  <td> SBIN0030076 </td>
+                  <td class="view_data" id="eTcq1Qyt2ySJ3iJRu0DGwV88a/////AHFPJ6562J/////53037556100/////RAKESH KUMAR JAIN /////SBIN0030076/////http://3.7.0.231:3030/1608522200091_RANU MAMA PAN 001.jpg/////1"> <img src="http://3.7.0.231:3030/1608522200091_RANU MAMA PAN 001.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>12</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=fl1mNxBBKOyhce0XAfBQlglEw"> fl1mNxBBKOyhce0XAfBQlglEw </a></td>
+                  <td> AEOPU8028A </td>
+                  <td> 38003120472 </td>
+		  <td> Nizam uddin </td>
+		  <td> SBIN0006309 </td>
+                  <td class="view_data" id="fl1mNxBBKOyhce0XAfBQlglEw/////AEOPU8028A/////38003120472/////Nizam uddin/////SBIN0006309/////http://3.7.0.231:3030/1608520293326_IMG_20201221_083934.jpg/////1"> <img src="http://3.7.0.231:3030/1608520293326_IMG_20201221_083934.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>13</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=J0l0BFWhWdLxD4ONHgPIVmqNw"> J0l0BFWhWdLxD4ONHgPIVmqNw </a></td>
+                  <td> neyps1383r </td>
+                  <td> 19400110020586 </td>
+		  <td> uco </td>
+		  <td> cuba0001940 </td>
+                  <td class="view_data" id="J0l0BFWhWdLxD4ONHgPIVmqNw/////neyps1383r/////19400110020586/////uco/////cuba0001940/////http://3.7.0.231:3030/1608510384929_IMG20200924120603.jpg/////1"> <img src="http://3.7.0.231:3030/1608510384929_IMG20200924120603.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>14</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=3RWlGYyUGKdxyS0GYn08GbQNP"> 3RWlGYyUGKdxyS0GYn08GbQNP </a></td>
+                  <td> CEPPN3011M </td>
+                  <td> 916232886944 </td>
+		  <td> paytm payments bank </td>
+		  <td> PYTM0123456 </td>
+                  <td class="view_data" id="3RWlGYyUGKdxyS0GYn08GbQNP/////CEPPN3011M/////916232886944/////paytm payments bank/////PYTM0123456/////http://3.7.0.231:3030/1608474445588_kycDoc.jpg/////1"> <img src="http://3.7.0.231:3030/1608474445588_kycDoc.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>15</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=mT2osFT3dnbS1rcYY6YprJC1F"> mT2osFT3dnbS1rcYY6YprJC1F </a></td>
+                  <td> czapg6700n </td>
+                  <td> 5318101002691 </td>
+		  <td> canara Bank </td>
+		  <td> cnrB0005318 </td>
+                  <td class="view_data" id="mT2osFT3dnbS1rcYY6YprJC1F/////czapg6700n/////5318101002691/////canara Bank/////cnrB0005318/////http://3.7.0.231:3030/1608464636220_JPEG_20201028_161340.jpg/////1"> <img src="http://3.7.0.231:3030/1608464636220_JPEG_20201028_161340.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>16</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=t6ROiLeUMwCws4wtfbRI06agD"> t6ROiLeUMwCws4wtfbRI06agD </a></td>
+                  <td> DHOPA3041M </td>
+                  <td> 37144463462 </td>
+		  <td> State Bank of India </td>
+		  <td> SBIN0012461 </td>
+                  <td class="view_data" id="t6ROiLeUMwCws4wtfbRI06agD/////DHOPA3041M/////37144463462/////State Bank of India/////SBIN0012461/////http://3.7.0.231:3030/1608533172232_IMG20201125164047.jpg/////1"> <img src="http://3.7.0.231:3030/1608533172232_IMG20201125164047.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>17</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=cGuWihqMVfvI85W2O0BOm0EAT"> cGuWihqMVfvI85W2O0BOm0EAT </a></td>
+                  <td> DYBPR1821N </td>
+                  <td> 81870100029239 </td>
+		  <td> Haryana gramin bank </td>
+		  <td> PUNBOHGB001 </td>
+                  <td class="view_data" id="cGuWihqMVfvI85W2O0BOm0EAT/////DYBPR1821N/////81870100029239/////Haryana gramin bank/////PUNBOHGB001/////http://3.7.0.231:3030/1608455871302_IMG_20201220_144733.jpg/////1"> <img src="http://3.7.0.231:3030/1608455871302_IMG_20201220_144733.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>18</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=0qqG5mdGEDcZp1CSOBXhojzA4"> 0qqG5mdGEDcZp1CSOBXhojzA4 </a></td>
+                  <td> BZZPJ3814Q </td>
+                  <td> 38958394380 </td>
+		  <td> jayanthi g </td>
+		  <td> SBIN0012245 </td>
+                  <td class="view_data" id="0qqG5mdGEDcZp1CSOBXhojzA4/////BZZPJ3814Q/////38958394380/////jayanthi g/////SBIN0012245/////http://3.7.0.231:3030/1608432868402_IMG_20200511_104714.jpg/////1"> <img src="http://3.7.0.231:3030/1608432868402_IMG_20200511_104714.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>19</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=FMubyhgDdA83k46wi2hmg7Dk0"> FMubyhgDdA83k46wi2hmg7Dk0 </a></td>
+                  <td> BPNPT3990P </td>
+                  <td> 0961041000000259 </td>
+		  <td> Jammu Kashmir bank </td>
+		  <td> JAKA0DRUROO </td>
+                  <td class="view_data" id="FMubyhgDdA83k46wi2hmg7Dk0/////BPNPT3990P/////0961041000000259/////Jammu Kashmir bank/////JAKA0DRUROO/////http://3.7.0.231:3030/1608389983159_IMG_20201103_175121.jpg/////1"> <img src="http://3.7.0.231:3030/1608389983159_IMG_20201103_175121.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+                <tr>
+                  <td>20</td>
+                  <!-- <td><a href="http://3.7.0.231:3030/resellerProfile?id="> - </a></td> -->
+                  <td><a href="http://3.7.0.231:3030/resellerProfile?id=ft0cTnTgp1qeQdDshV1SsXLwU"> ft0cTnTgp1qeQdDshV1SsXLwU </a></td>
+                  <td> EGAPK9667R </td>
+                  <td> 96612200018030 </td>
+		  <td> Rohit Kumar </td>
+		  <td> SYNB0009661 </td>
+                  <td class="view_data" id="ft0cTnTgp1qeQdDshV1SsXLwU/////EGAPK9667R/////96612200018030/////Rohit Kumar/////SYNB0009661/////http://3.7.0.231:3030/1608375937158_A+ Gallery_3.jpg/////1"> <img src="http://3.7.0.231:3030/1608375937158_A+ Gallery_3.jpg" width="75px" height="75px">  </td>
+                  <!-- <td> 1 </td> -->
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                    
+                  </td>
+                  <!-- <td> <img src="http://3.7.0.231:3030/country/0.png" >  </td> -->
+                  <!-- <td>
+                    <a href="http://3.7.0.231:3030/adduser?id="><button class="btn btn-sm btn-info" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button></a>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="onDelete('');"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
+                </tr>
+                
+              
+              </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                
+                  <ul class="pagination" id="pagination">
+                    
+                      <li class="disabled"><a>First</a></li>
+                    
+                    
+                    
+                    
+                        
+                            <li class="active"><a>1</a></li>
+                        
+                        
+                    
+                        
+                            <li><a href="/verifylist/2">2</a></li>
+                        
+                        
+                    
+                        
+                            <li><a href="/verifylist/3">3</a></li>
+                        
+                        
+                    
+                        
+                            <li><a href="/verifylist/4">4</a></li>
+                        
+                        
+                    
+                    
+                        <li><a href="/verifylist/4">Last</a></li>
+                    
+
+                  </ul>
+                
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </divadminPanel/>
+
+    <div class="modal fade" id="viewsdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document" style="max-width: 1200px">
+        <div class="modal-content">
+          <div class="modal-header">
+    
+            <h5 class="modal-title" id="exampleModalLabel">Verify</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    
+          <div class="row">
+            <div class="col-6">
+              <tr class="pad">
+                <td>Img</td>
+                <td>:</td>
+                <td><img src="" id="panadharimage" style=" max-height: 650px; padding: 25px; width: 100%;"></td>
+              </tr>
+            </div>
+            <div class="col-6">
+              <table>
+                <tr class="pad">
+                  <td>User Id</td>
+                  <td>:</td>
+                  <td><input name="uid" type="text" id="uid" style="border: none" size="45px"> </td>
+                </tr>
+                <tr class="pad">
+                  <td>Pan No.</td>
+                  <td>:</td>
+                  <td><input name="uid" type="text" id="panno" style="border: none" size="45px"></td>
+                </tr>
+                <tr class="pad">
+                  <td>A/C No.</td>
+                  <td>:</td>
+                  <td><input name="uid" type="text" id="acno" style="border: none" size="45px"></td>
+                </tr>
+                <tr class="pad">
+                  <td>A/C Name</td>
+                  <td>:</td>
+                  <td><input name="uid" type="text" id="acname" style="border: none" size="45px"></td>
+                </tr>
+                <tr class="pad">
+                  <td>A/C IFSC</td>
+                  <td>:</td>
+                  <td><input name="uid" type="text" id="acifsc" style="border: none" size="45px"></td>
+                </tr>
+                <tr class="pad">
+                  <td>Status</td>
+                  <td>:</td>
+                  <td id="status"></td>
+                </tr>
+                <tr class="pad">
+                  <td>Action</td>
+                  <td>:</td>
+                  <td id="action"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .pad td{
+        padding: 15px;
+      }
+    </style>
+
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.</footer>
+</div>
+<!-- ./wrapper --> 
+
+<!-- jQuery 3 --> 
+<script src="http://3.7.0.231:3030/js/jquery.min.js"></script>  
+<script src="http://3.7.0.231:3030/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="http://3.7.0.231:3030/js/bizadmin.js"></script> 
+
+<!-- Jquery Sparklines --> 
+<script src="http://3.7.0.231:3030/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="http://3.7.0.231:3030/plugins/jquery-sparklines/sparkline-int.js"></script> 
+
+<script src="http://3.7.0.231:3030/plugins/table-expo/filesaver.min.js"></script>
+<script src="http://3.7.0.231:3030/plugins/table-expo/xls.core.min.js"></script>
+<script src="http://3.7.0.231:3030/plugins/table-expo/tableexport.js"></script>
+<script>
+// $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<!-- bootstrap-switch --> 
+<!-- <script src="http://3.7.0.231:3030/plugins/bootstrap-switch/bootstrap-switch.js"></script>  -->
+<script src="http://3.7.0.231:3030/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="http://3.7.0.231:3030/plugins/bootstrap-switch/main.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script>
+  $(document).ready(function()
+    {
+      $("#personnel").tablesorter({
+        sortList: [[0,0]],
+        headers: {3:{sorter:false}}
+      });
+    }
+  );
+</script>
+<script>
+
+  function opApprove(status, uid) {
+    console.log('click success')
+    var st = 'Pandding';
+    if (status == 1) {
+      st = 'Success'
+    }
+    else if (status == 2) {
+      st = 'Cancel'
+    }
+
+    swal({
+      title: "Are you sure?",
+      text: "You want to change payment Status to " + st,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        console.log(willDelete)
+        if (willDelete) {
+
+          if (status == 2) {
+            swal({
+              title: "Please choice Any One fo them",
+              html: "<b>Your HTML</b>",
+              width: '800px',
+              buttons: {
+                // optionone: {
+                //   text: "Pancard Approved!",
+                //   value: "optionone",
+                // },
+                optiontwo: {
+                  text: "Image Not Proper",
+                  value: "optiontwo",
+                },
+                optionthree: {
+                  text: "Pancard Number Not Valid",
+                  value: "optionthree",
+                },
+                optionfour: {
+                  text: "Invalid Bank Details",
+                  value: "optionfour",
+                },
+              },
+            })
+              .then((value) => {
+                switch (value) {
+
+                  // case "optionone":
+                  //   mydata('Pancard Approved!', 'Pancard Verification Approved', status, uid)
+                  //   break
+
+                  case "optiontwo":
+                    mydata('Uploaded Image Not Proper! Please apply again', 'Kyc verification Failed', status, uid)
+                    break
+
+                  case "optionthree":
+                    mydata('Invalid Pancard Image!  Please apply again', 'Kyc verification Failed', status, uid)
+                    break
+
+                  case "optionfour":
+                    mydata('You Entered Bank Detail Not valid!  Please apply again', 'Kyc verification Failed', status, uid)
+                    break
+
+                  default:
+                    mydata('You Entered Bank Detail Not valid!  Please apply again', 'Kyc verification Failed', status, uid)
+                }
+              })
+          } else {
+            mydata('Your KYC is approved now u can withdraw winning Balnace. Enjoy Game', 'KYC Approved!', status, uid)
+          }
+
+
+          function mydata(txt, titleTxt, status, uid) {
+
+            console.log(':::::::::::::=>', txt, titleTxt, status, uid)
+
+            // return
+
+            $.ajax({
+              url: 'http://3.7.0.231:3030/approveVerification/' + uid + '/' + status + '/' + txt + '/' + titleTxt,
+              type: 'post',
+              success: (response) => {
+                console.log('dasdas=========>', response, response.status);
+                if (!response.error) {
+                  swal("Poof! User Status updated", {
+                    icon: "success",
+                  });
+                } else {
+                  swal("Failed to update Status!", {
+                    icon: "error",
+                  });
+                }
+
+                location.reload();
+              },
+              error(err) {
+                console.log(err)
+                swal("Failed to update Status!!" + err, {
+                  icon: "error",
+                });
+              }
+            })
+          }
+        } else {
+          swal("Nothing to Worry!! its Safe");
+        }
+      });
+  }
+ 
+//  function opApprove(status,uid){
+// var st='Pandding';
+// if(status==1){
+//   st='Success'
+// }
+// else if(status==2){
+//   st='Cancel'
+// }
+
+//   swal({
+//     title: "Are you sure?",
+//     text: "You want to change payment Status to "+st,
+//     icon: "warning",
+//     buttons: true,
+//     dangerMode: true,
+//   })
+//   .then((willDelete) => {
+//     console.log(willDelete)
+//     if (willDelete) {
+//       $.ajax({
+//         url: 'http://3.7.0.231:3030/approveVerification/'+uid+'/'+status,
+//         type: 'post',
+//         success: (response)=>{
+//           console.log(response, response.status);
+//           if(!response.error){
+//               swal("Poof! User Status updated", {
+//                 icon: "success",
+//               });
+//           }
+//           else{
+//             swal("Failed to update Status!", {
+//                 icon: "error",
+//               });
+//           }
+          
+//           location.reload();
+//         },
+//         error(err){
+//           console.log(err)
+//           swal("Failed to update Status!!"+err, {
+//                 icon: "error",
+//               });
+//         }
+//       })
+//     } else {
+//       swal("Nothing to Worry!! its Safe");
+//     }
+//   });
+// }
+
+  function onDelete(id){
+  swal({
+    title: "Are you sure?",
+    text: "You wants to Delete User Details!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      $.ajax({
+        url: 'http://3.7.0.231:3030/deleteUser/'+id,
+        type: 'GET',
+        success: (response)=>{
+          console.log(response, response.status);
+          swal("Poof! User has been deleted!", {
+            icon: "success",
+          });
+          window.location= 'http://3.7.0.231:3030/userlist/1';
+        },
+        error(err){
+          console.log("User deletion error: ",err);
+        }
+      })
+    } else {
+      swal("Your User is safe!");
+    }
+  });
+}
+
+
+
+</script>
+
+<script>
+  // $(document).ready(function () {
+  //   $(document).on('click', '.view_data', function () {
+  //     var _id = $(this).attr("id")
+  //     console.log(_id)
+  //     // $('tr[data-status="uid"]').data("salary",150);
+  //     $("#uid").html(_id.split('/////')[0])
+  //     $('#panno').val(_id.split('/////')[1])
+  //     $('#acno').val(_id.split('/////')[2])
+  //     $('#acname').val(_id.split('/////')[3])
+  //     $('#acifsc').val(_id.split('/////')[4])
+  //     document.getElementById("panadharimage").src = _id.split('/////')[5];
+  //     // $('#status').val(_id.split('/////')[6])
+
+  //     if(_id.split('/////')[6] == 0){
+  //       var classcolor = 'warning'
+  //     }else if(_id.split('/////')[6] == 1){
+  //       var classcolor = 'success'
+  //     }else if(_id.split('/////')[6] == 2){
+  //       var classcolor = 'info'
+  //     }
+
+  //     if(_id.split('/////')[6] == 0){
+  //       var valuebystatus = 'Pending'
+  //     }else if(_id.split('/////')[6] == 1){
+  //       var valuebystatus = 'Approved'
+  //     }else if(_id.split('/////')[6] == 2){
+  //       var valuebystatus = 'Cancel'
+  //     }
+  //     $('#status').html("<span class='label label-"+classcolor+"'>"+valuebystatus+"</span>")
+
+  //     if(_id.split('/////')[6] == 0){
+  //       var idd = "`"+_id.split('/////')[0]+"`"
+  //       var buton =  "<button class='btn btn-sm btn-success' style='margin:5px' type='button' onclick='opApprove(1,"+idd+")'><i class='fa fa-check'></i></button></a><div class='clearfix'></div><button class='btn btn-sm btn-danger' style='margin:5px' type='button' onclick='opApprove(2,"+idd+")'><i class='fa fa-times'></i></button>"
+  //     }
+
+  //     $('#action').html(buton)
+  //     $('#viewsdata').modal('show')
+  //   })
+  // })
+
+
+  $(document).ready(function () {
+      $(document).on('click', '.view_data', function () {
+        var _id = $(this).attr("id")
+        console.log(_id)
+        // $('tr[data-status="uid"]').data("salary",150);
+        $("#uid").val(_id.split('/////')[0])
+        $('#panno').val(_id.split('/////')[1])
+        $('#acno').val(_id.split('/////')[2])
+        $('#acname').val(_id.split('/////')[3])
+        $('#acifsc').val(_id.split('/////')[4])
+        document.getElementById("panadharimage").src = _id.split('/////')[5];
+        // $('#status').val(_id.split('/////')[6])
+
+        if (_id.split('/////')[6] == 0) {
+          var classcolor = 'warning'
+        } else if (_id.split('/////')[6] == 1) {
+          var classcolor = 'success'
+        } else if (_id.split('/////')[6] == 2) {
+          var classcolor = 'info'
+        }
+
+        if (_id.split('/////')[6] == 0) {
+          var valuebystatus = 'Pending'
+        } else if (_id.split('/////')[6] == 1) {
+          var valuebystatus = 'Approved'
+        } else if (_id.split('/////')[6] == 2) {
+          var valuebystatus = 'Cancel'
+        }
+        $('#status').html("<span class='label label-" + classcolor + "'>" + valuebystatus + "</span>")
+
+        // if (_id.split('/////')[6] == 0) {
+        //   var buton1 = "<button class='btn btn-sm btn-success' style='margin:5px' type='button'><i class='fa fa-check'></i></button></a><div class='clearfix'></div>"
+        //   var buton2 = "<button class='btn btn-sm btn-danger' style='margin:5px' type='button'><i class='fa fa-times'></i></button>"
+        // }
+
+        if(_id.split('/////')[6] == 0){
+        var idd = "`"+_id.split('/////')[0]+"`"
+        var buton =  "<button class='btn btn-sm btn-success' style='margin:5px' type='button' onclick='opApprove(1,"+idd+")'><i class='fa fa-check'></i></button></a><div class='clearfix'></div><button class='btn btn-sm btn-danger' style='margin:5px' type='button' onclick='opApprove(2,"+idd+")'><i class='fa fa-times'></i></button>"
+      }
+
+        // function opApproves(status, uid) {
+        //   console.log('click success')
+        //   var st = 'Pandding';
+        //   if (status == 1) {
+        //     st = 'Success'
+        //   }
+        //   else if (status == 2) {
+        //     st = 'Cancel'
+        //   }
+
+        //   swal({
+        //     title: "Are you sure?",
+        //     text: "You want to change payment Status to " + st,
+        //     icon: "warning",
+        //     buttons: true,
+        //     dangerMode: true,
+        //   })
+        //     .then((willDelete) => {
+        //       console.log(willDelete)
+        //       if (willDelete) {
+
+        //         if (status == 'Cancel') {
+        //           swal({
+        //             title: "Please choice Any One fo them",
+        //             html: "<b>Your HTML</b>",
+        //             width: '800px',
+        //             buttons: {
+        //               // optionone: {
+        //               //   text: "Pancard Approved!",
+        //               //   value: "optionone",
+        //               // },
+        //               optiontwo: {
+        //                 text: "Image Not Proper",
+        //                 value: "optiontwo",
+        //               },
+        //               optionthree: {
+        //                 text: "Pancard Number Not Valid",
+        //                 value: "optionthree",
+        //               },
+        //               optionfour: {
+        //                 text: "Invalid Bank Details",
+        //                 value: "optionfour",
+        //               },
+        //             },
+        //           })
+        //             .then((value) => {
+        //               switch (value) {
+
+        //                 // case "optionone":
+        //                 //   mydata('Pancard Approved!', 'Pancard Verification Approved', status, uid)
+        //                 //   break
+
+        //                 case "optiontwo":
+        //                   mydata('Uploaded Image Not Proper!', 'Kyc verification Rejected', status, uid)
+        //                   break
+
+        //                 case "optionthree":
+        //                   mydata('Invalid Pancard Image!', 'Kyc verification Rejected', status, uid)
+        //                   break
+
+        //                 case "optionfour":
+        //                   mydata('You Entered Bank Detail Not valid!', 'Kyc verification Rejected', status, uid)
+        //                   break
+
+        //                 default:
+        //                   mydata('You Entered Bank Detail Not valid!', 'Kyc verification Rejected', status, uid)
+        //               }
+        //             })
+        //         } else {
+        //           mydata('Pancard Approved!', 'Pancard Verification Approved', status, uid)
+        //         }
+
+
+        //         function mydata(txt, titleTxt, status, uid) {
+
+        //           console.log(':::::::::::::=>', txt, titleTxt, status, uid)
+
+        //           return
+
+        //           // $.ajax({
+        //           //   url: 'http://3.7.0.231:3030/approveVerification/' + uid + '/' + status + '/' + txt + '/' + titleTxt,
+        //           //   type: 'post',
+        //           //   success: (response) => {
+        //           //     console.log('dasdas=========>', response, response.status);
+        //           //     if (!response.error) {
+        //           //       swal("Poof! User Status updated", {
+        //           //         icon: "success",
+        //           //       });
+        //           //     } else {
+        //           //       swal("Failed to update Status!", {
+        //           //         icon: "error",
+        //           //       });
+        //           //     }
+
+        //           //     location.reload();
+        //           //   },
+        //           //   error(err) {
+        //           //     console.log(err)
+        //           //     swal("Failed to update Status!!" + err, {
+        //           //       icon: "error",
+        //           //     });
+        //           //   }
+        //           // })
+        //         }
+        //       } else {
+        //         swal("Nothing to Worry!! its Safe");
+        //       }
+        //     });
+        // }
+
+
+        // $('#action1').html(buton1)
+        // $('#action2').html(buton2)
+        // document.getElementById("action1").innerHTML = buton1;
+        // document.getElementById("action1").addEventListener("click", opApproves(1, _id.split('/////')[0]))
+        // document.getElementById("action2").innerHTML = buton2;
+        // document.getElementById("action2").addEventListener("click", opApproves(2, _id.split('/////')[0]))
+        // $('#viewsdata').modal('show')
+
+        $('#action').html(buton)
+        $('#viewsdata').modal('show')
+      })
+    })
+
+
+</script>
+</body>
+</html>

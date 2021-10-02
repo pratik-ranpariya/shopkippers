@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>CashMan - Paytm Withdraw List</title>
+<!-- Tell the browser to be responsive to screen width -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/style.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.newbuttongreen{
+    color: white;
+    background-color: #3ba53b;
+    border-color: #3ba53b;
+    /* padding: 5px; */
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.newbuttonred{
+    color: white;
+    background-color: #d04444;
+    border-color: #d04444;
+    /* padding: 5px; */
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.newbuttonblue{
+    color: white;
+    background-color: #5b5c73;
+    border-color: #5b5c73;
+    /* padding: 5px; */
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%- include ('left_layout.html') %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>Order List</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Order List</a></li>
+      </ol>
+    </div>
+    
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <!-- <div class="col-md-12">
+          <form id="searchform" action="" method="post" onsubmit="return checkvalidateForm();">
+            <div class="row">
+            
+
+            <div class="form-group col-md-2">
+              <label>To Date:</label>
+              <input type="date" class="form-control" id="todate" name="todate" placeholder="By Date" value="<%if(search['todate'] != '') {%><%=search['todate']%><%}%>">
+            </div>
+            <div class="form-group col-md-2">
+              <label>From Date:</label>
+              <input type="date" class="form-control" id="fromdate" name="fromdate" placeholder="By Date" value="<%if(search['fromdate'] != '') {%><%=search['fromdate']%><%}%>">
+            </div>
+            <div class="form-group col-md-2">
+              <label>&nbsp;</label>
+              <input type="submit"  class="form-control btn btn-sm btn-success" value="Search">
+            </div>
+            </div>
+          </form>
+        </div>
+  <br> -->
+  <div class="col-md-12">
+    <form id="searchform" action="" method="post" onsubmit="return checkvalidateForm();">
+      <div class="row">
+      <div class="form-group col-md-2">
+        <label>Search Type:</label>
+        <select name="by" id="bysort" class="select2 form-control custom-select">
+          <option value="orderid" <%if(search['by'] == 'orderid') {%> selected <%}%>>Order ID</option>
+          <option value="buyernumber" <%if(search['by'] == 'buyernumber') {%> selected <%}%>>Buyer Number</option>
+          <option value="pid" <%if(search['by'] == 'pid') {%> selected <%}%>>Product ID</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2" id="searchbox">
+        <label>Search:</label>
+        <input type="text" class="form-control" id="orderno" name="search" placeholder="Search" value="<%if(search['search'] != '') {%><%=search['search']%><%}%>">
+      </div>
+      <div class="form-group col-md-2">
+        <label>To Date:</label>
+        <input type="date" class="form-control" id="todate" name="todate" placeholder="By Date" value="<%if(search['todate'] != '') {%><%=search['todate']%><%}%>">
+      </div>
+      <div class="form-group col-md-2">
+        <label>From Date:</label>
+        <input type="date" class="form-control" id="fromdate" name="fromdate" placeholder="By Date" value="<%if(search['fromdate'] != '') {%><%=search['fromdate']%><%}%>">
+      </div>
+      <div class="form-group col-md-2">
+        <label>&nbsp;</label>
+        <input type="submit"  class="form-control btn btn-sm btn-success" value="Search">
+      </div>
+      </div>
+    </form>
+  </div>
+  <br>
+        <div class="col-md-12">  
+          <div class="table-responsive">
+             <table class="table table-hover table-bordered" id="personnel">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+		              <th>OrderId</th>
+                  <th>Buyer Number</th>
+                  <th>product Name</th>
+                  <th>Image</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                  <!-- <th>total Item</th> -->
+                  <th>Payment Type</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Approve</th>
+                  <th>Cancel</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if(data.length){ %>
+                <% for (var i = 0; i < data.length; i++) { j=i+1%>
+                <tr>
+                  <td><%=j%></td>
+                  <td><%=data[i].orderId%></td>
+                  <td><%=data[i].buyerNumber%></td>
+                  <td><a href="<%=pBaseUrl%>/productDetail?pid=<%=data[i].products.pid%>"><%=data[i].products.productName%></a></td>
+                  <td><img src="<%=pImgUrl%>/<%=data[i].products.productImage%>" style="height: 100px; width: 100px"></td>
+                  <td><%=data[i].quantity%></td>
+                  <td>Rs. <%=data[i].totalPrice%></td>
+                  <td><%=data[i].paymentType%></td>
+                  <td><%=data[i].date%></td>
+                  <td><button class="<% if (data[i].orderStatusBySeller == 0){%>newbuttonblue<% }else if(data[i].orderStatusBySeller == 1){ %>newbuttongreen<% }else if(data[i].orderStatusBySeller == 2){%>newbuttonred<%}%>"><% if (data[i].orderStatusBySeller == 0){%>Pending<% }else if(data[i].orderStatusBySeller == 1){ %>Approved<% }else if(data[i].orderStatusBySeller == 2){%>Cancel<%}%></button></td>
+                  <td>
+                    <% if (data[i].orderStatusBySeller == 0){%>
+                    <button class="btn btn-sm btn-success edit_data" id="<%= data[i]._id %>" onclick="opApprove('<%=data[i].orderId%>','1');" style="margin:5px" type="button" ><i class="fa fa-check"></i></button></a>
+                     <% } %>
+                  </td>
+                  <td>
+                    <% if (data[i].orderStatusBySeller == 0){%>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="opApprove('<%=data[i].orderId%>','2');"><i class="fa fa-times"></i></button>
+                    <% } %>
+                  </td>
+                </t`r>
+                <% } %>
+              <%}else{%>
+                <tr>
+                  <td colspan="13"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                </tr>
+              <% } %>
+              </tbody>`
+            </table>
+
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <% if (pages > 0) { %>
+                  <ul class="pagination" id="pagination">
+                    <% if (current == 1) { %>
+                      <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('1');" >First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                          <li><a onclick="changePage('<%= i %>');" ><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('<%= pages %>');" >Last</a></li>
+                    <% } %>
+
+                  </ul>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.</footer>
+</div>
+<!-- ./wrapper --> 
+
+<!-- jQuery 3 --> 
+<script src="<%=BaseUrl%>/sellerPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/sellerPanel/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="<%=BaseUrl%>/sellerPanel/js/bizadmin.js"></script>
+
+<!-- Jquery Sparklines -->
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/tableexport.js"></script>
+<script>
+// $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<!-- bootstrap-switch --> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/main.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#personnel").tablesorter({
+      sortList: [[0, 0]],
+      headers: { 3: { sorter: false } }
+    })
+  })
+
+  $('#perPage').change(function () {
+    var perPage = $('#perPage').val();
+    $('#searchform').submit();
+  })
+</script>
+<script>
+  function opApprove(id, status) {
+    var st = 'Pandding';
+    if (status == 1) {
+      st = 'Approve'
+    } else if (status == 2) {
+      st = 'Cancel'
+    }
+    swal({
+      title: "Are you sure?",
+      text: "Are You want to " + st + " This order.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            url: '<%=BaseUrl%>/orderAcceptBySeller?orderid=' + id + '&status=' + status,
+            type: 'get',
+            success: (response) => {
+              if (!response.error) {
+                swal("Poof! User Status updated", {
+                  icon: "success",
+                });
+              } else {
+                swal("Failed to update Status!", {
+                  icon: "error",
+                });
+              }
+
+              if (response.error == 'Y') {
+                confirm(msg)
+              } else if (response.error == 'N') {
+                location.reload();
+              } else {
+                confirm('something went wrong')
+              }
+
+            },
+            error(err) {
+              swal("Failed to update Status!", {
+                icon: "error",
+              });
+            }
+          })
+        } else {
+          swal("Nothing to Worry!! its Safe");
+        }
+      });
+  }
+//   $(document).on('click', '.edit_data', function () {
+//     var _id = $(this).attr("id");
+//     console.log(_id)
+//     $.ajax({
+//       url: "<%=BaseUrl%>/getproductdeltail",
+//       method: "POST",
+//       data: { _id: _id },
+//       dataType: "json",
+//       success: function (data) {
+//         console.log(data.data.priority)
+//         $('#category_id option:selected').val(data.data.category)
+//         $('#title').val(data.data.title)
+//         $('#_id').val(data.data._id)
+//         $('#rating').val(data.data.rating)
+//         $('#price').val(data.data.price)
+//         $('#description').val(data.data.description)
+//         $('#exampleModal').modal('show');
+//       }
+//     })
+//   })
+
+//   function onDelete(id) {
+//     swal({
+//       title: "Are you sure?",
+//       text: "You wants to Delete product Details!",
+//       icon: "warning",
+//       buttons: true,
+//       dangerMode: true,
+//     })
+//       .then((willDelete) => {
+//         if (willDelete) {
+//           $.ajax({
+//             url: '<%=BaseUrl%>/deleteproduct/' + id,
+//             type: 'post',
+//             success: (response) => {
+//               console.log(response, response.status);
+//               swal("Poof! product has been deleted!", {
+//                 icon: "success",
+//               });
+//               location.reload();
+//             },
+//             error(err) {
+//               console.log("User deletion error: ", err);
+//             }
+//           })
+//         } else {
+//           swal("Your product is safe!");
+//         }
+//       });
+//   }
+
+    function changePage(page) {
+        var isPostReq = false;
+
+        if ($('#orderno').val()) {
+            isPostReq = true;
+        }
+
+        if ($("#bysort option:selected").attr("value") != '') {
+            isPostReq = true;
+        }
+
+        if ($("#bysort2 option:selected").attr("value") != '') {
+            isPostReq = true;
+        }
+
+        if ($('#todate').val()) {
+            isPostReq = true;
+        }
+        if ($('#fromdate').val()) {
+            isPostReq = true;
+        }
+        var link = '<%=BaseUrl%>/orderlist/' + page;
+        if (isPostReq) {
+            $('#searchform').attr('action', link);
+            $('#searchform').submit();
+        }
+        else {
+            location.href = link;
+        }
+    }
+
+
+
+</script>
+</body>
+
+</html>

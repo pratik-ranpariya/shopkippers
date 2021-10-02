@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/style.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/adminPanel/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/adminPanel/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%- include ('left_layout.html') %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>User List: <%=data.length%></h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Pre-Booking Pin</a></li>
+      </ol>
+    </div>
+ 
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <div class="col-md-12">
+
+                <form id="searchform" action="/pbp/1" method="post" onsubmit="return checkvalidateForm();">
+                    <div class="row">
+                
+                        <div class="form-group col-md-2">
+                            <label>Search Mobile:</label>
+                            <input type="mobile"id="mobile" class="form-control" name="Mobile_no" placeholder="Mobile Number" value="<%if(search['Mobile_no'] != '') {%><%=search['Mobile_no']%><%}%>">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>To Date:</label>
+                        <input type="date" class="form-control" id="todate" name="todate" placeholder="By Date" value="<%if(search['todate'] != '') {%><%=search['todate']%><%}%>">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>From Date:</label>
+                        <input type="date" class="form-control" id="fromdate" name="fromdate" placeholder="By Date" value="<%if(search['fromdate'] != '') {%><%=search['fromdate']%><%}%>">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>&nbsp;</label>
+                        <input type="submit"  class="form-control btn btn-sm btn-success" value="Search">
+                    </div>
+                  </div>
+                </form>
+        </div>
+        <br>
+
+        <div class="col-md-12">
+            <h3>Upcoming Pin </h3>
+            <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="personnel">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Total Pin</th>
+                        <th>Pin Amount</th>
+                        <th>Provider Amount</th>
+                        <th>Receiver Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <% if(comingpin){ %>
+                    <tr>
+                        <td><%= comingpin.starttime %></td>
+                        <td><%= comingpin.endtime %></td>
+                        <td><%= comingpin.total_pin %></td>
+                        <td><%= comingpin.pin_amount %></td>
+                        <td><%= comingpin.provider_amt %></td>
+                        <td><%= comingpin.provider_amt %></td>
+                    </tr>
+                    <% } else{ %>
+                        <tr>
+                            <td colspan="10">
+                                <center>No Upcoming Pin!</center>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+           </div>
+        </div>
+
+        <div class="col-md-12">  
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="personnel">
+                <thead class="thead-light">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Mobile Number</th>
+                        <th>Wallet Balance</th>
+                        <th>Available Pin</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <% if (data.length > 0) { var con = '1'; %>
+                    <% for(var i = 0; i < data.length; i++ ) { %>
+                    <tr>
+                        <td><%= con %></td>
+                        <td><a href=" <%=BaseUrl%>/userdata/<%= data[i]._id %>"><%= data[i].name %></a></td>
+                        <td><%= data[i].Mobile_no %></td>
+                        <td>Rs. <%= data[i].walletBalance%></td>
+                        <td><%= data[i].pin%></td>
+                        <td>
+                            <button class="btn btn-sm btn-success edit_data" id="<%= data[i]._id %>" style="margin:5px" type="button"><i class="fa fa-pencil"></i></button>
+                        </td>
+                    </tr>
+                    <% con++; } }else{ %>
+                    <tr>
+                        <td colspan="10">
+                            <center>No Record Found!</center>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+              <% if (pages > 0) { %>
+                <ul class="pagination" id="pagination">
+                  <% if (current == 1) { %>
+                    <li class="disabled"><a>First</a></li>
+                  <% } else { %>
+                    <li><a onclick="changePage('1');" >First</a></li>
+                  <% } %>
+                  <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                  <% if (i !== 1) { %>
+                      <li class="disabled"><a>...</a></li>
+                  <% } %>
+                  <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                      <% if (i == current) { %>
+                          <li class="active"><a><%= i %></a></li>
+                      <% } else { %>
+                        <li><a onclick="changePage('<%= i %>');" ><%= i %></a></li>
+                      <% } %>
+                      <% if (i == Number(current) + 4 && i < pages) { %>
+                          <li class="disabled"><a>...</a></li>
+                      <% } %>
+                  <% } %>
+                  <% if (current == pages) { %>
+                      <li ><a>Last</a></li>
+                  <% } else { %>
+                    <li><a onclick="changePage('<%= pages %>');" >Last</a></li>
+                      <!-- <li><a href="/userlist/<%= pages %>">Last</a></li> -->
+                  <% } %>
+
+                </ul>
+              <% } %>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- popup model -->
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Pre-Booking Pin</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+              <form id="insert_form" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h5>Select Pin Count</h5>
+                        <select class="select2 form-control custom-select" data-size="7" name="pin" id="pin" required>
+                            <option value="0" disabled>Select Pin</option>
+                            <option value="1"> 1 </option>
+                            <option value="2"> 2 </option>
+                            <option value="3"> 3 </option>
+                            <option value="4"> 4 </option>
+                            <option value="5"> 5 </option>
+                            <option value="6"> 6 </option>
+                            <option value="7"> 7 </option>
+                            <option value="8"> 8 </option>
+                            <option value="9"> 9 </option>
+                            <option value="10"> 10 </option>
+                        </select>
+                    </div>
+                
+                    <input type="hidden" name="_id" id="_id" value="" />
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="insert" id="insert" value="Insert" class="btn btn-primary">Give Pin</button>
+                    </div>
+            </form>
+              </div>
+            </div>
+          </div>
+
+
+  </div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.</footer>
+</div>
+<script src="<%=BaseUrl%>/adminPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/adminPanel/bootstrap/js/bootstrap.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/js/bizadmin.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/tableexport.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/main.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+
+<script>
+
+    function checkvalidateForm() {
+        var startDate = new Date($('#todate').val());
+        var endDate = new Date($('#fromdate').val());
+
+        if (startDate > endDate) {
+            swal("Oops!", "To Date Should not Greater then From Date!");
+            return false;
+        }
+
+        return true;
+    }
+
+    function changePage(page) {
+        var isPostReq = false;
+
+        if ($('#mobile').val()) {
+            isPostReq = true;
+        }
+
+        if ($('#todate').val()) {
+            isPostReq = true;
+        }
+        if ($('#fromdate').val()) {
+            isPostReq = true;
+        }
+        var link = '<%=BaseUrl%>/pbp/' + page;
+        if (isPostReq) {
+            $('#searchform').attr('action', link);
+            $('#searchform').submit();
+        }
+        else {
+            console.log('call2');
+            location.href = link;
+        }
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#add').click(function () {
+            $('#insert').val("Insert");
+            $('#insert_form')[0].reset();
+        });
+        $(document).on('click', '.edit_data', function () {
+            var _id = $(this).attr("id");
+            console.log(_id)
+            $.ajax({
+                url: "<%=BaseUrl%>/getwalletAmount",
+                method: "POST",
+                data: { _id: _id },
+                dataType: "json",
+                success: function (data) {
+                    $('#_id').val(data.data._id)
+                    $('#updateModal').modal('show')
+                }
+            });
+        });
+        $('#insert_form').on("submit", function (event) {
+            //   console.log('d')
+            event.preventDefault();
+            if ($('#pin').val() == "") {
+                alert("Please Insert Amount");
+            } else if ($('#_id').val() == '') {
+                alert("something Went Wrong")
+            }
+            else if ($('#price').val() == '') {
+                alert("Address is required");
+            }
+            else {
+                console.log($('#insert_form').serialize())
+                $.ajax({
+                    url: "<%=BaseUrl%>/addpinbyadmin",
+                    method: "POST",
+                    data: $('#insert_form').serialize(),
+
+                    success: function (data) {
+                        if (data.error == true) {
+
+                            alert(data.data);
+                        } else {
+                            location.reload()
+                        }
+                    }
+
+                })
+            }
+        })
+    })
+</script></body>
+</html>

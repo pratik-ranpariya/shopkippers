@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- for dropdown Img -->
+<!-- <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" href="css/ImageSelect.css">
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/chosen.jquery.js"></script>
+<script src="js/ImageSelect.jquery.js"></script> -->
+<!-- Theme style -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- dropify -->
+<link rel="stylesheet" href="plugins/dropify/dropify.min.css">
+
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <% include left_layout.html %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1><%if(data.uID){%>Edit<%}else{%>Add<%}%> User</h1>
+      <ol class="breadcrumb">
+        <!-- <li><a href="dashboard.html">Dashboard</a></li> -->
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="<%=BaseUrl%>/userlist/1">User List</a></li>
+        <li><i class="fa fa-angle-right"></i> <%if(data.uID){%>Edit<%}else{%>Add<%}%> User </li>
+      </ol>
+    </div>
+
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+              <div class="card ">
+                <div class="card-header bg-blue">
+                  <h5 class="text-white m-b-0"><%if(data.uID){%>Edit<%}else{%>Add<%}%> User</h5>
+                </div>
+                <div class="card-body">
+                  <%if(error){%>
+                    <label style="color: red; font-weight: 500;"><%=msg%></label>
+                  <%}%>
+                  <form action="<%if(data.uID){%><%=BaseUrl%>/adduser?id=<%=data.uID%><%}else{%><%}%>" method="post">
+                  <div class="row">
+                    <input type="hidden" name="userid" value="<%if(data.uID){%><%=data.uID%><%}else{%><%}%>">
+                    <!-- <div class="col-md-0"></div> -->
+                    <div class="col-md-12">
+                      <div class="form-group has-feedback">
+                        <label class="control-label">Name</label>
+                        <input class="form-control" id="name" name="name" value="<%if(data.name){%><%=data.name%><%}else{%><%}%>" placeholder="Enter Name" type="text" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group has-feedback">
+                        <label class="control-label">Coin</label>
+                        <input class="form-control" id="address" name="coin" value="<%if(data.coin){%><%=data.coin%><%}else{%><%}%>" placeholder="Enter Coin" type="text" required>
+                      </div>
+                    </div> 
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                          <label class="control-label">Country</label>
+                          <select id="country" name="country" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                              <option>Select Country</option>
+                          </select>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                      <div class="form-group has-feedback">
+                        <label class="control-label">Profile</label>
+                        <!-- <img src="<%=BaseUrl%>/img/S1_avtar_1.png" width="75px" height="75px" class="profile-user-img img-responsive  m-b-2" > -->
+                        <%if(data.pic){%><% if (data.pic.length >= 4) { %> <img src="<%=data.pic%>" id='myPic' class="profile-user-img img-responsive  m-b-2"> <% } else {%> <img src="<%=BaseUrl%>/img/S1_avtar_<%=data.pic%>.png" id='myPic' class="profile-user-img img-responsive  m-b-2"> <% } %> <%}else{%><img src="<%=BaseUrl%>/img/S1_avtar_1.png" id='myPic' class="profile-user-img img-responsive  m-b-2"><%}%>
+                        
+                      </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="form-group has-feedback" style="padding-top: 53px; padding-right: 100px;" >
+                          <select id="Ppic" name="pic" class="select2 form-control custom-select" style="width: 100%; height:36px;" onchange="changePic()">
+                              <option value="1">Select Profile</option>
+                          </select>
+                        </div>
+                    </div> 
+
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                     </div>
+                  </form>
+               
+                </div>
+              </div>
+            </div>
+        </div> 
+    </div>
+
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2020 CashMan. All rights reserved.</footer>
+</div>
+<!-- ./wrapper --> 
+
+<!-- jQuery 3 --> 
+<script src="js/jquery.min.js"></script>  
+<script src="bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="js/bizadmin.js"></script> 
+
+<!-- Jquery Sparklines --> 
+<script src="plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="plugins/jquery-sparklines/sparkline-int.js"></script> 
+<!-- DataTable --> 
+<script src="plugins/datatables/jquery.dataTables.min.js"></script> 
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script> 
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script src="plugins/table-expo/filesaver.min.js"></script>
+<script src="plugins/table-expo/xls.core.min.js"></script>
+<script src="plugins/table-expo/tableexport.js"></script>
+<script>
+$("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<script>
+  $.getJSON('countryname.json', function (dt) {
+    var isAvi='<%=data.Country%>';
+    for (var i = 0; i < 193; i++) {
+      if(isAvi && isAvi==i){
+        var country = '<option value=' + i + ' selected>' + dt[i] + '</option>'
+      }
+      else{
+        var country = '<option value=' + i + '>' + dt[i] + '</option>'
+      }
+      
+
+      // <option value="1" data-img-src="<%=BaseUrl%>/country/1.png">India</option>
+      $('#country').append(country);
+
+    }
+  });
+</script>
+<script>
+  function changePic() {
+    console.log('call function');
+  var x =  $("#Ppic").val();
+  var pic = document.getElementById("myPic");
+  
+  var isAvi='<%=data.pic%>';
+  if(isAvi && isAvi.length>4 && x==1){
+    var tk=isAvi.replace(/amp;/g, "");
+    pic.src=tk
+  }
+  else{
+    pic.src="<%=BaseUrl%>/img/S1_avtar_"+x+'.png'
+  }
+  console.log(x);
+}
+</script>
+<script>
+  var isAvi='<%=data.pic%>';
+  for(var i=0;i<20;i++){
+    var j=i+1;
+    if(isAvi && isAvi==j){
+        var pic = '<option value=' + j + ' selected>' + (j) + '</option>'    
+    }
+    else if(isAvi && isAvi.length>4 && i==0){
+      var pic = '<option value=' + j + ' selected>' + (j) + '</option>'
+    }
+    else{
+        var pic = '<option value=' + j + '>' + (j) + '</option>'
+    }
+    // var pic = '<option value=' + i+1 + '>' + (i+1) + '</option>'
+    $('#Ppic').append(pic);
+  }
+  
+</script>
+<!-- dropify --> 
+<script src="plugins/dropify/dropify.min.js"></script> 
+<script>
+  $(document).ready(function(){
+  // Basic
+  $('.dropify').dropify();
+
+  // Translated
+   $('.dropify-fr').dropify({
+                    messages: {
+                        default: 'Glissez-déposez un fichier ici ou cliquez',
+                        replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                        remove:  'Supprimer',
+                        error:   'Désolé, le fichier trop volumineux'
+                    }
+                });
+
+                // Used events
+                var drEvent = $('#input-file-events').dropify();
+
+                drEvent.on('dropify.beforeClear', function(event, element){
+                    return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+                });
+
+                drEvent.on('dropify.afterClear', function(event, element){
+                    alert('File deleted');
+                });
+
+                drEvent.on('dropify.errors', function(event, element){
+                    console.log('Has Errors');
+                });
+
+                var drDestroy = $('#input-file-to-destroy').dropify();
+                drDestroy = drDestroy.data('dropify')
+                $('#toggleDropify').on('click', function(e){
+                    e.preventDefault();
+                    if (drDestroy.isDropified()) {
+                        drDestroy.destroy();
+                    } else {
+                        drDestroy.init();
+                    }
+                })
+    });
+</script>
+</body>
+</html>

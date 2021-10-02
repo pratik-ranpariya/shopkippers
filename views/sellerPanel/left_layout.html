@@ -1,0 +1,177 @@
+<title>GreenCoins </title>
+
+<aside class="main-sidebar">
+  <!-- sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="info">
+        <p>
+        <h2>Reseller</h2>
+        </p>
+        <a href="<%=BaseUrl%>/logout"><i class="fa fa-power-off fa-2x"></i></a>
+      </div>
+    </div>
+    <!-- sidebar menu -->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="<%= active == 'dashboard' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/dashboard"> <i
+            class="icon-home"></i>
+          &nbsp; &nbsp; <span>Dashboard</span> <span class="pull-right-container"></span> </a>
+      </li>
+      <!--  <li class="<%= active == 'userlist' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/userlist/1"> 
+          <i class="fa fa-users"></i> &nbsp; &nbsp; <span>User List</span> <span class="pull-right-container"></span> </a>
+        </li>-->
+
+      <li class="treeview <%if(active == 'orderlist' || active == 'Userverified') {%> menu-open active <%}else{%> <%}%>">
+        <a href="#"> <i class="fa fa-user"></i> &nbsp; &nbsp; <span>Order</span> <span class="pull-right-container"> <i
+              class="fa fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu"
+          style="display: <%if(active == 'orderlist' || active == 'orderlist') {%> block <% }else{%> <%}%>">
+          <li class="<%= active == 'orderlist' ? 'active' : '' %>"><a href="<%=BaseUrl%>/orderlist/1"><i
+                class="fa fa-angle-right"></i> &nbsp; Order List</a></li>
+          <li class="<%= active == 'Userverified' ? 'active' : '' %>"><a href="<%=BaseUrl%>/userverified"><i
+                class="fa fa-angle-right"></i> &nbsp; Verify Account</a></li>
+        </ul>
+      </li>
+
+      <!-- <li class="treeview <%if(active == 'Category' || active == 'Product') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-table"></i> &nbsp; &nbsp; <span>Product</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'Category' || active == 'productlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'Category' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/category"><i class="fa fa-angle-right"></i>  &nbsp; Category & Add Product</a></li>
+            <li class="<%= active == 'Product' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/productlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Product List</a></li>
+          </ul>
+        </li>-->
+
+      <li class="treeview <%if(active == 'listing' || active == 'Product' || active == 'orderlist') {%> menu-open active <%}else{%> <%}%>">
+        <a href="#"> <i class="fa fa-table"></i> &nbsp; &nbsp; <span>Product</span> <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu"
+          style="display: <%if(active == 'listing' || active == 'productlist' || active == 'orderlist') {%> block <% }else{%> <%}%>">
+          <li class="<%= active == 'listing' ? 'active' : '' %>"><a href="<%=BaseUrl%>/listing"><i
+                class="fa fa-angle-right"></i> &nbsp; Listing</a></li>
+          <li class="<%= active == 'productlist' ? 'active' : '' %>"><a href="<%=BaseUrl%>/productList/1"><i
+                class="fa fa-angle-right"></i> &nbsp; Product List</a></li>
+          <!-- <li class="<%= active == 'orderlist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/orderlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Order List</a></li> -->
+        </ul>
+      </li>
+      <!-- <li class="treeview <%if(active == 'Amountaddhistory' || active == 'phhistory' || active == 'Rhhistory' || active == 'MoneyTrHistory' || active == 'Addpinhistory' || active == 'CamountHistory' || active == 'PurchasePinHistory') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-history"></i> &nbsp; &nbsp; <span>History</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'Amountaddhistory' ||active == 'phhistory' || active == 'Rhhistory' || active == 'MoneyTrHistory' || active == 'Addpinhistory' || active == 'CamountHistory' || active == 'PurchasePinHistory') {%> block <% }else{%> <%}%>">
+          <li class="<%= active == 'Amountaddhistory' ? 'active' : '' %>"><a href="/amountaddhistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; Add Amount
+              History  <span class="pull-right-container"></span></a></li>
+          <li class="<%= active == 'phhistory' ? 'active' : '' %>"><a href="/phhistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; PH History </a></li>
+          <li class="<%= active == 'Rhhistory' ? 'active' : '' %>"><a href="/rhhistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; RH History </a></li>
+          <li class="<%= active == 'MoneyTrHistory' ? 'active' : '' %>"><a href="/moneyTrHistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; Money Transfer
+              History <span class="pull-right-container"></span></a></li>
+          <li class="<%= active == 'Addpinhistory' ? 'active' : '' %>"><a href="/addpinhistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; Add Pin History <span class="pull-right-container"></span></a>
+          </li>
+          <li class="<%= active == 'CamountHistory' ? 'active' : '' %>"><a href="/cAmountHistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; confirm Amount
+              History <span class="pull-right-container"></span></a></li>
+          <li class="<%= active == 'PurchasePinHistory' ? 'active' : '' %>"><a href="/purchasePinHistory/1"><i class="fa fa-history"></i>&nbsp;&nbsp; Purchase Pin
+              History <span class="pull-right-container"></span></a></li>
+        </ul>
+      </li> -->
+
+      <li class="treeview <%if(active == 'verification') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i
+            class="fa fa-check-circle"></i> &nbsp; &nbsp; <span>Verification</span> <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu" style="display: <%if(active == 'bankdetail') {%> block <% }else{%> <%}%>">
+          <li class="<%= active == 'bankdetail' ? 'active' : '' %>"><a href="/bankDetail"><i
+                class="fa fa-file-text-o"></i>&nbsp;&nbsp; Add Bank Detail <span
+                class="pull-right-container"></span></a></li>
+        </ul>
+      </li>
+      <!-- <li class="<%= active == 'Userwallet' ? 'active' : '' %>"><a href="/userwallet/1"><i class="fa fa-money"></i>
+        &nbsp; &nbsp; <span> Wallet</span><span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Addpin' ? 'active' : '' %>"><a href="/addpin"><i class="fa fa-map-pin"></i>
+        &nbsp; &nbsp; <span>Add Pin</span>  <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Ph' ? 'active' : '' %>"><a href="/ph/1"><i class="fa fa-image"></i>
+        &nbsp; &nbsp; <span>Give PhLink</span> <span class="pull-right-container"></span></a></li>
+        <li class="<%= active == 'Rh' ? 'active' : '' %>"><a href="/rh/1"><i class="fa fa-image"></i>
+          &nbsp; &nbsp; <span>Give RhLink</span> <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Blocklist' ? 'active' : '' %>"><a href="/blocklist/1"><i class="fa fa-lock"></i>
+        &nbsp; &nbsp; <span>Block</span> <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Pbp' ? 'active' : '' %>"><a href="/pbp/1"><i class="fa fa-pencil"></i>
+            &nbsp; &nbsp; <span>Pre-Booking Pin</span> <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'ShareData' ? 'active' : '' %>"><a href="/shareData"><i class="fa fa-share"></i>
+            &nbsp; &nbsp;  <span>Share Admin Data</span> <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Rcl' ? 'active' : '' %>"><a href="/rcl"><i class="fa fa-paper-plane"></i>
+            &nbsp; &nbsp; <span>Release Contact List</span> <span class="pull-right-container"></span></a></li>
+      <li class="<%= active == 'Youtubepage' ? 'active' : '' %>"><a href="/youtubepage"><i class="fa fa-youtube-play"> </i>
+            &nbsp; &nbsp; <span>Add Youtube Link</span> <span class="pull-right-container"></span></a></li>
+     -->
+
+      <li><a href="<%=BaseUrl%>/logout"><i class="fa fa-sign-out"></i>
+          &nbsp; &nbsp; <span>Logout</span></a></li>
+    </ul>
+
+
+    <!-- <li class="<%= active == 'userlist' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/userlist/1"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Payment</span> <span class="pull-right-container"></span> </a>
+        </li> -->
+    <!-- <li class="treeview <%if(active == 'paytmlist' || active == 'banklist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Payment</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'paytmlist' || active == 'banklist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'paytmlist' ? 'active' : '' %>"><a href="<%=BaseUrl%>/paytmlist/1"><i class="fa fa-bitcoin"></i>  &nbsp; &nbsp; &nbsp;Paytm</a></li>
+            <li class="<%= active == 'banklist' ? 'active' : '' %>"><a href="<%=BaseUrl%>/banklist/1"><i class="fa fa-bank"></i>  &nbsp; &nbsp; &nbsp; Bank</a></li>
+          </ul>
+        </li> -->
+    <!-- <li class="<%= active == 'paytmlist' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/paytmlist/1"> <i class="fa fa-rupee"></i> &nbsp; &nbsp; <span>Paytm</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class="<%= active == 'orderlist' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/orderlist/1"> <i class="fa fa-credit-card-alt"></i> &nbsp; &nbsp; <span>Order List</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class="<%= active == 'rules' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/rules"> <i class="fa fa-gavel"></i> &nbsp; &nbsp; <span>Rules</span> <span class="pull-right-container"></span> </a>
+        </li>
+      </li> -->
+    <!--      <li class="<%= active == 'verifylist' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/verifylist/1"> <i class="fa fa-check-circle"></i> &nbsp; &nbsp; <span>Verification List</span> <span class="pull-right-container"></span> </a>
+      </li> -->
+    <!-- <li class="<%= active == 'notification' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/addNotification"> <i class="fa fa-bell"></i> &nbsp; &nbsp; <span>Notification</span> <span class="pull-right-container"></span> </a>
+      </li>
+      <li class="<%= active == 'gkey' ? 'active' : '' %>"> <a href="<%=BaseUrl%>/paytmKey"> <i class="fa fa-key"></i> &nbsp; &nbsp; <span>Paytm Gratification Key</span> <span class="pull-right-container"></span> </a>
+      </li> -->
+    <!-- <li class="treeview <%if(active == 'addvendor' || active == 'vendorlist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-users"></i> &nbsp; &nbsp; <span>Vendors</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addvendor' || active == 'vendorlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addvendor' ? 'active' : '' %>"><a href="<%=BaseUrl%>/addvendor"><i class="fa fa-angle-right"></i>  &nbsp; Add Vendor</a></li>
+            <li class="<%= active == 'vendorlist' ? 'active' : '' %>"><a href="<%=BaseUrl%>/vendorlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Vendor List</a></li>
+          </ul>
+        </li>
+        <li class="treeview <%if(active == 'addcatagories' || active == 'catagorieslist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-th-list"></i> &nbsp; &nbsp; <span>Catagories</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addcatagories' || active == 'catagorieslist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addcatagories' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addcatagories"><i class="fa fa-angle-right"></i>  &nbsp; Add Catagories</a></li>
+            <li class="<%= active == 'catagorieslist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/catagorieslist/1"><i class="fa fa-angle-right"></i>  &nbsp; Catagories List</a></li>
+          </ul>
+        </li>
+        <li class="treeview <%if(active == 'addcatalog' || active == 'cataloglist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-th-large"></i> &nbsp; &nbsp; <span>Catalog</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addcatalog' || active == 'cataloglist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addcatalog' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addcatalog"><i class="fa fa-angle-right"></i>  &nbsp; Add Catalog</a></li>
+            <li class="<%= active == 'cataloglist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/cataloglist/1"><i class="fa fa-angle-right"></i>  &nbsp; Catalog List</a></li>
+          </ul>
+        </li>
+        <li class="treeview <%if(active == 'addproduct' || active == 'productlist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-table"></i> &nbsp; &nbsp; <span>Product</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addproduct' || active == 'productlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addproduct' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addproduct"><i class="fa fa-angle-right"></i>  &nbsp; Add Product</a></li>
+            <li class="<%= active == 'productlist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/productlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Product List</a></li>
+          </ul>
+        </li>
+        <li class="treeview <%if(active == 'addorder' || active == 'orderlist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-rocket"></i> &nbsp; &nbsp; <span>Order</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addorder' || active == 'orderlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addorder' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addorder"><i class="fa fa-angle-right"></i>  &nbsp; Add Order</a></li>
+            <li class="<%= active == 'orderlist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/orderlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Order List</a></li>
+          </ul>
+        </li>
+        <li class="treeview <%if(active == 'addbanner' || active == 'bannerlist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-list-alt"></i> &nbsp; &nbsp; <span>Banner</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addbanner' || active == 'bannerlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addbanner' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addbanner"><i class="fa fa-angle-right"></i>  &nbsp; Add Banner</a></li>
+            <li class="<%= active == 'bannerlist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/bannerlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Banner List</a></li>
+          </ul>
+        </li> -->
+    <!-- <li class="treeview <%if(active == 'addreseller' || active == 'resellerlist') {%> menu-open active <%}else{%> <%}%>"> <a href="#"> <i class="fa fa-users"></i> &nbsp; &nbsp; <span>Reseller</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu" style="display: <%if(active == 'addreseller' || active == 'resellerlist') {%> block <% }else{%> <%}%>">
+            <li class="<%= active == 'addreseller' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/addreseller"><i class="fa fa-angle-right"></i>  &nbsp; Add Reseller</a></li>
+            <li class="<%= active == 'resellerlist' ? 'active' : '' %>" ><a href="<%=BaseUrl%>/resellerlist/1"><i class="fa fa-angle-right"></i>  &nbsp; Reseller List</a></li>
+          </ul>
+        </li> -->
+    <!-- <li> <a href="addaddress.html"> <i class="fa fa-map-marker"></i> &nbsp; &nbsp; <span>Add Address</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li> <a href="addsender.html"> <i class="fa fa-paper-plane"></i> &nbsp; &nbsp; <span>Add Sender</span> <span class="pull-right-container"></span> </a>
+        </li> -->
+    </ul>
+  </div>
+  <!-- /.sidebar -->
+</aside>

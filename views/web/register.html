@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Login</title>
+      <meta name="description" content="">
+      <meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="//fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Add to Compare";
+         var buttoncompare_title_remove = "Remove from Compare";
+         var buttonwishlist_title_add = "Add to Wishlist";
+         var buttonwishlist_title_remove = "Remove from WishList";
+         var comparator_max_item = 3;
+         var compared_products = [];
+         var isLogged = false;
+         var prestashop = {};
+         var productcompare_add = "The product has been added to list compare";
+         var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove = "The product was successfully removed from list compare";
+         var productcompare_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+         var productcompare_viewlistcompare = "View list compare";
+         var wishlist_add = "The product was successfully added to your wishlist";
+         var wishlist_cancel_txt = "Cancel";
+         var wishlist_confirm_del_txt = "Delete selected item?";
+         var wishlist_del_default_txt = "Cannot delete default wishlist";
+         var wishlist_email_txt = "Email";
+         var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+         var wishlist_ok_txt = "Ok";
+         var wishlist_quantity_required = "You must enter a quantity";
+         var wishlist_remove = "The product was successfully removed from your wishlist";
+         var wishlist_reset_txt = "Reset";
+         var wishlist_send_txt = "Send";
+         var wishlist_send_wishlist_txt = "Send wishlist";
+         var wishlist_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+         var wishlist_viewwishlist = "View your wishlist";
+      </script>
+   </head>
+   <body id="authentication" class="lang-en country-de currency-eur layout-left-column page-authentication tax-display-enabled page-customer-account">
+      <main id="page">
+        <%- include('header.html') %>
+         <aside id="notifications">
+            <div class="container">
+            </div>
+         </aside>
+         <section id="wrapper">
+            <div class="container">
+               <div id="columns_inner">
+                  <div id="content-wrapper" class="left-column col-xs-12 col-sm-8 col-md-9" style="width:77.6%">
+                     <section id="main">
+                        <header class="page-header" style="margin-top: 50px;">
+                           <h1>
+                              Create an account
+                           </h1>
+                        </header>
+                        <section id="content" class="page-content card card-block">
+                           <section class="register-form">
+                              <p>Already have an account? <a href="/login">Log in instead!</a></p>
+                              <form action="/register" method="post">
+                                 <section>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label required">
+                                       First name
+                                       </label>
+                                       <div class="col-md-6">
+                                          <input
+                                             class="form-control"
+                                             name="firstname"
+                                             type="text"
+                                             value=""
+                                             required>
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label required">
+                                       Last name
+                                       </label>
+                                       <div class="col-md-6">
+                                          <input
+                                             class="form-control"
+                                             name="lastname"
+                                             type="text"
+                                             value=""
+                                             required>
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label required">
+                                       Mobile Number
+                                       </label>
+                                       <div class="col-md-6">
+                                          <input
+                                             class="form-control"
+                                             name="mobileNo"
+                                             type="number"
+                                             value=""
+                                             required>
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label required">
+                                       Email
+                                       </label>
+                                       <div class="col-md-6">
+                                          <input
+                                             class="form-control"
+                                             name="email"
+                                             type="email"
+                                             value="">
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                          Optional
+                                       </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label required">
+                                       Password
+                                       </label>
+                                       <div class="col-md-6">
+                                          <div class="input-group js-parent-focus">
+                                             <input
+                                                class="form-control js-child-focus js-visible-password"
+                                                name="password"
+                                                type="password"
+                                                value=""
+                                                pattern=".{5,}"
+                                                required>
+                                             <span class="input-group-btn">
+                                             <button
+                                                class="btn"
+                                                type="button"
+                                                data-action="show-password"
+                                                data-text-show="Show"
+                                                data-text-hide="Hide"
+                                                >
+                                             Show
+                                             </button>
+                                             </span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                       <label class="col-md-3 form-control-label">
+                                       Gender
+                                       </label>
+                                       <div class="col-md-6 form-control-valign">
+                                          <label class="radio-inline">
+                                          <span class="custom-radio">
+                                          <input
+                                             name="gender"
+                                             type="radio"
+                                             value="male"
+                                             required>
+                                          <span></span>
+                                          </span>
+                                          Male
+                                          </label>
+                                          <label class="radio-inline">
+                                          <span class="custom-radio">
+                                          <input
+                                             name="gender"
+                                             type="radio"
+                                             value="female">
+                                          <span></span>
+                                          </span>
+                                          Female
+                                          </label>
+                                          <label class="radio-inline">
+                                             <span class="custom-radio">
+                                             <input
+                                                name="gender"
+                                                type="radio"
+                                                value="other">
+                                             <span></span>
+                                             </span>
+                                             Other
+                                             </label>
+                                       </div>
+                                       <div class="col-md-3 form-control-comment">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row">
+                                       <label class="col-md-3 form-control-label"></label>
+                                          <div class="col-md-6 form-control-valign">
+                                             <%=msg%>
+                                          </div>
+                                    </div>
+                                 </section>
+                                 
+                                 <div class="form-footer clearfix">
+                                    <button class="btn btn-gray form-control-submit float-xs-right" data-link-action="save-customer" type="submit">
+                                    Register
+                                    </button>
+                                 </div>
+                              </form>
+                           </section>
+                        </section>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <%- include('footer.html') %>
+      </main>
+      <script type="text/javascript" src="web/assets/js/bottom-00110c14.js" ></script>
+   </body>
+</html>

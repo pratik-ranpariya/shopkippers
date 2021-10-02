@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GreenCoins</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/bootstrap/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/style.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/et-line-font/et-line-font.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/simple-lineicon/simple-line-icons.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/skins/_all-skins.min.css?v=1">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="http://3.6.102.34:3005/adminPanel/css/sweetalert.min.css">
+  <style>
+    .myswitch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .myswitch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .myslider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .myslider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.myslider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.myslider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.myslider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .myslider.myround {
+      border-radius: 34px;
+    }
+
+    .myslider.myround:before {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header">
+    <a href="javascript:;" class="logo blue-bg d-none">
+      <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span>
+      <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> 
+    </a>
+    <nav class="navbar blue-bg navbar-static-top">
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a></li>
+      </ul>
+    </nav>
+  </header>
+  <%- include ('left_layout.html') %>
+  
+  <div class="content-wrapper"> 
+    <div class="content-header sty-one">
+      <h1>Product List</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Paytm Withdraw List</a></li>
+      </ol>
+    </div>
+    
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <!-- <div class="col-md-12">
+          <form id="searchform" action="" method="post" onsubmit="return checkvalidateForm();">
+            <div class="row">
+              <div class="form-group col-md-2">
+                <label>Search Type:</label>
+                <select name="by" id="bysort" class="select2 form-control custom-select">
+                  <option value="pid" <%if(search['by'] == 'pid') {%> selected <%}%>>Product ID</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2" id="searchbox">
+                <label>Search:</label>
+                <input type="text" class="form-control" id="orderno" name="search" placeholder="Search" value="<%if(search['search'] != '') {%><%=search['search']%><%}%>">
+              </div>
+            <div class="form-group col-md-2">
+              <label>To Date:</label>
+              <input type="date" class="form-control" id="todate" name="todate" placeholder="By Date" value="<%if(search['todate'] != ''){%><%=search['todate']%><%}%>">
+            </div>
+            <div class="form-group col-md-2">
+              <label>From Date:</label>
+              <input type="date" class="form-control" id="fromdate" name="fromdate" placeholder="By Date" value="<%if(search['fromdate'] != ''){%><%=search['fromdate']%><%}%>">
+            </div>
+            <div class="form-group col-md-2">
+              <label>&nbsp;</label>
+              <input type="submit"  class="form-control btn btn-sm btn-success" value="Search">
+            </div>
+            </div>
+          </form>
+        </div> -->
+	    <br>
+        <div class="col-md-12">  
+          <div class="table-responsive">
+             <table class="table table-hover table-bordered" id="personnel">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+                  <th>Product ID</th>
+		              <th>Title</th>
+                  <th>Category</th>
+                  <th>SubCategory</th>
+                  <th>PetaCategory</th>
+                  <th>Rating</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                  <th>Stock</th>
+                  <th>Sold</th>
+                  <th>Image</th>
+                  <th>Date</th>
+                  <th>Approve</th>
+                  <th>Reject</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if(data.length){ %>
+                <% for (var i = 0; i < data.length; i++) { j=i+1%>
+                <tr>
+                  <td><%=j%></td>
+                  <td><%=data[i]._id%></td>
+                  <td><%=data[i].productName%></td>
+                  <td><%=data[i].cateName%></td>
+                  <td><%=data[i].subcateName%></td>
+                  <td><%=data[i].petacateName%></td>
+                  <td><%=data[i].rating%></td>
+                  <td><%=data[i].price%></td>
+                  <td><%=data[i].description%></td>
+                  <td><%=data[i].stock%></td>
+                  <td><%=data[i].soldCount%></td>
+                  <td><img src="<%=pImgUrl%>/<%=data[i].productImage%>" style="width: 100%; height: 100px;"></td>
+                  <td><%=data[i].date%></td>
+                  <td>
+                    <button class="btn btn-sm btn-success" id="<%= data[i]._id %>" style="margin:5px" type="button" onclick="ApproveP('<%=data[i]._id%>');"><i class="fa fa-check"></i></button></a>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="RejectP('<%=data[i]._id%>');"><i class="fa fa-times"></i></button>
+                  </td>
+                </tr>
+                <% } %>
+              <%}else{%>
+                <t    r>
+                  <td colspan="13"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <% if (pages > 0) { %>
+                  <ul class="pagination" id="pagination">
+                    <% if (current == 1) { %>
+                      <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('1');" >First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                          <li><a onclick="changePage('<%= i %>');" ><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('<%= pages %>');" >Last</a></li>
+                    <% } %>
+
+                  </ul>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <form action="/editProductDetail" method="post" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-4" id="productImgs">
+              </div>
+            </div>
+
+            
+            
+              <div class="form-group">
+                <label>Select Category:</label>
+                <select name="category" id="category_id" class="select2 form-control custom-select" onChange="getState(this.value)">
+                  <% for (var i=0; i < catedata.length; i++) { %>
+                    <option value="<%=catedata[i]._id%>">
+                      <%=catedata[i].name%>
+                    </option>
+                    <%}%>
+                </select>
+              </div>
+              
+              <div class="form-group has-feedback">
+                <label class="control-label">Subcategory</label>
+                <select class="form-control" id="mysubcate" title="Select subCategory" name="subcategory"
+                  onChange="getState2(this.value)" required>
+                </select>
+              </div>
+              
+              <div class="form-group has-feedback">
+                <label class="control-label">Petacategory</label>
+                <select class="form-control" id="mypetacate" title="Select subCategory" name="petacategory" required>
+                </select>
+              </div>
+
+              <input type="hidden" name="_id" value="" id="_id">
+
+              <div class="form-group">
+                <label class="col-form-label">Name:</label>
+                <input type="text" id="title" name="name" value="" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Rating:</label>
+                <select name="rating" id="rating" class="select2 form-control custom-select" required>
+                    <option value="" disabled selected>Select Rating</option>
+                    <option value="0.1"> 0.1 </option>
+                    <option value="0.2"> 0.2 </option>
+                    <option value="0.3"> 0.3 </option>
+                    <option value="0.4"> 0.4 </option>
+                    <option value="0.5"> 0.5 </option>
+                    <option value="0.6"> 0.6 </option>
+                    <option value="0.7"> 0.7 </option>
+                    <option value="0.8"> 0.8 </option>
+                    <option value="0.9"> 0.9 </option>
+                    <option value="1.0"> 1.0 </option>
+                    <option value="1.1"> 1.1 </option>
+                    <option value="1.2"> 1.2 </option>
+                    <option value="1.3"> 1.3 </option>
+                    <option value="1.4"> 1.4 </option>
+                    <option value="1.5"> 1.5 </option>
+                    <option value="1.6"> 1.6 </option>
+                    <option value="1.7"> 1.7 </option>
+                    <option value="1.8"> 1.8 </option>
+                    <option value="1.9"> 1.9 </option>
+                    <option value="2.0"> 2.0 </option>
+                    <option value="2.1"> 2.1 </option>
+                    <option value="2.2"> 2.2 </option>
+                    <option value="2.3"> 2.3 </option>
+                    <option value="2.4"> 2.4 </option>
+                    <option value="2.5"> 2.5 </option>
+                    <option value="2.6"> 2.6 </option>
+                    <option value="2.7"> 2.7 </option>
+                    <option value="2.8"> 2.8 </option>
+                    <option value="2.9"> 2.9 </option>
+                    <option value="3.0"> 3.0 </option>
+                    <option value="3.1"> 3.1 </option>
+                    <option value="3.2"> 3.2 </option>
+                    <option value="3.3"> 3.3 </option>
+                    <option value="3.4"> 3.4 </option>
+                    <option value="3.5"> 3.5 </option>
+                    <option value="3.6"> 3.6 </option>
+                    <option value="3.7"> 3.7 </option>
+                    <option value="3.8"> 3.8 </option>
+                    <option value="3.9"> 3.9 </option>
+                    <option value="4.0"> 4.0 </option>
+                    <option value="4.1"> 4.1 </option>
+                    <option value="4.2"> 4.2 </option>
+                    <option value="4.3"> 4.3 </option>
+                    <option value="4.4"> 4.4 </option>
+                    <option value="4.5"> 4.5 </option>
+                    <option value="4.6"> 4.6 </option>
+                    <option value="4.7"> 4.7 </option>
+                    <option value="4.8"> 4.8 </option>
+                    <option value="4.9"> 4.9 </option>
+                    <option value="5.0"> 5.0 </option>
+                </select>
+                </select>
+              </div>
+              <div class="form-group">
+                  <label class="col-form-label">Price:</label>
+                  <input type="text" id="price" value="" name="price" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Stock:</label>
+                <input type="text" id="stock" value="" name="stock" class="form-control" required>
+            </div>
+              <div class="form-group">
+                  <label class="col-form-label">Description:</label>
+                  <textarea type="text" id="description" value="" rows="5" name="description" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Video:</label>
+                <input type="file" name="Pvideo" value=""  class="form-control">
+              </div>
+                <div class="form-group">
+                    <label class="col-form-label">Image:</label>
+                    <input class="form-control" type="file" name="Pimage"  multiple/>
+                </div>
+
+            <div style="margin-bottom: 10px;">
+                <span id="containers"></span>
+                <span id="add" class="btn btn-success" style="margin-top: 5px;">+ Add More Image</span><br>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Edit Category</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.
+  </footer>
+</div>
+
+<script src="<%=BaseUrl%>/sellerPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/sellerPanel/bootstrap/js/bootstrap.min.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/js/bizadmin.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/tableexport.js"></script>
+<script src="http://3.6.102.34:3005/adminPanel/js/sweetalert.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/main.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script>
+  function getState(val) {
+    $.ajax({
+      type: "GET",
+      url: "<%=BaseUrl%>/getsubcategory/" + val,
+      success: (data) => {
+        console.log(data)
+        if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+          swal({
+            title: "Subcategory Not Found :(",
+            text: "please insert Subcategry",
+            type: "error",
+            buttons: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "add subcategory"
+          }, function (isConfirm) {
+            if (isConfirm) {
+              // location.reload();
+            }
+          })
+        }
+        var output = ['<option value="" disabled selected>Select SubCategory </option> ']
+        for (var i = 0; i < data.data.length; i++) {
+          output.push(`<option value = "${data.data[i]['_id']}/////${data.data[i]['cate']}"> ${data.data[i]['name']}</option > `);
+        }
+        var petacate = ['<option value="" disabled selected>Select PetaCategory </option> ']
+        $('#mypetacate').html(petacate.join(''))
+        $('#mysubcate').html(output.join(''));
+      }
+    })
+  }
+</script>
+
+
+<script >
+  function getState2(val) {
+    $.ajax({
+      type: "GET",
+      url: "<%=BaseUrl%>/getpetacategory/" + val.split('/////')[0] + '/' + val.split('/////')[1],
+      success: (data) => {
+        if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+          swal({
+            title: "Petacategory Not Found :(",
+            text: "please insert Subcategry",
+            type: "error",
+            buttons: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "add subcategory"
+          }, function (isConfirm) {
+            if (isConfirm) {
+              // location.reload();
+            }
+          })
+        }
+        var output = ['<option value="" disabled selected>Select PetaCategory </option> ']
+        for (var i = 0; i < data.data.length; i++) {
+          output.push('<option value = "' + data.data[i]['_id'] + '">' + data.data[i]['name'] + '</option>')
+        }
+        $('#mypetacate').html(output.join(''))
+      }
+    })
+  }
+
+  $(document).ready(function () {
+    $('#add').on('click', function () {
+      var newfield = `<span class="form-group"> 
+                          <input class="form-control" value="" type="file" name="Pimage"  multiple=""/>
+                          <span class="remove badge">
+                            <i class="icon-feather-x-circle"></i>
+                          </span>
+                      </span>`;
+      $('#containers').append(newfield);
+    })
+    $(document).on('click', '.remove', function () {
+      $(this).parent('span').remove();
+    })
+  })
+
+  $(document).ready(function () {
+    $("#personnel").tablesorter({
+      sortList: [[0, 0]],
+      headers: { 3: { sorter: false } }
+    });
+  });
+  $('#perPage').change(function () {
+    var perPage = $('#perPage').val();
+    $('#searchform').submit();
+  })
+
+  $(document).on('click', '.edit_data', function () {
+    var _id = $(this).attr("id");
+    $.ajax({
+      url: "<%=BaseUrl%>/getproductdeltail",
+      method: "POST",
+      data: { _id: _id },
+      dataType: "json",
+      success: function (data) {
+
+        var subcate = ['<option value="" disabled>Select subCategory </option> ']
+        for (var i = 0; i < data.data.subcate.length; i++) {
+
+          if (data.data.subcate == data.data.subcate[i]['subcate']) {
+            var selected = 'selected'
+          }
+          subcate.push('<option value = "' + data.data.subcate[i]['_id'] + '" ' + selected + '>' + data.data.subcate[i]['name'] + '</option>')
+        }
+
+        var petacate = ['<option value="" disabled>Select PetaCategory </option> ']
+        for (var i = 0; i < data.data.petacate.length; i++) {
+          petacate.push('<option value = "' + data.data.petacate[i]['_id'] + '">' + data.data.petacate[i]['name'] + '</option>')
+        }
+
+        var productImage = []
+        for (var i = 0; i < data.data.data.productImage.length; i++) {
+          productImage.push(`<span id="hide_${i}"><img src="<%=pImgUrl%>/${data.data.data.productImage[i]}" style="height: 100px; width: 100%;">
+                             <button class="col-xl-2" onclick="deleteimage('${data.data.data.productImage[i]}', '${data.data.data._id}', 'hide_${i}')"
+														 id="${data.data.data.productImage[i]}">
+                             <i class="fa fa-remove"></i></button></span>`)
+        }
+        console.log(productImage)
+        $('#category_id').val(data.data.data.cate)
+        $('#mysubcate').html(subcate.join(''))
+        $('#mypetacate').html(petacate.join(''))
+        $('#title').val(data.data.data.productName)
+        $('#stock').val(data.data.data.stock)
+        // document.getElementById("productImgs").src = productImage;
+        $('#productImgs').html(productImage.join(''))
+        $('#_id').val(data.data.data._id)
+        $('#rating').val(data.data.data.rating)
+        $('#price').val(data.data.data.price)
+        $('#description').val(data.data.data.description)
+        $('#exampleModal').modal('show');
+      }
+    })
+  })
+
+    function deleteimage(image, pid, id) {
+      var conform = confirm("You wants to Delete product Image!");
+      if (conform == true) {
+        $.ajax({
+          type: "GET",
+          url: '<%=BaseUrl%>/deletePesificImage?image=' + image + '&pid=' + pid,
+          success: function (data) {
+            if (data.error == 'N') {
+              var img = document.getElementById(id);
+              img.style.visibility = 'hidden';
+            } else {
+              confirm(data.msg)
+            }
+          }
+        })
+      }
+    }
+
+  function onDelete(id) {
+    swal({
+      title: "Are you sure?",
+      text: "You wants to Delete product Details!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            url: '<%=BaseUrl%>/deleteproduct/' + id,
+            type: 'post',
+            success: (response) => {
+              console.log(response, response.status);
+              swal("Poof! product has been deleted!", {
+                icon: "success",
+              });
+              location.reload();
+            },
+            error(err) {
+              console.log("User deletion error: ", err);
+            }
+          })
+        } else {
+          swal("Your product is safe!");
+        }
+      });
+  }
+
+  function ApproveP(id) {
+    swal({
+		title: "Are you sure?",
+		text: "are you sure you want to Approve this Product.",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes continue !",
+		cancelButtonText: "No, cancel please!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm){
+		if (isConfirm) {
+      console.log('fd')
+          $.ajax({
+            url: '<%=BaseUrl%>/ApporveProduct/'+id,
+            type: 'post',
+            success: (response) => {
+              console.log(response, response.status);
+              swal("Poof! product has been Approved!", {
+                icon: "success",
+              });
+              location.reload();
+            },
+            error(err) {
+              console.log("User deletion error: ", err);
+            }
+          })
+        } else {
+          swal("Your product is safe!");
+        }
+      });
+  }
+
+  function RejectP(id) {
+    swal({
+		title: "Are you sure?",
+		text: "are you sure you want to reject this Product.",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes continue !",
+		cancelButtonText: "No, cancel please!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm){
+		if (isConfirm) {
+      console.log('fd')
+          $.ajax({
+            url: '<%=BaseUrl%>/RejectProduct/'+id,
+            type: 'post',
+            success: (response) => {
+              console.log(response, response.status);
+              swal("Poof! product has been Approved!", {
+                icon: "success",
+              });
+              location.reload();
+            },
+            error(err) {
+              console.log("User deletion error: ", err);
+            }
+          })
+        } else {
+          swal("Your product is safe!");
+        }
+      });
+  }
+
+  function changePage(page) {
+    var isPostReq = false;
+    if ($('#orderno').val()) {
+      isPostReq = true;
+    }
+    if ($("#bysort option:selected").attr("value") != '') {
+      isPostReq = true;
+    }
+    if ($("#bysort2 option:selected").attr("value") != '') {
+      isPostReq = true;
+    }
+    if ($('#todate').val()) {
+      isPostReq = true;
+    }
+    if ($('#fromdate').val()) {
+      isPostReq = true;
+    }
+    var link = '<%=BaseUrl%>/productList/' + page;
+    if (isPostReq) {
+      $('#searchform').attr('action', link);
+      $('#searchform').submit();
+    }
+    else {
+      location.href = link;
+    }
+  }
+</script>
+</body>
+</html>

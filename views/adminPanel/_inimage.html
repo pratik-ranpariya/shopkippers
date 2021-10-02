@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<!-- <form action="api/v1/insertcategory" method="post">
+        category Name: <input type="text" name="category"><br><br>
+        <button type="submit" name="submit" value="submit">submit</button><br><br><br><br><br><br><br><br>
+    </form>
+
+<form action="/api/v1/insertimage" method="post" enctype="multipart/form-data">
+    select Category: <select name="category">
+        <% for(var i = 0; i < data.length; i++){ %>
+            <option value="<%= data[i]._id %>"> <%= data[i].category %> </option>
+        <% } %>
+    </select><br><br>
+
+  <label for="fname">First Name</label>
+<input type="text" name="name" value=""><br><br>
+
+  <label for="fname">Image</label>
+  <input type="file"  name="photo" value=""><br><br>
+
+  <button type="submit" name="submit" value="submit">submit</button>
+</form> -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/sweetalert.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="col-md-3">
+            <h2>Insert Product</h2>
+            <form action="/insertimage" method="post" enctype="multipart/form-data">
+
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">category</label>
+                        <select class="form-control view_data" data-size="7" name="category"  maxlength="20" style="padding-bottom: 0px;padding-top: 0px;" onChange="getState(this.value)" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <% for(var i = 0; i < data.length; i++){ %>
+                            <option value="<%=data[i]._id%>"> <%=data[i].name%> </option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">Subcategory</label>
+                        <select class="form-control" id="state-list" title="Select subCategory" name="subcategory" onChange="getState2(this.value)" required>
+                            <option value="" disabled selected>Select SubCategory</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">Petacategory</label>
+                        <select class="form-control" id="petacate" title="Select subCategory" name="petacategory" required>
+                            <option value="" disabled selected>Select PetaCategory</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter email" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Image:</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <!-- fsdfdsfsd -->
+
+        <div class="col-md-3">
+            <h2>Add Category</h2>
+            <form action="/addcategory" method="post">
+                <div class="form-group">
+                    <label for="category">Category Name:</label>
+                    <input type="text" class="form-control" id="category" placeholder="Enter Category" name="name">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <!-- fsdfdsfsd -->
+
+        <div class="col-md-3">
+            <h2>Add SubCategory</h2>
+            <form action="/addsubcategory" method="post">
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">category</label>
+                        <select class="form-control view_data" data-size="7" name="category"  maxlength="20" style="padding-bottom: 0px;padding-top: 0px;"required>
+                            <option value="" disabled selected>Select Category</option>
+                            <% for(var i = 0; i < data.length; i++){ %>
+                            <option value="<%=data[i]._id%>"> <%=data[i].name%> </option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Subcategory:</label>
+                    <input type="text" class="form-control" placeholder="Enter Subcategory" name="name">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <!-- fsdfdsfsd -->
+
+        <div class="col-md-3">
+            <h2>Add PetaCategory</h2>
+            <form action="/addpetacategory" method="post">
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">category</label>
+                        <select class="form-control view_data" data-size="7" name="category"  maxlength="20" style="padding-bottom: 0px;padding-top: 0px;" onChange="getState3(this.value)" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <% for(var i = 0; i < data.length; i++){ %>
+                            <option value="<%=data[i]._id%>"> <%=data[i].name%> </option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="form-group has-feedback">
+                        <label class="control-label">Subcategory</label>
+                        <select class="form-control" id="state-list55" title="Select subCategory" name="subcategory" required>
+                            <option value="" disabled selected>Select SubCategory</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="petacate">PetaCategory:</label>
+                    <input type="text" class="form-control" placeholder="Enter PetaCategory" name="name">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script> 
+        function getState(val) {
+                $.ajax({
+                    type: "GET",
+                    url: "<%=BaseUrl%>/getsubcategory/" + val,
+                    success: (data) => {
+                        if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                            swal({
+                                title: "Subcategory Not Found :(",
+                                text: "please insert Subcategry",
+                                type: "error",
+                                buttons: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "add subcategory"
+                            }, function (isConfirm) {
+                                if (isConfirm) {
+                                    // location.reload();
+                                }
+                            })
+                        }
+                        var output = ['<option value="" disabled selected>Select SubCategory </option> ']
+                        for (var i = 0; i < data.data.length; i++) {
+                            output.push(`<option value = "${data.data[i]['_id']}/////${data.data[i]['cate']}"> ${data.data[i]['name']}</option > `);
+                        }
+                        $('#state-list').html(output.join(''));
+
+                    }
+                })
+            }
+    </script>
+
+
+<script> 
+    function getState2(val) {
+
+            $.ajax({
+                type: "GET",
+                url: "<%=BaseUrl%>/getpetacategory/"+val.split('/////')[0]+'/'+val.split('/////')[1],
+                success: (data) => {
+                    console.log(data)
+                    if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                        swal({
+                            title: "Petacategory Not Found :(",
+                            text: "please insert Subcategry",
+                            type: "error",
+                            buttons: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "add subcategory"
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                // location.reload();
+                            }
+                        })
+                    }
+                    var output = ['<option value="" disabled selected>Select PetaCategory </option> ']
+                    for (var i = 0; i < data.data.length; i++) {
+                        output.push('<option value = "' + data.data[i]['_id'] + '">' + data.data[i]['name'] + '</option>')
+                    }
+                    $('#petacate').html(output.join(''))
+
+                }
+            })
+        }
+</script>
+
+<script> 
+    function getState3(val) {
+            $.ajax({
+                type: "GET",
+                url: "<%=BaseUrl%>/getsubcategory/" + val,
+                success: (data) => {
+                    if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                        swal({
+                            title: "Subcategory Not Found :(",
+                            text: "please insert Subcategry",
+                            type: "error",
+                            buttons: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "add subcategory"
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                // location.reload();
+                            }
+                        })
+                    }
+                    var output = ['<option value="" disabled selected>Select SubCategory </option> ']
+                    for (var i = 0; i < data.data.length; i++) {
+                        output.push(`<option value = "${data.data[i]['_id']}/////${data.data[i]['cate']}"> ${data.data[i]['name']}</option > `);
+                    }
+                    $('#state-list55').html(output.join(''));
+
+                }
+            })
+        }
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#add').on('click', function () {
+            var newfield = `<span class="form-group has-feedback"> <input class="form-control" value="" type="file" name="uploaded_image"  multiple=""/>
+                            <span class="remove badge"><i class="icon-feather-x-circle"></i></span></div></span>`;
+            $('#containers').append(newfield);
+        })
+
+        $(document).on('click', '.remove', function () {
+
+            $(this).parent('span').remove();
+
+        })
+    })
+</script>
+
+</body>
+</html>

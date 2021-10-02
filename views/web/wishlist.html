@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="//fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="./web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Add to Compare";
+         var buttoncompare_title_remove = "Remove from Compare";
+         var buttonwishlist_title_add = "Add to Wishlist";
+         var buttonwishlist_title_remove = "Remove from WishList";
+         var comparator_max_item = 3;
+         var compared_products = [22];
+         var isLogged = true;
+         var prestashop = {};
+         var productcompare_add = "The product has been added to list compare";
+         var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove = "The product was successfully removed from list compare";
+         var productcompare_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+         var productcompare_viewlistcompare = "View list compare";
+         var wishlist_add = "The product was successfully added to your wishlist";
+         var wishlist_cancel_txt = "Cancel";
+         var wishlist_confirm_del_txt = "Delete selected item?";
+         var wishlist_del_default_txt = "Cannot delete default wishlist";
+         var wishlist_email_txt = "Email";
+         var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+         var wishlist_ok_txt = "Ok";
+         var wishlist_quantity_required = "You must enter a quantity";
+         var wishlist_remove = "The product was successfully removed from your wishlist";
+         var wishlist_reset_txt = "Reset";
+         var wishlist_send_txt = "Send";
+         var wishlist_send_wishlist_txt = "Send wishlist";
+         var wishlist_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+         var wishlist_viewwishlist = "View your wishlist";
+      </script>
+   </head>
+   <body id="module-stfeature-viewwishlist" class="lang-en country-de currency-eur layout-full-width page-viewwishlist tax-display-enabled">
+      <main id="page">
+         <%- include('header.html')%>
+         <aside id="notifications">
+            <div class="container">
+            </div>
+         </aside>
+         <section id="wrapper">
+            <div class="container">
+               <div id="columns_inner">
+                  <div id="content-wrapper" class="left-column col-xs-12 col-sm-8 col-md-9" style="width:100%">
+                     <section id="main">
+                        <div id="view_wishlist">
+                           <header class="page-header" style="margin-top: 25px;">
+                              <h1>My wishlist (<%=data.length%>)</h1>
+                           </header>
+                           <section id="products">
+                              <div class="st-wishlist-product products row">
+                                <style>
+                                    @media screen and (max-width: 992px) {
+                                          .thumbnail {
+                                          object-fit: contain;
+                                          width: 100%;
+                                          height: 200px;
+                                          cursor: pointer;
+                                          opacity: 1;
+                                          /* margin-top: 5px; */
+                                          /* margin-bottom: 5px; */
+                                          /* border: 1px solid #dcdcdc; */
+                                       }
+                                    }
+                                    @media screen and (min-width: 993px) {
+                                    .thumbnail {
+                                          object-fit: contain;
+                                          width: 100%;
+                                          height: 300px;
+                                          cursor: pointer;
+                                          opacity: 1;
+                                          /* margin-top: 5px; */
+                                          /* margin-bottom: 5px; */
+                                          /* border: 1px solid #dcdcdc; */
+                                       }
+                                    }
+                                 </style>
+                                 <%if(data.length){%>
+                                  <%for(var i = 0; i < data.length; i++){%>
+                                 <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-6 product-miniature js-product-miniature st-wishlistproduct-item st-wishlistproduct-item-1 product-1">
+                                    <div class="thumbnail-container clearfix">
+                                       <div class="product-image">
+                                          <a href="/productDetail?pid=<%=data[i].pid%>" style="padding: 0px;">
+                                          <img class="img-fluid thumbnail"
+                                             src = "<%=imgUrl%>/<%=data[i].productImage%>"
+                                             alt = "">
+                                          </a>
+                                        <ul class="product-flags">
+                                            <a href="/deleteWishlistProduct?pid=<%=data[i].pid%>">
+                                                <li class="new">
+                                                    <i class="material-icons"></i>
+                                                </li>
+                                            </a>
+                                        </ul>
+                                       </div>
+                                       <div class="product-description">
+                                          <h1 class="h3 product-title" itemprop="name"><a href="#" style="
+                                            word-break: break-all;
+                                           -webkit-box-orient: vertical;
+                                           display: block;
+                                           text-overflow: ellipsis;
+                                           word-wrap: break-word;
+                                           overflow: hidden;
+                                           max-height: 4em;
+                                           line-height: 1.5em;" target="_blank"><%=data[i].productName%></a></h1>
+
+                                          <div class="product-price-and-shipping">
+                                              <span>&nbsp;&nbsp;</span>
+                                             <span itemprop="price" class="price">Rs. <%=data[i].price%></span>												
+                                          </div>
+                                          <div class="wishlist-product-info">
+                                             <input class="form-control wishlist-product-quantity wishlist-product-quantity-1" type="number" data-min=1 value="1">					
+                                             <div class="form-group">
+                                                <label>
+                                                <strong>Priority: </strong>
+                                                medium</label>									
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <%} } else {%>
+                                    <div style="text-align: center; margin-top: 150px; margin-bottom: 150px;">
+                                        <h1>Empty Wishlist</h1>
+                                        <h5>You have no items in your wishlist. Start adding!</h5>
+                                    </div>
+                                <%}%>
+                              </div>
+                           </section>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <%-include('footer.html')%>
+      </main>
+      <script type="text/javascript" src="./web/assets/js/bottom-00110c14.js"></script>
+   </body>
+</html>

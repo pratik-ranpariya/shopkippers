@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Bank-Detail Verification</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/sellerPanel/bootstrap/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+      <link rel="stylesheet" href="/sellerPanel/css/style.css">
+      <link rel="stylesheet" href="/sellerPanel/css/font-awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/sellerPanel/css/et-line-font/et-line-font.css">
+      <link rel="stylesheet" href="/sellerPanel/css/themify-icons/themify-icons.css">
+      <link rel="stylesheet" href="/sellerPanel/css/simple-lineicon/simple-line-icons.css">
+      <link rel="stylesheet" href="/sellerPanel/css/skins/_all-skins.min.css?v=1">
+      <link rel="stylesheet" href="/sellerPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+      <style>
+         .myswitch {
+         position: relative;
+         display: inline-block;
+         width: 60px;
+         height: 34px;
+         }
+         .myswitch input { 
+         opacity: 0;
+         width: 0;
+         height: 0;
+         }
+         .myslider {
+         position: absolute;
+         cursor: pointer;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: #ccc;
+         -webkit-transition: .4s;
+         transition: .4s;
+         }
+         .myslider:before {
+         position: absolute;
+         content: "";
+         height: 26px;
+         width: 26px;
+         left: 4px;
+         bottom: 4px;
+         background-color: white;
+         -webkit-transition: .4s;
+         transition: .4s;
+         }
+         input:checked + .myslider {
+         background-color: #2196F3;
+         }
+         input:focus + .myslider {
+         box-shadow: 0 0 1px #2196F3;
+         }
+         input:checked + .myslider:before {
+         -webkit-transform: translateX(26px);
+         -ms-transform: translateX(26px);
+         transform: translateX(26px);
+         }
+         .myslider.myround {
+         border-radius: 34px;
+         }
+         .myslider.myround:before {
+         border-radius: 50%;
+         }
+      </style>
+   </head>
+   <body class="sidebar-mini skin-black-light">
+      <div class="wrapper boxed-wrapper">
+         <header class="main-header">
+            <a href="javascript:;" class="logo blue-bg"> 
+            <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span> 
+            <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> </a> 
+            <nav class="navbar blue-bg navbar-static-top">
+               <ul class="nav navbar-nav pull-left">
+                  <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+               </ul>
+            </nav>
+         </header>
+         <%- include ('left_layout.html') %>
+         <div class="content-wrapper">
+            <div class="content-header sty-one">
+               <h1>Bank Detail</h1>
+               <ol class="breadcrumb">
+                  <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+                  <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Bank Detail</a></li>
+               </ol>
+            </div>
+            <div class="content">
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="card">
+                        <div class="card-header bg-blue">
+                           <h5 class="text-white m-b-0">Bank Detail</h5>
+                           <span style="margin-left: auto!important;">Verify: <% if(data){ if(data.bankStatus == 0){%> Pending <%} else if(data.bankStatus == 1){%> Approved <%} else if(data.bankStatus == 2){%> Rejected <% } else {%> Not Upload <%} } %> </span>
+                        </div>
+                        <div class="card-body">
+                           <form action="<%=BaseUrl%>/BankDetailinsert" method="post">
+                              <div class="row">
+                                 <span style="margin-left: 15px; color: firebrick; font-weight: 600;"><%if(msg){%> <%=msg%> <%}%></span>
+                                 <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                       <label class="control-label">Account Number</label>
+                                       <input class="form-control" name="accountno" value="<%if(data){%><%=data.accountno%><%}%>" type="text" placeholder="Bank Account Number" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                       <label class="control-label">Account Holder Name</label>
+                                       <input class="form-control" name="accountholdername" value="<%if(data){%><%=data.accountholdername%><%}%>" type="text" placeholder="Account Holder Name" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                       <label class="control-label">Bank Name</label>
+                                       <input class="form-control" name="bankname" value="<%if(data){%><%=data.bankname%><%}%>" type="text" placeholder="Bank Name" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                       <label class="control-label">IFSC</label>
+                                       <input class="form-control" name="ifsc" value="<%if(data){%><%=data.ifsc%><%}%>" type="text" placeholder="Ifsc Code" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="card">
+                        <div class="card-header bg-blue">
+                           <h5 class="text-white m-b-0">Business Detail</h5>
+                           <span style="margin-left: auto!important;">Verify: <% if(data){ if(data.businessStatus == 0){%> Pending <%} else if(data.businessStatus == 1){%> Approved <%} else if(data.businessStatus == 2){%> Rejected <% } else {%> Not Upload <%} } %> </span>
+                        </div>
+                        <div class="card-body">
+                           <form action="<%=BaseUrl%>/BusinessDetailinsert" method="post">
+                              <div class="row">
+                                 <span style="margin-left: 15px; color: firebrick; font-weight: 600;"><%if(msg2){%> <%=msg2%> <%}%></span>
+                                <div class="col-md-12">
+                                  <div class="form-group has-feedback">
+                                     <label class="control-label">GST Number</label>
+                                     <input class="form-control" name="gstnumber" value="<%if(data){%><%=data.gstnumber%><%}%>" type="text" placeholder="GST Number" required>
+                                  </div>
+                               </div>
+                               <div class="col-md-12">
+                                  <div class="form-group has-feedback">
+                                     <label class="control-label">Register Business Address</label>
+                                     <input class="form-control" name="registerbusinessaddress" value="<%if(data){%><%=data.registerbusinessaddress%><%}%>" type="text" placeholder="Register Business Address" required>
+                                  </div>
+                               </div>
+                               <div class="col-md-12">
+                                  <div class="form-group has-feedback">
+                                     <label class="control-label">Business Type</label>
+                                     <input class="form-control" name="businesstype" value="<%if(data){%><%=data.businesstype%><%}%>" type="text" placeholder="Business Type" required>
+                                  </div>
+                               </div>
+                                 <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6" style="margin-top: 25px;">
+                     <div class="card">
+                        <div class="card-header bg-blue">
+                           <h5 class="text-white m-b-0">Upload Importants Documents</h5>
+                           <span style="margin-left: auto!important;">Verify: <% if(data){ if(data.DocumentStatus == 0){%> Pending <%} else if(data.DocumentStatus == 1){%> Approved <%} else if(data.DocumentStatus == 2){%> Rejected <% } else {%> Not Upload <%} } %> </span>
+                        </div>
+                        <div class="card-body">
+                           <form action="<%=BaseUrl%>/documentDetailInsert" method="post" enctype="multipart/form-data">
+                              <div class="row">
+
+                                 <span style="margin-left: 15px; color: firebrick; font-weight: 600;"><%if(msg3){%> <%=msg3%> <%}%></span>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">GST Certificate</label>
+                                      <input type="file" name="gstcertificate" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">Passbook</label>
+                                      <input type="file" name="passbook" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">CheckBook</label>
+                                      <input type="file" name="checkbook" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">AdharCard</label>
+                                      <input type="file" name="adharcard" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">Passport Size Image</label>
+                                      <input type="file" name="resellerimage" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">PanCard</label>
+                                      <input type="file" name="pancard" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                      <label class="control-label">Signature</label>
+                                      <input type="file" name="signature" class="form-controll">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                      <button type="submit" class="btn">Send</button>
+                                  </div>
+
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <footer class="main-footer">
+            <div class="pull-right hidden-xs">Version 1.0</div>
+            Copyright © 2018 . All rights reserved.
+         </footer>
+      </div>
+      <script src="/sellerPanel/js/jquery.min.js"></script>  
+      <script src="/sellerPanel/bootstrap/js/bootstrap.min.js"></script> 
+      <script src="/sellerPanel/js/bizadmin.js"></script> 
+      <script src="/sellerPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+      <script src="/sellerPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+      <script src="/sellerPanel/plugins/table-expo/filesaver.min.js"></script>
+      <script src="/sellerPanel/plugins/table-expo/xls.core.min.js"></script>
+      <script src="/sellerPanel/plugins/table-expo/tableexport.js"></script>
+      <script src="/sellerPanel/plugins/bootstrap-switch/highlight.js"></script> 
+      <script src="/sellerPanel/plugins/bootstrap-switch/main.js"></script>
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+   </body>
+</html>

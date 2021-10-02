@@ -1,0 +1,14 @@
+{
+	"verson": "v1",
+	"serverport": 3000,
+	"sellerport": 3001,
+	"webport": 3002,
+	"adminport": 3003,
+        "mongodb": {
+		"host": "192.168.0.115",
+		"port": 27017,
+		"username": "",
+		"password": "",
+		"dbname": "ecommerce"
+	}
+}

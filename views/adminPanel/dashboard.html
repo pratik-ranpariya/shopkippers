@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Reseller - Dashboard</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="sellerPanel/bootstrap/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+      <link rel="stylesheet" href="/sellerPanel/css/style.css">
+      <link rel="stylesheet" href="/sellerPanel/css/font-awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/sellerPanel/css/et-line-font/et-line-font.css">
+      <link rel="stylesheet" href="/sellerPanel/css/themify-icons/themify-icons.css">
+      <link rel="stylesheet" href="/sellerPanel/css/simple-lineicon/simple-line-icons.css">
+      <link rel="stylesheet" href="/sellerPanel/css/skins/_all-skins.min.css?v=1">
+      <link rel="stylesheet" href="/sellerPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+      <link rel="stylesheet" href="/sellerPanel/plugins/dropify/dropify.min.css">
+      <link rel="stylesheet" href="/sellerPanel/plugins/select2/css/select2.min.css">
+      <link href="../assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+   </head>
+   <body class="sidebar-mini skin-black-light">
+      <div class="wrapper boxed-wrapper">
+         <header class="main-header">
+            <a href="javascript:;" class="logo blue-bg d-none">
+               <span class="logo-mini"><img src="<%=BaseUrl%>/adminPanel/img/sss.png" alt=""></span> 
+               <span class="logo-lg"><img src="<%=BaseUrl%>/adminPanel/img/sun.png" alt=""></span> 
+            </a>
+            <nav class="navbar blue-bg navbar-static-top">
+               <ul class="nav navbar-nav pull-left">
+                  <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+               </ul>
+            </nav>
+         </header>
+         <%- include('left_layout.html'); %>
+         <div class="content-wrapper">
+            <div class="content-header sty-one">
+               <h1>Dashboard</h1>
+               <div id="demo"></div>
+               <div id="demo2"></div>
+            </div>
+            <div class="content">
+               <div class="row">
+                  <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
+                     <div class="card">
+                        <div class="card-body box-rounded box-gradient-5">
+                           <span class="info-box-icon bg-transparent"><i class="ti-user text-white"></i></span>
+                           <div class="info-box-content">
+                              <h6 class="info-box-text text-white">Total Reseller</h6>
+                              <h1 class="text-white"><%=data.totalreseller%></h1>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
+                     <div class="card">
+                        <div class="card-body box-rounded box-gradient-4">
+                           <span class="info-box-icon bg-transparent"><i
+                              class="icon-clock text-white"></i></span>
+                           <div class="info-box-content">
+                              <h6 class="info-box-text text-white">Total Product</h6>
+                              <h1 class="text-white"><%= data.totalProduct%></h1>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
+                     <div class="card">
+                        <div class="card-body box-rounded box-gradient-5">
+                           <span class="info-box-icon bg-transparent"><i class="ti-user text-white"></i></span>
+                           <div class="info-box-content">
+                              <h6 class="info-box-text text-white">Pending Product</h6>
+                              <h1 class="text-white"><%=data.approvePending%></h1>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
+                     <div class="card">
+                        <div class="card-body box-rounded box-gradient-4">
+                           <span class="info-box-icon bg-transparent"><i class="ti-money text-white"></i></span>
+                           <a href="#" onclick="getActiveUser();">
+                              <div class="info-box-content">
+                                 <h6 class="info-box-text text-white">Pin Price</h6>
+                                 <h1 class="text-white"></h1>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div> -->
+               </div>
+               <div id="demo"></div>
+               <div id="demo2"></div>
+            </div>
+         </div>
+      </div>
+
+      <footer class="main-footer">
+         <div class="pull-right hidden-xs">Version 1.0</div>
+         Copyright © 2020. All rights reserved.
+      </footer>
+      
+      </div>
+      <script src="sellerPanel/js/jquery.min.js"></script>  
+      <script src="sellerPanel/bootstrap/js/bootstrap.min.js"></script>
+      <script src="sellerPanel/js/bizadmin.js"></script>
+      <script src="sellerPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+      <script src="sellerPanel/plugins/jquery-sparklines/sparkline-int.js"></script>
+      <script src="sellerPanel/plugins/datatables/jquery.dataTables.min.js"></script> 
+      <script src="sellerPanel/plugins/datatables/dataTables.bootstrap.min.js"></script> 
+      <script src="sellerPanel/plugins/table-expo/filesaver.min.js"></script>
+      <script src="sellerPanel/plugins/table-expo/xls.core.min.js"></script>
+      <script src="sellerPanel/plugins/table-expo/tableexport.js"></script>
+      <script src="sellerPanel/plugins/dropify/dropify.min.js"></script> 
+      <script src="/sellerPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+      <script src="/sellerPanel/plugins/bootstrap-switch/highlight.js"></script> 
+      <script src="/sellerPanel/plugins/bootstrap-switch/main.js"></script>
+      <script src="/sellerPanel/plugins/raphael/raphael-min.js"></script> 
+      <script src="/sellerPanel/plugins/morris/morris.js"></script> 
+      <script src="/sellerPanel/plugins/select2/dist/js/select2.full.min.js"></script>
+      <script>
+         // function TopUser(){
+         //   console.log("click ");
+         //   $.ajax({
+         //     url: '<%=BaseUrl%>/getTopUser',
+         //     type: 'GET',
+         //     success: (response)=>{
+         //       console.log("resposne ::::::::::: ",response);
+         //       var tablebody = '';
+         //       var j = 1;
+         //       for(var i=0; i<response.data.length; i++){
+         //         console.log('name '+response.data[i].PlayerName)
+                 
+         //             tablebody   +='<tr>'
+         //                         +'<td class="text-center ng-binding">'+j+'</td>'
+         //                         +'<td class="text-center ng-binding" style="margin-right: 5px;">'+response.data[i].PlayerName+'</td> '
+         //                         // +'<td class="text-center ng-binding"><img src="'+response[i].catalogDetails[0].image+'" style="width: 50px;"/></td>'
+         //                         +'<td class="text-center ng-binding" style="margin-right: 5px;">'+response.data[i].Coin+'</td> '
+         //                         +'<td class="text-center ng-binding" style="margin-right: 5px;">'+response.data[i].wRate+'%'+'</td> '
+         //                         // +'<td class="text-center ng-binding" style="margin-right: 5px;">'+response[i].catalogDetails[0].description+'</td> '
+         //                         // +'<td class="text-center ng-binding" style="margin-right: 5px;">'+response[i].catalogDetails[0].created_at+'</td> '
+         //                     +'</tr>';
+         
+         //             j++;
+                   
+         //         }
+         //       $('#topUserList').html(tablebody);
+         //       $('#mostsell-modal').modal('toggle');
+         //     },
+         //     error: (error)=>{
+         //       console.log("error ::::::: ", error);
+         //     }
+         //   })
+         // }
+         // function getChart(){
+         //   var startdate = $('#earnstartdate').val();
+         //   var enddate = $('#earnenddate').val();
+         //   var data = {startdate: startdate, enddate: enddate};
+         //   console.log("data ::::::::: ", data);
+         //   $('#earning').empty();
+         //   $.ajax(
+         //       {
+         //       url: "<%BaseUrl%>/api/earning",
+         //       type: "POST",
+         //       data: data,
+         //       dataType: "json"                    
+         //   }).done(function(response) {
+         //     console.log("response :::::::: ", response);
+         //       var day_data = response;
+         //       Morris.Line({
+         //         element: 'earning',
+         //         data: day_data,
+         //         xkey: 'elapsed',
+         //         xLabelAngle: 40,
+         //         ykeys: ['Earning'],
+         //         labels: ['Earning'],
+         //         fillOpacity: 10,
+         //         pointStrokeColors: ['#00a65a'],
+         //         behaveLikeLine: true,
+         //         gridLineColor: '#e0e0e0',
+         //         lineWidth: 1,
+         //         hideHover: 'auto',
+         //         lineColors: ['#00a65a'],
+         //         parseTime: false,
+         //         resize: true
+         //       });
+         
+               
+         //   })
+         // }
+         // function getPrepaidChart(){
+         //   var startdate = $('#prepaidstartdate').val();
+         //   var enddate = $('#prepaidenddate').val();
+         //   var data = {startdate: startdate, enddate: enddate};
+         //   console.log("data ::::::::: ", data);
+         //   $('#prepaidorders').empty();
+         //   $.ajax(
+         //       {
+         //       url: "<%BaseUrl%>/api/PrePaid",
+         //       type: "POST",
+         //       data: data,
+         //       dataType: "json"                    
+         //   }).done(function(response) {
+         //     console.log("PrePaid response :::::::: ", response);
+         //       var day_data = response;
+         //       Morris.Line({
+         //         element: 'prepaidorders',
+         //         data: day_data,
+         //         xkey: 'elapsed',
+         //         xLabelAngle: 40,
+         //         ykeys: ['Earning'],
+         //         labels: ['Earning'],
+         //         fillOpacity: 10,
+         //         pointStrokeColors: ['#00a65a'],
+         //         behaveLikeLine: true,
+         //         gridLineColor: '#e0e0e0',
+         //         lineWidth: 1,
+         //         hideHover: 'auto',
+         //         lineColors: ['#00a65a'],
+         //         parseTime: false,
+         //         resize: true
+         //       });
+         
+               
+         //   })
+         // }
+         // $('.earnFilter').click(function(){
+         //   getChart();
+         // })
+         // $('.prepaidFilter').click(function(){
+         //   getPrepaidChart();
+         // })
+         // jQuery(document).ready(function() {
+         //     getChart();
+         //     getPrepaidChart();
+         
+         //     // Switchery
+         //     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+         //     $('.js-switch').each(function() {
+         //         new Switchery($(this)[0], $(this).data());
+         //     });
+         //     // For select 2
+         //     $(".select2").select2();
+         //     $('.selectpicker').selectpicker();
+         //     //Bootstrap-TouchSpin
+         //     $(".vertical-spin").TouchSpin({
+         //         verticalbuttons: true,
+         //         verticalupclass: 'ti-plus',
+         //         verticaldownclass: 'ti-minus'
+         //     });
+         //     var vspinTrue = $(".vertical-spin").TouchSpin({
+         //         verticalbuttons: true
+         //     });
+         //     if (vspinTrue) {
+         //         $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
+         //     }
+         //     $("input[name='tch1']").TouchSpin({
+         //         min: 0,
+         //         max: 100,
+         //         step: 0.1,
+         //         decimals: 2,
+         //         boostat: 5,
+         //         maxboostedstep: 10,
+         //         postfix: '%'
+         //     });
+         //     $("input[name='tch2']").TouchSpin({
+         //         min: -1000000000,
+         //         max: 1000000000,
+         //         stepinterval: 50,
+         //         maxboostedstep: 10000000,
+         //         prefix: '$'
+         //     });
+         //     $("input[name='tch3']").TouchSpin();
+         //     $("input[name='tch3_22']").TouchSpin({
+         //         initval: 40
+         //     });
+         //     $("input[name='tch5']").TouchSpin({
+         //         prefix: "pre",
+         //         postfix: "post"
+         //     });
+         //     // For multiselect
+         //     $('#pre-selected-options').multiSelect();
+         //     $('#optgroup').multiSelect({
+         //         selectableOptgroup: true
+         //     });
+         //     $('#public-methods').multiSelect();
+         //     $('#select-all').click(function() {
+         //         $('#public-methods').multiSelect('select_all');
+         //         return false;
+         //     });
+         //     $('#deselect-all').click(function() {
+         //         $('#public-methods').multiSelect('deselect_all');
+         //         return false;
+         //     });
+         //     $('#refresh').on('click', function() {
+         //         $('#public-methods').multiSelect('refresh');
+         //         return false;
+         //     });
+         //     $('#add-option').on('click', function() {
+         //         $('#public-methods').multiSelect('addOption', {
+         //             value: 42,
+         //             text: 'test 42',
+         //             index: 0
+         //         });
+         //         return false;
+         //     });
+         //     $(".ajax").select2({
+         //         ajax: {
+         //             url: "https://api.github.com/search/repositories",
+         //             dataType: 'json',
+         //             delay: 250,
+         //             data: function(params) {
+         //                 return {
+         //                     q: params.term, // search term
+         //                     page: params.page
+         //                 };
+         //             },
+         //             processResults: function(data, params) {
+         //                 // parse the results into the format expected by Select2
+         //                 // since we are using custom formatting functions we do not need to
+         //                 // alter the remote JSON data, except to indicate that infinite
+         //                 // scrolling can be used
+         //                 params.page = params.page || 1;
+         //                 return {
+         //                     results: data.items,
+         //                     pagination: {
+         //                         more: (params.page * 30) < data.total_count
+         //                     }
+         //                 };
+         //             },
+         //             cache: true
+         //         },
+         //         escapeMarkup: function(markup) {
+         //             return markup;
+         //         }, // let our custom formatter work
+         //         minimumInputLength: 1,
+         //         // templateResult: formatRepo, // omitted for brevity, see the source of this page
+         //         //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+         //     });
+         // });
+      </script>
+      <script>
+         // function getActiveUser(id) {
+         
+         //   $.ajax({
+         //     url: 'http://ludopremierleague.com:3003/curActiveUser',
+         //     type: 'GET',
+         //     success: (response) => {
+         //       console.log(response, response.status);
+         //       location.reload();
+         //     },
+         //     error(err) {
+         //       console.log("User deletion error: ");
+         //     }
+         //   })
+         // }
+      </script>
+   </body>
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stanley - Tools Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Codezeel added -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="/web/assets/css/style.css" type="text/css" media="all">
+    <script type="text/javascript">
+        var buttoncompare_title_add = "Add to Compare";
+        var buttoncompare_title_remove = "Remove from Compare";
+        var buttonwishlist_title_add = "Add to Wishlist";
+        var buttonwishlist_title_remove = "Remove from WishList";
+        var comparator_max_item = 3;
+        var compared_products = [];
+        var isLogged = false;
+        var prestashop = {};
+        var productcompare_add = "The product has been added to list compare";
+        var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+        var productcompare_remove = "The product was successfully removed from list compare";
+        var productcompare_url = "index8589.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+        var productcompare_viewlistcompare = "View list compare";
+        var wishlist_add = "The product was successfully added to your wishlist";
+        var wishlist_cancel_txt = "Cancel";
+        var wishlist_confirm_del_txt = "Delete selected item?";
+        var wishlist_del_default_txt = "Cannot delete default wishlist";
+        var wishlist_email_txt = "Email";
+        var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+        var wishlist_ok_txt = "Ok";
+        var wishlist_quantity_required = "You must enter a quantity";
+        var wishlist_remove = "The product was successfully removed from your wishlist";
+        var wishlist_reset_txt = "Reset";
+        var wishlist_send_txt = "Send";
+        var wishlist_send_wishlist_txt = "Send wishlist";
+        var wishlist_url = "index8589.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+        var wishlist_viewwishlist = "View your wishlist";
+     </script>
+</head>
+
+<body id="index" class="lang-en country-de currency-eur layout-full-width page-index tax-display-enabled">
+    <main id="page">
+        <%- include('header.html'); %>
+        <aside id="notifications">
+            <div class="container"></div>
+         </aside>
+            <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+            <style type="text/css">
+                .card {
+                    margin-bottom: 1.5rem;
+                    box-shadow: 0 1px 15px 1px rgba(52, 40, 104, .08);
+                }
+
+                .card {
+                    position: relative;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    min-width: 0;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 1px solid #e5e9f2;
+                    border-radius: .2rem;
+                }
+
+                .card-header:first-child {
+                    border-radius: calc(.2rem - 1px) calc(.2rem - 1px) 0 0;
+                }
+
+                .card-header {
+                    border-bottom-width: 1px;
+                }
+
+                .card-header {
+                    padding: .75rem 1.25rem;
+                    margin-bottom: 0;
+                    color: inherit;
+                    background-color: #fff;
+                    border-bottom: 1px solid #e5e9f2;
+                }
+
+                .padd {
+                    padding: 15px;
+                }
+            </style>
+
+                <div class="container p-0">
+
+                    <h1 class="h3 mb-3">Settings</h1>
+
+                    <div class="row">
+                        <div class="col-md-5 col-xl-4">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Profile Settings</h5>
+                                </div>
+
+                                <div class="list-group list-group-flush" role="tablist">
+                                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                                        href="#account" role="tab">
+                                        Profile Information
+                                    </a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                                        href="#password" role="tab">
+                                        Password
+                                    </a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#address"
+                                        role="tab">
+                                        manage Address
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 col-xl-8">
+                            <div class="tab-content">
+                                <div class="tab-pane show active" style="opacity: 1; transition: opacity .15s linear;"
+                                    id="account" role="tabpanel">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-actions float-right">
+                                                <div class="dropdown show">
+                                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-more-horizontal align-middle">
+                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                        </svg>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a class="dropdown-item" href="#">Another action</a>
+                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title mb-0">Personal Information</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="/updateprofile" method='post' class="padd">
+                                                <div class="row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputFirstName">First name</label>
+                                                        <input type="text" class="form-control" id="inputFirstName"
+                                                            placeholder="First name" name="firstname" value="<%=data.profile.firstname%>" required>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputLastName">Last name</label>
+                                                        <input type="text" name="lastname" class="form-control" id="inputLastName"
+                                                            placeholder="Last name" value="<%=data.profile.lastname%>" required>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputEmail4">Email</label>
+                                                        <input type="email" class="form-control" id="inputEmail4"
+                                                            placeholder="Email (optional)" value="<%=data.profile.email%>">
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <div class="col-md-6 form-control-valign">
+                                                            <label class="inputFirstName"> Gender :</label>
+                                                            <label class="radio-inline">
+                                                                <span class="custom-radio">
+                                                                    <input name="gender" type="radio" value="male" required>
+                                                                </span>
+                                                                Male
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <span class="custom-radio">
+                                                                    <input name="gender" type="radio" value="female" checked>
+                                                                </span>
+                                                                Female
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <span class="custom-radio">
+                                                                    <input name="gender" type="radio" value="other">
+                                                                </span>
+                                                                Other
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" style="opacity: 1; transition: opacity .15s linear;" id="password"
+                                    role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-actions float-right">
+                                                <div class="dropdown show">
+                                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-more-horizontal align-middle">
+                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title mb-0">Password</h5>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <form class="padd" method="post" id="forgotpassword_form" enctype="multipart/form-data">
+                                                <div class="row">
+                                                <div class="form-group col-md-8">
+                                                    <label for="inputPasswordCurrent">Current password</label>
+                                                    <input type="password" name="currentPassword" value="" class="form-control" id="inputPasswordCurrent" required>
+                                                    <small><a href="#">Forgot your password?</a></small>
+                                                </div>
+                                                <div class="form-group col-md-8">
+                                                    <label for="inputPasswordNew">New password</label>
+                                                    <input type="password" name="newPassword1" class="form-control" value="" id="inputPasswordNew" required>
+                                                </div>
+                                                <div class="form-group col-md-8">
+                                                    <label for="inputPasswordNew2">Verify password</label>
+                                                    <input type="password" name="newPassword2" class="form-control" value="" id="inputPasswordNew2" required>
+                                                </div>
+                                            </div>
+                                                <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" style="opacity: 1; transition: opacity .15s linear;" id="address"
+                                    role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-actions float-right">
+                                                <div class="dropdown show">
+                                                    <a href="#" data-toggle="dropdown" data-display="static">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-more-horizontal align-middle">
+                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title mb-0">Manage Address :</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <%for(var i=0; i < data.alladdress.length; i++){%>
+                                                <div class="form-control">
+                                                    <label for="inputPasswordCurrent"> address <%=[i+1]%>:</label><br> <%=data.alladdress[i]%> 
+                                                </div>
+                                            <%}%>
+                                            <div class="card-header">
+                                                <h5 class="card-title mb-0">Add Address :</h5>
+                                            </div>
+                                            <form class="padd" method="post" id="addaddress_form" enctype="multipart/form-data">
+                                                
+                                                <div class="row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputPasswordCurrent">Name</label>
+                                                        <input type="text" name="name" value="" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputPasswordNew2">Contact Number</label>
+                                                        <input type="number" name="contactNumber" class="form-control" value="" required>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputPasswordNew">Building Name Or House Number</label>
+                                                        <input type="text" name="BuildingNameOrHouseNumber" class="form-control" value="" required>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputPasswordNew">area</label>
+                                                        <textarea type="text" name="area" class="form-control" value="" required>
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputPasswordCurrent">pincode</label>
+                                                        <input type="number" name="pincode" value="" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputPasswordNew2">state</label>
+                                                        <input type="text" name="state" class="form-control" value="" required>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <label for="inputPasswordNew">city</label>
+                                                        <input type="text" name="city" class="form-control" value="" required>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <%- include('footer.html') %>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/web/assets/js/bottom-a8ad2f14.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+        $(document).ready(() => {
+            $('#forgotpassword_form').on("submit", (event) => {
+                event.preventDefault()
+                $.ajax({
+                    url: "<%=BaseUrl%>/forgotPassword",
+                    method: "POST",
+                    data: $('#forgotpassword_form').serialize(),
+                    success: (data) => {
+                        if (data.error == 'N') {
+                            confirm(data.msg)
+                            location.reload();
+                        } else if (data.error == 'Y') {
+                            confirm(data.msg)
+                        }
+                    }
+                })
+            })
+        })
+
+        $(document).ready(() => {
+            $('#addaddress_form').on("submit", (event) => {
+                event.preventDefault()
+                $.ajax({
+                    url: "<%=BaseUrl%>/addaddress",
+                    method: "POST",
+                    data: $('#addaddress_form').serialize(),
+                    success: (data) => {
+                        if (data.error == 'N') {
+                            location.reload();
+                        } else if (data.error == 'Y') {
+                            confirm(data.msg)
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

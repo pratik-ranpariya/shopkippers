@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GreenCoins</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/bootstrap/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/style.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/et-line-font/et-line-font.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/simple-lineicon/simple-line-icons.css">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/css/skins/_all-skins.min.css?v=1">
+  <link rel="stylesheet" href="<%=BaseUrl%>/sellerPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="http://3.6.102.34:3005/adminPanel/css/sweetalert.min.css">
+  <style>
+    .myswitch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .myswitch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .myslider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .myslider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.myslider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.myslider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.myslider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .myslider.myround {
+      border-radius: 34px;
+    }
+
+    .myslider.myround:before {
+      border-radius: 50%;
+    }
+
+    .newbuttonyellow{
+        border-color: transparent;
+        color: white;
+        background-color: #4f626d;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 2px;
+        box-shadow: #4f626d;
+    }
+
+    .newbuttongreen {
+        border-color: transparent;
+        color: white;
+        background-color: #3ba53b;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 2px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .newbuttonred{
+        border-color: transparent;
+        color: white;
+        background-color: #d04444;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 2px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+  </style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header">
+    <a href="javascript:;" class="logo blue-bg d-none">
+      <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span>
+      <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> 
+    </a>
+    <nav class="navbar blue-bg navbar-static-top">
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a></li>
+      </ul>
+    </nav>
+  </header>
+  <%- include ('left_layout.html') %>
+  
+  <div class="content-wrapper"> 
+    <div class="content-header sty-one">
+      <h1>Product List</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Paytm Withdraw List</a></li>
+      </ol>
+    </div>
+    
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+	    <br>
+        <div class="col-md-12">  
+          <div class="table-responsive">
+             <table class="table table-hover table-bordered" id="personnel">
+              <thead class="thead-light">
+                <tr>
+                  <th>#</th>
+                  <th>Reseller</th>
+		          <th>GST Number</th>
+                  <th>Register Business Address</th>
+                  <th>Business Type</th>
+                  <th>Status</th>
+                  <th>Approve</th>
+                  <th>Reject</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if(data.length){ %>
+                <% for (var i = 0; i < data.length; i++) {%>
+                <tr>
+                  <td><%=i+1%></td>
+                  <td><%=data[i]._id%></td>
+                  <td><%=data[i].gstnumber%></td>
+                  <td><%=data[i].registerbusinessaddress%></td>
+                  <td><%=data[i].businesstype%></td>
+                  <td><button class="<% if (data[i].businessStatus == 0){%>newbuttonyellow<% }else if(data[i].businessStatus == 1){ %>newbuttongreen<% }else if(data[i].businessStatus == 2){%>newbuttonred<%}%>"><% if (data[i].businessStatus == 0){%>&nbsp; &nbsp;Pending&nbsp; &nbsp;<% }else if(data[i].businessStatus == 1){ %>&nbsp; Approve &nbsp;<% }else if(data[i].businessStatus == 2){%>&nbsp; Reject &nbsp;<%}%></button></td>
+                  <td>
+                    <%if(data[i].businessStatus == '0'){%>
+                    <button class="btn btn-sm btn-success" id="<%= data[i]._id %>" style="margin:5px" type="button" onclick="ApproveP('<%=data[i]._id%>');"><i class="fa fa-check"></i></button></a>
+                    <%}%>
+                  </td>
+                  <td>
+                    <%if(data[i].businessStatus == '0'){%>
+                    <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="RejectP('<%=data[i]._id%>');"><i class="fa fa-times"></i></button>
+                    <%}%>
+                  </td>
+                </tr>
+                <% } %>
+                  <%}else{%>
+                <tr>
+                  <td colspan="13"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <% if (pages > 0) { %>
+                  <ul class="pagination" id="pagination">
+                    <% if (current == 1) { %>
+                      <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('1');" >First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                          <li><a onclick="changePage('<%= i %>');" ><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                      <li><a onclick="changePage('<%= pages %>');" >Last</a></li>
+                    <% } %>
+
+                  </ul>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.
+  </footer>
+</div>
+
+<script src="<%=BaseUrl%>/sellerPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/sellerPanel/bootstrap/js/bootstrap.min.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/js/bizadmin.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/table-expo/tableexport.js"></script>
+<script src="http://3.6.102.34:3005/adminPanel/js/sweetalert.min.js"></script>
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/sellerPanel/plugins/bootstrap-switch/main.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+
+<script >
+  function ApproveP(id) {
+    swal({
+		title: "Are you sure?",
+		text: "are you sure you want to Approve this Proof.",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes continue !",
+		cancelButtonText: "No, cancel please!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm){
+		if (isConfirm) {
+          $.ajax({
+            url: '<%=BaseUrl%>/ApporveBusinessDetail/'+id,
+            type: 'post',
+            success: (response) => {
+              console.log(response, response.status);
+              swal("Poof! product has been Approved!", {
+                icon: "success",
+              });
+              location.reload();
+            },
+            error(err) {
+              console.log("User deletion error: ", err);
+            }
+          })
+        } else {
+          swal("This Proof is safe!");
+        }
+      });
+  }
+
+  function RejectP(id) {
+    swal({
+		title: "Are you sure?",
+		text: "are you sure you want to reject this Proof.",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes continue !",
+		cancelButtonText: "No, cancel please!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm){
+		if (isConfirm) {
+          $.ajax({
+            url: '<%=BaseUrl%>/RejectBusinessDetail/'+id,
+            type: 'post',
+            success: (response) => {
+              console.log(response, response.status);
+              swal("Poof! product has been Approved!", {
+                icon: "success",
+              });
+              location.reload();
+            },
+            error(err) {
+              console.log("User deletion error: ", err);
+            }
+          })
+        } else {
+          swal("This Proof is safe!");
+        }
+      });
+  }
+
+  function changePage(page) {
+    var isPostReq = false;
+    if ($('#orderno').val()) {
+      isPostReq = true;
+    }
+    if ($("#bysort option:selected").attr("value") != '') {
+      isPostReq = true;
+    }
+    if ($("#bysort2 option:selected").attr("value") != '') {
+      isPostReq = true;
+    }
+    if ($('#todate').val()) {
+      isPostReq = true;
+    }
+    if ($('#fromdate').val()) {
+      isPostReq = true;
+    }
+    var link = '<%=BaseUrl%>/businessdetailverify_list/' + page;
+    if (isPostReq) {
+      $('#searchform').attr('action', link);
+      $('#searchform').submit();
+    }
+    else {
+      location.href = link;
+    }
+  }
+</script>
+</body>
+</html>

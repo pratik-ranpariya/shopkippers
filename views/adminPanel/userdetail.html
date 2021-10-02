@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/style.css?v=11">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- dropify -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/dropify/dropify.min.css">
+<!-- bootstrap-switch -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/select2/css/select2.min.css">
+<!-- selecr2 --->
+<link href="<%=BaseUrl%>/adminPanel/assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/adminPanel/img/avtar.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/adminPanel/img/avtar.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%- include ('left_layout.html') %>
+ 
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Main content -->
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="user-profile-box" style="padding: 20px 20px;">
+            <div class="box-profile text-white"> 
+              <% if (userdetail) { %> <img class="profile-user-img img-responsive  m-b-2" id="profile-profile" src="<%=BaseUrl%>/adminPanel/img/avtar.png" alt="User profile picture"> <% } else {%> <img class="profile-user-img img-responsive  m-b-2" id="profile-profile" src="<%=BaseUrl%>/img/avtar.png" alt="User profile picture"> <% } %>
+              <!-- <img class="profile-user-img img-responsive  m-b-2" id="profile-profile" src="<%=BaseUrl%>/img/snfl.png" alt="User profile picture"> -->
+              <h3 style="color:#191818;" class="profile-username" id="profile-username">&nbsp &nbsp <%if(userdetail.name){%><%=userdetail.name%><%}else{%><em>not available</em><%}%></h3>
+              <p style="color:#191818;" id="profile-email"><i class="fa fa-envelope" ></i>&nbsp &nbsp<%if(userdetail.email){%><%=userdetail.email%><%}else{%><em>not available</em><%}%></p>
+              <p style="color:#191818;" id="profile-phone"><i class="fa fa-phone" ></i>&nbsp &nbsp<%if(userdetail.Mobile_no){%><%=userdetail.Mobile_no%><%}else{%><em>not available</em><%}%></p>
+              <!-- <p style="color:#191818;" id="profile-verified"><i class="fa fa-money" ></i>&nbsp &nbsp <%if(userdetail.walletBalance){%><%=userdetail.walletBalance%><%}else{%><em>0</em><%}%></p>-->
+              <p style="color:#191818;" id="profile-referralcode"><i class="fa fa-share-alt-square" ></i>&nbsp &nbsp<%if(userdetail.my_referid){%><%=userdetail.my_referid%><%}else{%><em> - </em><%}%></p>
+              <!--<p style="color:#191818;" id="profile-referralBy"><i class="fa fa-universal-access" ></i>&nbsp &nbsp <%if(userdetail.referBy){%><%=userdetail.referBy%><%}else{%><em> - </em><%}%></p>-->
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8" style="margin-top: 10px;">
+          <div class="content" style="padding:0px 0px">
+            <div class="row">
+               <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-aqua"><i class="ti-coin"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%= userdetail.coinBalance %></span> <span class="info-box-text">Total Coins</span> </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-red"><i class="ti-timer"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%= userdetail.walletBalance  %></span> <span class="info-box-text">Total Rs.</span></div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-aqua"><i class="ti-check-box"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%= phcount %></span> <span class="info-box-text">Total PH</span> </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-red"><i class="ti-timer"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%= rhcount %></span> <span class="info-box-text">Total RH</span></div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-yellow"><i class="ti-crown"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%if(userdetail.city){%><%=userdetail.city%><%}else{%> - <%}%></span> <span class="info-box-text">City</span></div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-lg-6 col-xs-6 m-b-3">
+                <a href="#"><div class="card">
+                  <div class="card-body"><span class="info-box-icon bg-yellow"><i class="ti-wallet"></i></span>
+                    <div class="info-box-content"> <span class="info-box-number"><%if(userdetail.referBy){%><%=userdetail.referBy%><%}else{%> - <%}%></span> <span class="info-box-text">ReferBy</span></div>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+
+                <!--<div class="col-lg-6 col-xs-6 m-b-3">
+                  <a href="#"><div class="card">
+                    <div class="card-body"><span class="info-box-icon bg-yellow"><i class="ti-shopping-cart-full"></i></span>
+                      <div class="info-box-content"> <span class="info-box-number"><%= userdetail.my_referid %></span> <span class="info-box-text">My ReferCode</span></div>
+                    </div>
+                  </div>
+                  </a>
+                </div>-->
+		
+		<div class="col-lg-6 col-xs-6 m-b-3">
+                  <a href="#"><div class="card">
+                    <div class="card-body"><span class="info-box-icon bg-yellow"><i class="ti-shopping-cart-full"></i></span>
+                      <div class="info-box-content"> <span class="info-box-number"><input type="checkbox" onclick="archiveFunctionss('<%=BaseUrl%>/block/<%= userdetail._id %>')" id="<%=BaseUrl%>/block/<%= userdetail._id %>" <% if(userdetail.block == 1){ %> checked <% } %>><span class="switch-button"> <span class="info-box-text">Block</span></div>
+                      
+                    </div>
+                  </div>
+                  </a>
+                </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <!-- Main row -->
+      <div class="col-lg-12">
+          <div class="row">
+
+          <div class="col-lg-6" style="background:#fff;border-right: 4px solid #f0f4f8;border-bottom: 10px solid #f0f4f8;">
+        <div><h4 style="margin:10px 0px;font-weight:500">Coin history</h4></div>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>S.No</th>
+                <th>Coin</th>
+                <th>Message</th>
+                <th>Transection ID</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (coinhistory.length > 0) { var con = '1'; %>
+                              <% for(var i = 0; i < coinhistory.length; i++ ) { %>
+                              <tr>
+                                  <td><%= con %></td>
+                                  <td><%= coinhistory[i].coin %></td>
+                                  <td><%= coinhistory[i].msg %></td>
+                                  <td><%= coinhistory[i].Tr_id %></td>
+                                  <td><%= coinhistory[i].date%></td>
+                                  
+                              </tr>
+                      <% con++; } }
+                        else
+                        {
+                          %>
+                          <tr>
+                              <td colspan="10"><center>No Record Found!</center></td>
+                          </tr>
+                      <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+           <div class="col-lg-6" style="background:#fff;border-right: 4px solid #f0f4f8;border-bottom: 10px solid #f0f4f8;">
+        <div><h4 style="margin:10px 0px;font-weight:500">Wallet history</h4></div>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>S.No</th>
+                <th>Rs.</th>
+                <th>Message</th>
+                <th>Via</th>
+                <th>Transection ID</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (wallethistory.length > 0) { var con = '1'; %>
+                              <% for(var i = 0; i < wallethistory.length; i++ ) { %>
+                              <tr>
+                                  <td><%= con %></td>
+                                  <td><%= wallethistory[i].amount %></td>
+                                  <td><%= wallethistory[i].msg %></td>
+                                  <td><% if (wallethistory[i].addby == 0){%>&nbsp; &nbsp;User&nbsp; &nbsp;<% }else if(wallethistory[i].addby == 1){ %>&nbsp; Admin &nbsp;<% }else if(wallethistory[i].addby == 2){%>&nbsp; Bonus &nbsp;<%} else if(wallethistory[i].addby == 3){%>&nbsp; Rh  &nbsp;<%}%></td>
+                                  <td><%= wallethistory[i].Tr_id %></td>
+                                  <td><%= wallethistory[i].date%></td>
+                                  
+                              </tr>
+                      <% con++; } }
+                        else
+                        {
+                          %>
+                          <tr>
+                              <td colspan="10"><center>No Record Found!</center></td>
+                          </tr>
+                      <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+            <div class="col-lg-6" style="background:#fff;border-right: 4px solid #f0f4f8;border-bottom: 10px solid #f0f4f8;">
+              <div><h4 style="margin:10px 0px;font-weight:500">Pin Purchase history</h4></div>
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>S.No</th>
+                      <th>Amount</th>
+                      <th>Purchase Pin</th>
+                      <th>transection ID</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (pinhistory.length > 0) { var con = '1'; %>
+                                    <% for(var i = 0; i < pinhistory.length; i++ ) { %>
+                                    <tr>
+                                        <td><%= con %></td>
+                                        <td><%= pinhistory[i].amount %></td>
+                                        <td><%= pinhistory[i].pin_count %></td>
+                                        <td><%= pinhistory[i].Tr_id %></td>
+                                        <td><%= pinhistory[i].date%></td>
+                                    </tr>
+                            <% con++; } }
+                              else
+                              {
+                                %>
+                                <tr>
+                                    <td colspan="10"><center>No Record Found!</center></td>
+                                </tr>
+                            <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+<!--	   <div class="col-lg-6" style="background:#fff;border-right: 4px solid #f0f4f8;border-bottom: 10px solid #f0f4f8;">
+              <div><h4 style="margin:10px 0px;font-weight:500">Wallet Transfer history</h4></div>
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>S.No</th>
+                      <th>Amount</th>
+                      <th>Receiver ID</th>
+                      <th>transection ID</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (walletTransfer.length > 0) { var con = '1'; %>
+                                    <% for(var i = 0; i < walletTransfer.length; i++ ) { %>
+                                    <tr>
+                                        <td><%= con %></td>
+                                        <td><%= walletTransfer[i].amount %></td>
+                                        <td><a href="<%=BaseUrl%>/userdata/<%= walletTransfer[i].receiver_id %>"><%= walletTransfer[i].receiver_id %></a></td>
+                                        <td><%= walletTransfer[i].Tr_id %></td>
+                                        <td><%= walletTransfer[i].date%></td>
+                                        
+                                    </tr>
+                            <% con++; } }
+                              else
+                              {
+                                %>
+                                <tr>
+                                    <td colspan="10"><center>No Record Found!</center></td>
+                                </tr>
+                            <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>	  
+            
+            
+            <div class="col-lg-6" style="background:#fff;border-right: 4px solid #f0f4f8;border-bottom: 10px solid #f0f4f8;">
+              <div><h4 style="margin:10px 0px;font-weight:500">Receive Amount history</h4></div>
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>S.No</th>
+                            <th>Amount</th>
+                            <th>Sender ID</th>
+                            <th>transection ID</th>
+                            <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (receive_amt.length > 0) { var con = '1'; %>
+                                    <% for(var i = 0; i < receive_amt.length; i++ ) { %>
+                                    <tr>
+                                        <td><%= con %></td>
+                                        <td><%= receive_amt[i].amount %></td>
+                                        <td><a href="<%=BaseUrl%>/userdata/<%= receive_amt[i].sender_id %>"><%= receive_amt[i].sender_id %></a></td>
+                                        <td><%= receive_amt[i].Tr_id %></td>
+                                        <td><%= receive_amt[i].date%></td>
+                                        
+                                    </tr>
+                            <% con++; } }
+                              else
+                              {
+                                %>
+                                <tr>
+                                    <td colspan="10"><center>No Record Found!</center></td>
+                                </tr>
+                            <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>-->
+
+          </div>
+          </div>
+      
+    </div>
+    <!-- /.content --> 
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2020 GreenCoin. All rights reserved.</footer>
+</div>
+
+
+<!-- jQuery 3 --> 
+<script src="<%=BaseUrl%>/adminPanel/js/jquery.min.js"></script>  
+<script src="<%=BaseUrl%>/adminPanel/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="<%=BaseUrl%>/adminPanel/js/bizadmin.js"></script> 
+
+<!-- Jquery Sparklines --> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/tableexport.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/dropify/dropify.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/main.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/select2/js/select2.full.min.js"></script>
+
+<script type="text/javascript">
+
+	function archiveFunctionss(id) {
+        console.log(id)
+
+		$.ajax({
+			url: ''+id,
+			type: 'GET',
+			success: function(results){
+				console.log("results::",results);
+			location.reload(); // then reload the page.(3)
+		}
+	})
+}
+
+</script>
+</body>
+</html>

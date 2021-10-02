@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/style.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.newbuttongreen{
+    border-color: transparent;
+    color: white;
+    background-color: #3ba53b;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.newbuttonred{
+    border-color: transparent;
+    color: white;
+    background-color: #d04444;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/adminPanel/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/adminPanel/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%- include ('left_layout.html') %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>RH History</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">rh history</a></li>
+      </ol>
+    </div>
+
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <div class="col-md-12">  
+        <br>
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="personnel">
+                <thead class="thead-light">
+                  <tr>
+                    <th>#</th>
+                    <th>name</th>
+                    <th>Coin</th>
+                    <th>Rs.</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                    <% if (data.length > 0) { var con = '1'; %>
+                            <% for(var i = 0; i < data.length; i++ ) { %>
+                            <tr>
+                                <td><%= con %></td>
+                                <td><a href="<%=BaseUrl%>/userdata/<%= data[i].User_id %>"><%= data[i].name%></a></td>
+                                <td><%= data[i].coin%></td>
+                                <td><%= data[i].rs%></td>
+                                <td><%= data[i].date%></td>
+                    </tr>
+                    <% con++; } }
+                      else
+                      {
+                        %>
+                        <tr>
+                            <td colspan="20"><center>No Record Found!</center></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+              </table><div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <% if (pages > 0) { %>
+                      <ul class="pagination" id="pagination">
+                        <% if (current == 1) { %>
+                          <li class="disabled"><a>First</a></li>
+                        <% } else { %>
+                          <li><a onclick="changePage('1');" >First</a></li>
+                        <% } %>
+                        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                        <% if (i !== 1) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                            <% if (i == current) { %>
+                                <li class="active"><a><%= i %></a></li>
+                            <% } else { %>
+                              <li><a onclick="changePage('<%= i %>');" ><%= i %></a></li>
+                            <% } %>
+                            <% if (i == Number(current) + 4 && i < pages) { %>
+                                <li class="disabled"><a>...</a></li>
+                            <% } %>
+                        <% } %>
+                        <% if (current == pages) { %>
+                            <li ><a>Last</a></li>
+                        <% } else { %>
+                          <li><a onclick="changePage('<%= pages %>');" >Last</a></li>
+                            <!-- <li><a href="/userlist/<%= pages %>">Last</a></li> -->
+                        <% } %>
+    
+                      </ul>
+                    <% } %>
+                </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.
+</footer>
+</div>
+<!-- jQuery 3 --> 
+<script src="<%=BaseUrl%>/adminPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/adminPanel/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="<%=BaseUrl%>/adminPanel/js/bizadmin.js"></script>
+
+<!-- Jquery Sparklines -->
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/tableexport.js"></script>
+<script>
+// $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<!-- bootstrap-switch --> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/main.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script>
+function changePage(page) {
+      var link = '<%=BaseUrl%>/rhhistory/' + page;
+    location.href = link;
+   }
+</script>
+</body>
+</html>

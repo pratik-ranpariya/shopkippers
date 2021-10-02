@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Stanley - Tools Store</title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="//fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Add to Compare";
+         var buttoncompare_title_remove = "Remove from Compare";
+         var buttonwishlist_title_add = "Add to Wishlist";
+         var buttonwishlist_title_remove = "Remove from WishList";
+         var comparator_max_item = 3;
+         var compared_products = [];
+         var isLogged = true;
+         var prestashop = {};
+         var productcompare_add = "The product has been added to list compare";
+         var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove = "The product was successfully removed from list compare";
+         var productcompare_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+         var productcompare_viewlistcompare = "View list compare";
+         var wishlist_add = "The product was successfully added to your wishlist";
+         var wishlist_cancel_txt = "Cancel";
+         var wishlist_confirm_del_txt = "Delete selected item?";
+         var wishlist_del_default_txt = "Cannot delete default wishlist";
+         var wishlist_email_txt = "Email";
+         var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+         var wishlist_ok_txt = "Ok";
+         var wishlist_quantity_required = "You must enter a quantity";
+         var wishlist_remove = "The product was successfully removed from your wishlist";
+         var wishlist_reset_txt = "Reset";
+         var wishlist_send_txt = "Send";
+         var wishlist_send_wishlist_txt = "Send wishlist";
+         var wishlist_url = "https:\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+         var wishlist_viewwishlist = "View your wishlist";
+      </script>
+   </head>
+   <body id="checkout" class="lang-en country-de currency-eur layout-left-column page-order tax-display-enabled">
+      <main id="page">
+         <%- include('header.html') %>
+         <aside id="notifications">
+            <div class="container">
+            </div>
+         </aside>
+         <section id="wrapper">
+            <nav data-depth="1" class="breadcrumb">
+               <div class="container">
+                  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="#">
+                        <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                     </li>
+                  </ol>
+               </div>
+            </nav>
+            <div class="container ggdg">
+               <section id="content">
+                  <div class="row">
+                     <div class="col-md-8">
+                        <section  id    = "checkout-personal-information-step"
+                           class = "checkout-step -reachable -complete"
+                           >
+                           <h1 class="step-title h3">
+                              <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                              <span class="step-number">1</span>
+                              Personal Information
+                              <a href="/profile" class="step-edit text-muted"><i class="material-icons edit">mode_edit</i> Edit</a>
+                           </h1>
+                        </section>
+                        <section  id="checkout-addresses-step"
+                           class="checkout-step -current -reachable js-current-step">
+                           <h1 class="step-title h3">
+                              <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                              <span class="step-number">2</span>
+                              Addresses
+                              <a class="text-muted"><i class="material-icons edit">mode_edit</i> Edit</a>
+                           </h1>
+                           <div class="content">
+                              <div class="js-address-form">
+                                 <form method="POST" action="paymentCheckoutbycart">
+                                    <!-- <p>
+                                       The selected address will be used both as your personal address (for invoice) and as your delivery address.
+                                    </p> -->
+                                    
+                                    <div id="delivery-addresses" class="address-selector js-address-selector"> 
+                                       <%for(var i = 0; i < data.data.length; i++){%>
+                                          <article class="address-item selected" id="id-address-delivery-address-13">
+                                          
+                                          <header class="h4"></header>
+                                             <label class="radio-block">
+                                                <span class="custom-radio">
+                                                   <input type="radio" name="id" value="<%= data.data[i]._id %>" checked>
+                                                   <span></span>
+                                                </span>
+                                                <span class="address-alias h4">My Address <%=i+1%></span>
+                                                <div class="address">
+                                                   <%= data.data[i].address %>
+                                                </div>
+                                             </label>
+                                          </header>
+                                          
+                                          <hr>
+                                          <footer class="address-footer">
+                                             <a class="text-muted open-comment-form" href="#update_comment_form" onclick="editAddress('<%=data.data[i]._id%>')">
+                                                <i class="material-icons edit">&#xE254;</i>
+                                                Edit
+                                             </a>
+                                             <a class="delete-address text-muted" data-link-action="delete-address" onclick="deleteAddress('<%=data.data[i]._id%>')">
+                                                <i class="material-icons delete">&#xE872;</i>
+                                                Delete
+                                             </a>
+                                          </footer>
+                                          
+                                       </article>
+                                       <%}%>
+                                       <p>
+                                          <button class="ps-hidden-by-js form-control-submit center-block" type="submit">Save</button>
+                                       </p>
+                                    </div>
+                                    
+                                    <p class="add-address">
+                                       <a href="#new_comment_form" class="open-comment-form"><i class="material-icons">&#xE145;</i>add new address</a>
+                                    </p>
+                                    <!-- <p>
+                                       <a data-link-action="different-invoice-address" href="#">
+                                       Billing address differs from shipping address
+                                       </a>
+                                    </p> -->
+                                    <div class="clearfix">
+                                       <button type="submit" class="btn btn-primary continue float-xs-right" <%if(data.length == '0'){%> disabled <%}%>>
+                                       Continue
+                                       </button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </section>
+                        <section class="checkout-step -unreachable" id="checkout-payment-step">
+                           <h1 class="step-title h3">
+                              <span class="step-number">3</span> Payment
+                           </h1>
+                        </section>
+                     </div>
+                     <div class="col-md-4">
+                        <section id="js-checkout-summary" class="card js-cart">
+                           <div class="card-block">
+
+                            <div class="cart-summary-products">
+                                <p><%=data.totaitem%> item</p>
+                                <p>
+                                   <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list">
+                                   show details
+                                   </a>
+                                </p>
+                                <div class="collapse" id="cart-summary-product-list">
+                                    <ul class="media-list row">
+                                        <%for(var i=0; i < data.product.length; i++){%>
+                                            <li class="media col-2">
+                                                <a href="/productDetail?pid=<%=data.product[i].pid%>" title="Accusantium doloremque">
+                                                    <img class="media-object" src="<%=imgUrl%>/<%=data.product[i].productImage%>" height="100px" alt="Accusantium doloremque">
+                                                    
+                                                </a>
+                                                quantity: <%=data.product[i].quantity%>
+                                            </li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                             </div>
+
+                              <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-products">
+                                 <span class="label">Subtotal</span>
+                                 <span class="value"> Rs. <%=data.totalAmount%></span>
+                              </div>
+                              <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
+                                 <span class="label">Shipping</span>
+                                 <%if((data.deleveryCharge) != 0){%>
+                                    <span class="value">Rs. <%= data.deleveryCharge%></span>
+                                    <%}else{%>
+                                    <span class="value">Free</span>
+                                    <%}%>
+                              </div>
+                           </div>
+                           <hr class="separator">
+                           <div class="card-block cart-summary-totals">
+                              <div class="cart-summary-line cart-total">
+                                 <span class="label">Total (tax incl.)</span>
+                                 <span class="value">Rs. <%if(data){%><%=data.withDelivery%><%}else{%>0<%}%></span>
+                              </div>
+                              <div class="cart-summary-line">
+                                 <span class="label sub"></span>
+                                 <span class="value sub"></span>
+                              </div>
+                           </div>
+                           <div class="checkout text-sm-center card-block">
+                              <button type="button" class="btn btn-primary" disabled>Checkout</button>
+                            </div>
+                        </section>
+                        <div id="block-reassurance">
+                           <ul>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Security policy (edit with Customer reassurance module)">
+                                    <span class="h6">Security policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Delivery policy (edit with Customer reassurance module)">
+                                    <span class="h6">Delivery policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="block-reassurance-item">
+                                    <img src="#" alt="Return policy (edit with Customer reassurance module)">
+                                    <span class="h6">Return policy (edit with Customer reassurance module)</span>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+               
+               <div style="display:none">
+                  <div id="update_comment_form" style="background-color: #f9f9f9">
+                     <div class="card-header">
+                        <h5 class="card-title mb-0">Edit Address :</h5>
+                    </div>
+                    <form method="post" action="" id="update_address_form" enctype="multipart/form-data">
+                        
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="inputPasswordCurrent">Name</label>
+                                <input type="text" name="name" id="myname" value="" class="form-control" required>
+                            </div>
+                            <input type="hidden" name="pid" id="_id" value="">
+                            <div class="form-group col-md-5">
+                                <label for="inputPasswordNew2">Contact Number</label>
+                                <input type="number" name="contactNumber" id="cN" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">Building Name Or House Number</label>
+                                <input type="text" name="BuildingNameOrHouseNumber" id="BNH" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">area</label>
+                                <textarea type="text" name="area" id="myarea" class="form-control" value="" required></textarea>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordCurrent">pincode</label>
+                                <input type="number" name="pincode" id="mypincode" value="" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew2">state</label>
+                                <input type="text" name="state" id="mystate" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">city</label>
+                                <input type="text" name="city" id="mycity" class="form-control" value="" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                  </div>
+               </div>
+
+               <div style="display:none">
+                  <div id="new_comment_form" style="background-color: #f9f9f9">
+                     <div class="card-header">
+                        <h5 class="card-title mb-0">New Address :</h5>
+                    </div>
+                    <form method="post" id="add_new_address_form" action="" enctype="multipart/form-data">
+                        
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="inputPasswordCurrent">Name</label>
+                                <input type="text" name="name" value="" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inputPasswordNew2">Contact Number</label>
+                                <input type="number" name="contactNumber" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">Building Name Or House Number</label>
+                                <input type="text" name="BuildingNameOrHouseNumber" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">area</label>
+                                <textarea type="text" name="area" class="form-control" value="" required></textarea>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordCurrent">pincode</label>
+                                <input type="number" name="pincode" value="" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew2">state</label>
+                                <input type="text" name="state" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group col-md-11">
+                                <label for="inputPasswordNew">city</label>
+                                <input type="text" name="city" class="form-control" value="" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                  </div>
+               </div>
+               
+         </section>
+         <%- include('footer.html') %>
+         <script type="text/javascript" src="web/assets/js/bottom-00110c14.js" ></script>
+         <script>
+            function editAddress(id) {
+               $.ajax({
+                  url: "<%=BaseUrl%>/getAddress?id=" + id,
+                  method: "get",
+                  success: (data) => {
+                     if (data.error == 'N') {
+                        $("#_id").val(data.data.id)
+                        $("#myname").val(data.data.name)
+                        $("#cN").val(data.data.contactNumber)
+                        $("#BNH").val(data.data.BuildingNameOrHouseNumber)
+                        $("#myarea").val(data.data.area)
+                        $("#mypincode").val(data.data.pincode)
+                        $("#mystate").val(data.data.state)
+                        $("#mycity").val(data.data.city)
+                     } else if (data.error == 'Y') {
+                        confirm(data.msg)
+                     } else {
+                        confirm('something wrong')
+                     }
+                  }
+               })
+            }
+
+            function deleteAddress(id) {
+               var ifdelete = confirm('are u sure delete this address')
+               if (ifdelete == true) {
+                  $.ajax({
+                     url: "<%=BaseUrl%>/deleteAddress?id=" + id,
+                     method: "get",
+                     success: (data) => {
+                        if (data.error == 'N') {
+                           location.reload()
+                        } else if (data.error == 'Y') {
+                           confirm(data.msg)
+                        } else {
+                           confirm('something wrong')
+                        }
+                     }
+                  })
+               }
+            }
+
+            $(document).ready(() => {
+               $('#update_address_form').on("submit", (event) => {
+                  event.preventDefault()
+                  $.ajax({
+                     url: "<%=BaseUrl%>/updateaddress",
+                     method: "POST",
+                     data: $('#update_address_form').serialize(),
+                     success: (data) => {
+                        if (data.error == 'N') {
+                           location.reload();
+                        } else if (data.error == 'Y') {
+                           confirm(data.msg)
+                        } else {
+                           confirm('something wrong')
+                        }
+                     }
+                  })
+               })
+            })
+
+            $(document).ready(() => {
+               $('#add_new_address_form').on("submit", (event) => {
+                  event.preventDefault()
+                  console.log('dsdsds')
+                  $.ajax({
+                     url: "<%=BaseUrl%>/addaddress",
+                     method: "POST",
+                     data: $('#add_new_address_form').serialize(),
+                     success: (data) => {
+                        if (data.error == 'N') {
+                           location.reload();
+                        } else if (data.error == 'Y') {
+                           confirm(data.msg)
+                        } else {
+                           confirm('something wrong')
+                        }
+                     }
+                  })
+               })
+            })
+         </script>
+      </main>
+   </body>
+</html>

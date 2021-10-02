@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+   <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Cart</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Codezeel added -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="http://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="http://fonts.googleapis.com/css?family=Playball:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="web/assets/css/style.css" type="text/css" media="all">
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Add to Compare";
+         var buttoncompare_title_remove = "Remove from Compare";
+         var buttonwishlist_title_add = "Add to Wishlist";
+         var buttonwishlist_title_remove = "Remove from WishList";
+         var comparator_max_item = 3;
+         var compared_products = [];
+         var isLogged = false;
+         var prestashop = {};
+         var productcompare_add = "The product has been added to list compare";
+         var productcompare_max_item = "You cannot add more than 3 product(s) to the product comparison";
+         var productcompare_remove = "The product was successfully removed from list compare";
+         var productcompare_url = "indexb379.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=1";
+         var productcompare_viewlistcompare = "View list compare";
+         var wishlist_add = "The product was successfully added to your wishlist";
+         var wishlist_cancel_txt = "Cancel";
+         var wishlist_confirm_del_txt = "Delete selected item?";
+         var wishlist_del_default_txt = "Cannot delete default wishlist";
+         var wishlist_email_txt = "Email";
+         var wishlist_loggin_required = "You must be logged in to manage your wishlist";
+         var wishlist_ok_txt = "Ok";
+         var wishlist_quantity_required = "You must enter a quantity";
+         var wishlist_remove = "The product was successfully removed from your wishlist";
+         var wishlist_reset_txt = "Reset";
+         var wishlist_send_txt = "Send";
+         var wishlist_send_wishlist_txt = "Send wishlist";
+         var wishlist_url = "indexb379.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=1";
+         var wishlist_viewwishlist = "View your wishlist";
+      </script>
+   </head>
+   <body id="cart" class="lang-en country-de currency-usd layout-full-width page-cart tax-display-enabled cart-empty">
+      <main id="page">
+         <%- include('header.html') %>
+         <aside id="notifications">
+            <div class="container">
+            </div>
+         </aside>
+         <section id="wrapper">
+            <nav data-depth="1" class="breadcrumb">
+               <div class="container">
+                  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="index.html">
+                        <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                     </li>
+                  </ol>
+               </div>
+            </nav>
+            <div class="container">
+               <div id="columns_inner">
+                  <div id="content-wrapper">
+                     <section id="main">
+                        <div class="cart-grid row">
+                           <div class="cart-grid-body col-xs-12 col-lg-8">
+                              <div class="card cart-container">
+                                 <div class="card-block">
+                                    <h1 class="h1">Shopping Cart</h1>
+                                 </div>
+                                 <hr class="separator">
+                                 <div class="cart-overview js-cart" data-refresh-url="#">
+                                    <ul class="cart-items">
+                                       <%if(data.product.length){%>
+                                       <%for(var i = 0; i < data.product.length; i++){%>
+                                       <li class="cart-item">
+                                    
+                                          <div class="product-line-grid">
+                                             <!--  product left content: image-->
+                                             <div class="product-line-grid-left col-md-3 col-xs-4">
+                                                <span class="product-image media-middle">
+                                                   <a href="<%=BaseUrl%>/productDetail?pid=<%=data.product[i].pid%>">
+                                                      <img src="<%=imgUrl%>/<%=data.product[i].productImage%>" height="100" alt="<%=data.product[i].productImage[0]%>">
+                                                   </a>
+                                                </span>
+                                             </div>
+                                    
+                                             <!--  product left body: description -->
+                                             <div class="product-line-grid-body col-md-4 col-xs-8">
+                                                <div class="product-line-info">
+                                                   <a href="<%=BaseUrl%>/productDetail?pid=<%=data.product[i].pid%>"><%=data.product[i].productName%></a>
+                                                </div>
+                                    
+                                                <div class="product-line-info product-price h5 ">
+                                                   <div class="current-price">
+                                                      <span class="price">Rs. <%=data.product[i].singleproductprice%></span>
+                                                   </div>
+                                                </div>
+                                                <% if(data.product[i].outofstock == 1){%><br>
+                                                <div class="product-line-info product-price h5 ">
+                                                   <div class="current-price">
+                                                      <span class="price" style="color: tomato;">out of stock</span>
+                                                   </div>
+                                                </div>
+                                                <%}%>
+                                    
+                                                <br/>
+                                    
+                                                <!-- <div class="product-line-info">
+                                                   <span class="label">Size:</span>
+                                                   <span class="value">S</span>
+                                                </div>
+                                                <div class="product-line-info">
+                                                   <span class="label">Color:</span>
+                                                   <span class="value">Orange</span>
+                                                </div> -->
+                                             </div>
+                                             <style>
+                                                .cart-info {
+                                                   text-align: right;
+                                                   display: inline-block;
+                                                   width: 15%;
+                                                   /* position: fixed; */
+                                                   vertical-align: text-bottom;
+                                                }
+                                                .btn-increment-decrement {
+                                                   display: inline-block;
+                                                   padding: 5px 0px;
+                                                   background: #e2e2e2;
+                                                   width: 30px;
+                                                   text-align: center;
+                                                   cursor: pointer;
+                                                }
+                                                .input-quantity {
+                                                   border: 0px;
+                                                   width: 30px;
+                                                   display: inline-block;
+                                                   margin: 0;
+                                                   box-sizing: border-box;
+                                                   text-align: center;
+                                                }
+
+                                                input:not([type="image" i]) {
+                                                   box-sizing: border-box;
+                                                }
+                                                input {
+                                                   -webkit-writing-mode: horizontal-tb !important;
+                                                   text-rendering: auto;
+                                                   color: -internal-light-dark(black, white);
+                                                   letter-spacing: normal;
+                                                   word-spacing: normal;
+                                                   text-transform: none;
+                                                   text-indent: 0px;
+                                                   text-shadow: none;
+                                                   display: inline-block;
+                                                   text-align: start;
+                                                   appearance: textfield;
+                                                   background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+                                                   -webkit-rtl-ordering: logical;
+                                                   cursor: text;
+                                                   margin: 0em;
+                                                   font: 400 13.3333px Arial;
+                                                   padding: 1px 2px;
+                                                   border-width: 2px;
+                                                   border-style: inset;
+                                                   border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+                                                   border-image: initial;
+                                                }
+                                                .btn-increment-decrement {
+                                                   display: inline-block;
+                                                   padding: 5px 0px;
+                                                   background: #e2e2e2;
+                                                   width: 30px;
+                                                   text-align: center;
+                                                   cursor: pointer;
+                                                }
+                                             </style>
+                                             <!--  product left body: description -->
+                                             <div class="product-line-grid-right product-line-actions col-md-5 col-xs-12">
+                                                <div class="row">
+                                                   <div class="col-xs-4 hidden-md-up"></div>
+                                                   <div class="col-md-10 col-xs-6">
+                                                      <div class="row">
+                                                         <div class="col-md-6 col-xs-6 qty">
+                                                            <div class="cart-info">
+                                                               <div class="btn-increment-decrement" onclick="decrement_quantity('<%=data.product[i].pid%>')">-</div>
+                                                               <input class="input-quantity" id="input-quantity-USB02" value="<%=data.product[i].quantity%>">
+                                                               <div class="btn-increment-decrement" onclick="increment_quantity('<%=data.product[i].pid%>')">+</div>
+                                                            </div>
+                                                         </div>
+                                                         <div class="col-md-6 col-xs-6 price">
+                                                            <span class="product-price"><strong>Rs. <%=data.product[i].price%></strong></span>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-md-2 col-xs-2 text-xs-right">
+                                                      <div class="cart-line-product-actions">
+                                                         <a class="remove-from-cart"
+                                                            href="<%=BaseUrl%>/deleteCart?pid=<%=data.product[i].pid%>">
+                                                            <i class="material-icons float-xs-left">delete</i>
+                                                         </a>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="clearfix"></div>
+                                          </div>
+                                       </li>
+                                       <%} } else {%>
+                                          <li class="cart-item">
+                                    
+                                             <h1>Cart Is Empty</h1>
+                                          </li>
+                                          <%}%>
+                                    </ul>
+                                           <!-- <span class="no-items">There are no more items in your cart</span> -->
+                                 </div>
+                              </div>
+                              <a class="label" href="index.html">
+                              <i class="material-icons">chevron_left</i>Continue shopping
+                              </a>
+                              <!-- shipping informations -->
+                           </div>
+                           <!-- Right Block: cart subtotal & cart total -->
+                           <div class="cart-grid-right col-xs-12 col-lg-4">
+                              <div class="card cart-summary">
+                                 <div class="cart-detailed-totals">
+                                    <div class="card-block">
+                                       <div class="cart-summary-line" id="cart-subtotal-products">
+                                          <span class="label js-subtotal">
+                                             <%=data.totalItem%> items  
+                                          </span>
+                                          <span class="value">Rs. <%if(data){%><%=data.totalAmount%><%}else{%>0<%}%></span>
+                                       </div>
+                                       <div class="cart-summary-line" id="cart-subtotal-shipping">
+                                          <span class="label">
+                                          Shipping
+                                          </span>
+                                          <%if((data.deleveryCharge) != 0){%>
+                                             <span class="value">Rs. <%= data.deleveryCharge%></span>
+                                             <%}else{%>
+                                             <span class="value">Free</span>
+                                             <%}%>
+                                       </div>
+                                    </div>
+                                    <hr class="separator">
+                                    <div class="card-block">
+                                       <div class="cart-summary-line cart-total">
+                                          <span class="label">Total (tax incl.)</span>
+                                          <span class="value" id="total_price">Rs. <%if(data){%><%=data.withDelivery%><%}else{%>0<%}%></span>
+                                       </div>
+                                       <div class="cart-summary-line">
+                                          <small class="label"></small>
+                                          <small class="value"></small>
+                                       </div>
+                                    </div>
+                                    <hr class="separator">
+                                 </div>
+                                 
+                                 <div class="checkout text-sm-center card-block">
+                                    <a href="/checkoutbycart" type="button"
+                                       class="btn btn-primary <%if(userData){if(userData.cartCount == 0){%>disabled<%}}%> <%if(data.disableBuy==1){%>disabled<%}%>"
+                                       <%if(userData){if(userData.cartCount==0){%>disabled<%}}%> 
+                                       <%if(data.disableBuy==1){%>disabled<%}%>> 
+                                       Checkout
+                                    </a>
+                                 </div>
+                              </div>
+                              <div id="block-reassurance">
+                                 <ul>
+                                    <li>
+                                       <div class="block-reassurance-item">
+                                          <img src="modules/blockreassurance/img/ic_verified_user_black_36dp_1x.png" alt="Security policy (edit with Customer reassurance module)">
+                                          <span class="h6">Security policy (*)</span>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="block-reassurance-item">
+                                          <img src="modules/blockreassurance/img/ic_local_shipping_black_36dp_1x.png" alt="Delivery policy (edit with Customer reassurance module)">
+                                          <span class="h6">Delivery policy (*)</span>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="block-reassurance-item">
+                                          <img src="modules/blockreassurance/img/ic_swap_horiz_black_36dp_1x.png" alt="Return policy (edit with Customer reassurance module)">
+                                          <span class="h6">Return policy (*)</span>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <section class="featured-products clearfix">
+                        <h1 class="h1 products-section-title text-uppercase ">
+                           Popular Products
+                        </h1>
+                        <div class="featured-products-wrapper">
+                           <div class="products">
+                              <ul class="featured_grid product_list grid row gridcount">
+                                 <li class="product_item col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="product-miniature js-product-miniature" data-id-product="1" data-id-product-attribute="1" itemscope itemtype="http://schema.org/Product">
+                                       <div class="thumbnail-container">
+                                          <a href="index8589.html?id_product=1&amp;id_product_attribute=1&amp;rewrite=hummingbird-printed-t-shirt&amp;controller=product&amp;id_lang=1#/1-size-s/8-color-white" class="thumbnail product-thumbnail">
+                                          <img
+                                             class="lazyload" data-src = "https://demo.codezeel.com/prestashop/PRS10/PRS100234/img/p/1/1-home_default.jpg"
+                                             alt = "Consectetur Hampden"
+                                             data-full-size-image-url = "https://demo.codezeel.com/prestashop/PRS10/PRS100234/img/p/1/1-large_default.jpg"
+                                             >
+                                          
+                                          </a>
+                                          
+                                       </div>
+                                       <div class="product-description">
+                                          <div class="comments_note">
+                                             <div class="star_content clearfix">
+                                                <div class="star star_on"></div>
+                                                <div class="star star_on"></div>
+                                                <div class="star star_on"></div>
+                                                <div class="star star_on"></div>
+                                                <div class="star star_on"></div>
+                                             </div>
+                                             <span class="total-rating">1 Review(s)&nbsp</span>
+                                          </div>
+                                          <span class="h3 product-title" itemprop="name"><a href="index8589.html?id_product=1&amp;id_product_attribute=1&amp;rewrite=hummingbird-printed-t-shirt&amp;controller=product&amp;id_lang=1#/1-size-s/8-color-white">Consectetur Hampden</a></span>
+                                          <div class="product-price-and-shipping">
+                                             <span class="regular-price">$104.86</span>
+                                             <span class="discount-percentage discount-product">-4%</span>
+                                             <span itemprop="price" class="price">$100.67</span>
+                                          </div>
+                                          <div class="highlighted-informations hidden-sm-down">
+                                             <div class="variant-links">
+                                                <a href="index97e6.html?id_product=1&amp;id_product_attribute=3&amp;rewrite=hummingbird-printed-t-shirt&amp;controller=product&amp;id_lang=1#/2-size-m/8-color-white"
+                                                   class="color"
+                                                   title="White"
+                                                   style="background-color: #ffffff"           ><span class="sr-only">White</span></a>
+                                                <a href="index5f9a.html?id_product=1&amp;id_product_attribute=40&amp;rewrite=hummingbird-printed-t-shirt&amp;controller=product&amp;id_lang=1#/2-size-m/10-color-red"
+                                                   class="color"
+                                                   title="Red"
+                                                   style="background-color: #E84C3D"           ><span class="sr-only">Red</span></a>
+                                                <a href="index5b4b.html?id_product=1&amp;id_product_attribute=2&amp;rewrite=hummingbird-printed-t-shirt&amp;controller=product&amp;id_lang=1#/1-size-s/11-color-black"
+                                                   class="color"
+                                                   title="Black"
+                                                   style="background-color: #434A54"           ><span class="sr-only">Black</span></a>
+                                                <span class="js-count count"></span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </li>
+                              </ul>
+                              <div class="view_more">
+                                 <a class="all-product-link" href="indexf35e.html?id_category=2&amp;controller=category&amp;id_lang=1">
+                                 All products
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <%- include('footer.html') %>
+      </main>
+      <script type="text/javascript" src="web/assets/js/bottom-00110c14.js" ></script>
+      <script>
+         function decrement_quantity(pid) {
+            $.ajax({
+               type: 'get',
+               url: '<%=BaseUrl%>/removeCart?pid=' + pid,
+               success: function (msg) {
+                  if(msg.error == 'Y'){
+                     alert(msg.msg)
+                  } else {
+                  location.reload()
+                  }
+               },
+               error: function (request, status, error) {
+                  alert(error);
+               }
+            });
+         }
+      </script>
+
+<script>
+   function increment_quantity(pid){
+      $.ajax({
+      type: 'get',
+      url: '<%=BaseUrl%>/addCart?pid='+pid,
+      success: function (msg) {
+         if(msg.error == 'Y'){
+                     alert(msg.msg)
+                  } else {
+                  location.reload()
+                  }
+      },
+      error: function (request, status, error) {
+          alert(error);
+      }
+  });
+   }
+</script>
+   </body>
+ </html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Document</title>
+      <link rel="stylesheet" href="web/assets/css/style.css" type="text/css" media="all">
+   </head>
+   <body>
+      <script type="text/javascript">
+         var buttoncompare_title_add = "Comparar";
+         var buttoncompare_title_remove = "Eliminar de comparaci\u00f3n";
+         var buttonwishlist_title_add = "Lista de deseos";
+         var buttonwishlist_title_remove = "Sacar de la WishList";
+         var comparator_max_item = 3;
+         var compared_products = [];
+         var isLogged = false;
+         var prestashop = {};
+         var productcompare_add = "El producto ha sido a\u00f1adido a la lista de comparaci\u00f3n";
+         var productcompare_max_item = "No se puede agregar m\u00e1s de 3 producto a la comparaci\u00f3n de productos";
+         var productcompare_remove = "El producto se ha eliminado correctamente de la lista de comparaci\u00f3n";
+         var productcompare_url = "index00b5.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=productscompare&id_lang=3";
+         var productcompare_viewlistcompare = "Ver la lista de comparaci\u00f3n";
+         var wishlist_add = "El producto ha sido a\u00f1adido a su lista de deseos";
+         var wishlist_cancel_txt = "Cancelar";
+         var wishlist_confirm_del_txt = "Eliminar el elemento seleccionado?";
+         var wishlist_del_default_txt = "No se puede eliminar por defecto deseos";
+         var wishlist_email_txt = "Direcci\u00f3n de correo electr\u00f3nico";
+         var wishlist_loggin_required = "Tienes que iniciar sesi\u00f3n para poder gestionar su lista de deseos";
+         var wishlist_ok_txt = "De acuerdo";
+         var wishlist_quantity_required = "Debe introducir una cantidad";
+         var wishlist_remove = "El producto se retir\u00f3 con \u00e9xito de su Lista de deseos";
+         var wishlist_reset_txt = "Reiniciar";
+         var wishlist_send_txt = "Enviar";
+         var wishlist_send_wishlist_txt = "Enviar lista de deseos";
+         var wishlist_url = "index00b5.html\/\/demo.codezeel.com\/prestashop\/PRS10\/PRS100234\/index.php?fc=module&module=stfeature&controller=mywishlist&id_lang=3";
+         var wishlist_viewwishlist = "Ver su lista de deseos";
+      </script>
+      <style>
+
+
+::-webkit-scrollbar {
+ width: 0px;
+}
+
+.jss402::-webkit-scrollbar-thumb {
+border-radius: 50px;
+background-color: #818080;
+outline: 00px solid slategrey;
+}
+
+:root {
+--star-size: 15px;
+--star-color: #c6c6c6;
+--star-background: #ffb700;
+}
+
+.Stars {
+--percent: calc(var(--rating) / 5 * 100%);
+display: inline-block;
+font-size: var(--star-size);
+font-family: system-ui;
+line-height: 1;
+}
+
+.Stars::before {
+content: "★★★★★";
+letter-spacing: 3px;
+background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+       </style>
+
+      <%- include('header.html'); %>
+
+         <section class="liasting-start" style="margin-top: 50px;">
+            <div class="container">
+               <div id="columns_inner">
+
+                  
+                  <div id="left-column" class="col-xs-12 left-sidebar" style="width:22.4%">
+                     <div id="search_filters_wrapper" class="hidden-md-down block content">
+                        <div id="search_filter_controls" class="hidden-lg-up">
+                           <span id="_mobile_search_filters_clear_all"></span>
+                           <button class="btn btn-secondary ok">
+                           <i class="material-icons"></i>
+                           OK
+                           </button>
+                        </div>
+                        
+                        <style>
+                           #search_filters .facet .facet-labels a {
+                              margin-top: 0px;
+                              line-height: 10px;
+                              display: inline-block;
+                           }
+                           #search_filters .facet .collapse li {
+                              line-height: 18px;
+                           }
+                           /* .left-sidebar {
+                              float: left;
+                              width: 430px;
+                              margin-right: 10px;
+                              text-align: center;
+                           }
+                           .content {
+                              padding: 80px 20px;
+                              background-color: red;
+                           } */
+                        </style>
+                        <div id="search_filters">
+                           <h4 class="block_title">Filters</h4>
+                           <div class="block_content">
+                              <section class="facet clearfix">
+                                 <p class="h6 facet-title hidden-md-down">Price Filtering</p>
+                                 <ul id="facet_72564" class="collapse">
+                                    <li>
+                                       <label class="facet-labels" onclick="insertParam2('1','500')">
+                                       <span class="custom-checkbox">
+                                       </span>
+                                         <a <%if(count.search.minPrice == 1){%>style="color: dodgerblue;"<%}%>> Under ₹500 </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-labels" onclick="insertParam2('501','1000')">
+                                       <span class="custom-checkbox">
+                                       </span>
+                                       <a <%if(count.search.minPrice == 501){%>style="color: dodgerblue;"<%}%>>
+                                          ₹500 - ₹1,000
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-labels" onclick="insertParam2('1001','2000')">
+                                       <span class="custom-checkbox">
+                                       </span>
+                                       <a <%if(count.search.minPrice == 1001){%>style="color: dodgerblue;"<%}%>>
+                                          ₹1,000 - ₹2,000
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-labels" onclick="insertParam2('2001','3000')">
+                                       <span class="custom-checkbox">
+                                       </span> 
+                                       <a <%if(count.search.minPrice == 2001){%>style="color: dodgerblue;"<%}%>>
+                                          ₹2,000 - ₹3,000
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-labels" onclick="insertParam2('3001','10000')">
+                                       <span class="custom-checkbox">
+                                       </span>
+                                       <a <%if(count.search.minPrice == 3001){%>style="color: dodgerblue;"<%}%>>
+                                          Over ₹3,000
+                                       </a>
+                                       </label>
+                                    </li>
+
+                                 <style>
+                                    #s-refinements .s-ref-small-padding-left {
+                                       padding-left: 9px;
+                                    }
+
+                                    #s-refinements .s-ref-price-currency {
+                                       position: absolute;
+                                       margin-top: 6.5px;
+                                       line-height: 30px;
+                                       font-size: 100%;
+                                    }
+
+                                    .a-color-base {
+                                       color: #0F1111 !important;
+                                    }
+
+                                    #s-refinements .s-ref-price-padding {
+                                       padding-left: 18px;
+                                    }
+
+                                    #s-refinements .s-ref-price-range {
+                                       width: 65px;
+                                       margin-top: 6px !important;
+                                    }
+
+                                    .a-input-text,
+                                    input[type=text],
+                                    input[type=search],
+                                    input[type=number],
+                                    input[type=tel],
+                                    input[type=password],
+                                    input[type=date],
+                                    input[type=email] {
+                                       background-color: #fff;
+                                       height: 31px;
+                                       padding: 3px 7px;
+                                       width: 50px;
+                                       line-height: normal;
+                                    }
+
+                                    .a-input-text,
+                                    input[type=text],
+                                    input[type=search],
+                                    input[type=number],
+                                    input[type=tel],
+                                    input[type=password],
+                                    select.a-select-multiple,
+                                    textarea {
+                                       border: 1px solid #888C8C;
+                                       border-radius: 3px;
+                                       box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+                                       outline: 0;
+                                    }
+
+                                    .a-spacing-top-mini {
+                                       margin-top: 4px !important;
+                                    }
+
+                                    #s-refinements .s-small-margin-left {
+                                       margin-left: 4px;
+                                    }
+
+                                    .a-button {
+                                       background: #e7e9ec;
+                                       border-radius: 3px;
+                                       border-color: #ADB1B8 #A2A6AC #8D9096;
+                                       border-style: solid;
+                                       border-width: 1px;
+                                       cursor: pointer;
+                                       display: inline-block;
+                                       padding: 0;
+                                       text-align: center;
+                                       text-decoration: none !important;
+                                       vertical-align: middle;
+                                    }
+
+                                    .a-spacing-top-mini {
+                                       margin-top: 4px !important;
+                                    }
+
+                                    #s-refinements .s-ref-price-padding {
+                                       padding-left: 18px;
+                                    }
+
+                                    #s-refinements .s-ref-price-range {
+                                       width: 65px;
+                                       margin-top: 6px !important;
+                                    }
+
+                                    .a-input-text,
+                                    input[type=text],
+                                    input[type=search],
+                                    input[type=number],
+                                    input[type=tel],
+                                    input[type=password],
+                                    input[type=date],
+                                    input[type=email] {
+                                       background-color: #fff;
+                                       height: 31px;
+                                       padding: 3px 7px;
+                                       line-height: normal;
+                                    }
+
+                                    .a-input-text,
+                                    input[type=text],
+                                    input[type=search],
+                                    input[type=number],
+                                    input[type=tel],
+                                    input[type=password],
+                                    select.a-select-multiple,
+                                    textarea {
+                                       border: 1px solid #888C8C;
+                                       border-radius: 3px;
+                                       box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+                                       outline: 0;
+                                    }
+
+                                    .a-spacing-top-mini {
+                                       margin-top: 4px !important;
+                                    }
+                                 </style>
+
+                                 <!-- <li class="a-spacing-micro">
+                                    <span class="a-list-item">
+                                       <form id="insert_formss" method="post">
+                                          <input type="text" maxlength="9" placeholder="₹ Min" name="minPrice"
+                                             class="a-input-text a-spacing-top-mini s-ref-price-range s-ref-price-padding" required>
+                                          <input type="text" maxlength="9" placeholder="₹ Max" name="maxPrice"
+                                             class="a-input-text a-spacing-top-mini s-ref-price-range s-ref-price-padding" required>
+                                          <button class="a-button-input" type="submit" style="height: 31px;">
+                                             Go
+                                          </button>
+                                       </form>
+                                    </span>
+                                 </li> -->
+
+                                 </ul>
+                              </section>
+                               <section class="facet clearfix">
+                                 <p class="h6 facet-title hidden-md-down">Star Rating</p>
+                                 <div class="title hidden-lg-up" data-target="#facet_78029" data-toggle="collapse">
+                                    <p class="h6 facet-title">Star Rating</p>
+                                    <span class="float-xs-right">
+                                    <span class="navbar-toggler collapse-icons">
+                                    <i class="material-icons add"></i>
+                                    <i class="material-icons remove"></i>
+                                    </span>
+                                    </span>
+                                 </div>
+                                 <ul id="facet_78029" class="collapse">
+                                    <li>
+                                       <label class="facet-label" for="facet_input_78029_0">
+                                       <span class="custom-checkbox">
+                                       <input id="facet_input_78029_0"
+                                          type="checkbox" onclick="insertParam('rating', '4')" <%if(count.search.rating == 4){%>checked<%}%>>
+                                       <span class="ps-shown-by-js"><i
+                                          class="material-icons rtl-no-flip checkbox-checked"></i></span>
+                                       </span>
+                                       <a href="#" <%if(count.search.rating == 4){%>style="color: dodgerblue;"<%}%> onclick="insertParam('rating', '4')"
+                                          class="_gray-darker">
+                                          4★ & above
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-label" for="facet_input_78029_1">
+                                       <span class="custom-checkbox">
+                                       <input id="facet_input_78029_1"
+                                       onclick="insertParam('rating', '3')"type="checkbox" <%if(count.search.rating == 3){%>checked<%}%>>
+                                       <span class="ps-shown-by-js"><i
+                                          class="material-icons rtl-no-flip checkbox-checked"></i></span>
+                                       </span>
+                                       <a href="#"
+                                          class="_gray-darker" <%if(count.search.rating == 3){%>style="color: dodgerblue;"<%}%> onclick="insertParam('rating', '3')">
+                                          3★ & above
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-label" for="facet_input_78029_2">
+                                       <span class="custom-checkbox">
+                                       <input id="facet_input_78029_2"
+                                       onclick="insertParam('rating', '2')" type="checkbox" <%if(count.search.rating == 2){%>checked<%}%>>
+                                       <span class="ps-shown-by-js"><i
+                                          class="material-icons rtl-no-flip checkbox-checked"></i></span>
+                                       </span>
+                                       <a href="#"
+                                          class="_gray-darker" <%if(count.search.rating == 2){%>style="color: dodgerblue;"<%}%> onclick="insertParam('rating', '2')">
+                                          2★ & above
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <style>
+                                          .bluecolo{
+                                             color: dodgerblue;
+                                          }
+                                       </style>
+                                       <label class="facet-label" for="facet_input_78029_3">
+                                       <span class="custom-checkbox">
+                                       <input id="facet_input_78029_3"
+                                       onclick="insertParam('rating', '1')"type="checkbox" <%if(count.search.rating == 1){%>checked<%}%>>
+                                       <span class="ps-shown-by-js"><i
+                                          class="material-icons rtl-no-flip checkbox-checked"></i></span>
+                                       </span>
+                                       <a href="#"
+                                          class="_gray-darker" <%if(count.search.rating == 1){%>style="color: dodgerblue;"<%}%> onclick="insertParam('rating', '1')">
+                                          1★ & above
+                                       </a>
+                                       </label>
+                                    </li>
+                                    <li>
+                                       <label class="facet-label" for="facet_input_78029_4">
+                                       <span class="custom-checkbox">
+                                       <input id="facet_input_78029_4"
+                                       onclick="insertParam('rating', '0')"type="checkbox" <%if(count.search.rating == 0){%>checked<%}%>>
+                                       <span class="ps-shown-by-js"><i
+                                          class="material-icons rtl-no-flip checkbox-checked"></i></span>
+                                       </span>
+                                       <a href="#"
+                                          class="_gray-darker" <%if(count.search.rating == 0){%>style="color: dodgerblue;"<%}%> onclick="insertParam('rating', '0')">
+                                          0★ & above
+                                       </a>
+                                       </label>
+                                    </li>
+                                 </ul>
+                              </section> 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="content-wrapper" class="left-column col-xs-12 col-sm-8 col-md-9" style="width:77.6%">
+                     <section id="main">
+                        <input id="getCartLink" name="getCartLink"
+                           value="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=cart" type="hidden">
+                        <input id="getTokenId" name="getTokenId" value="2747f71540d13b5a51f5cdf5518a7521" type="hidden">
+                        <div class="block-category card card-block ">
+                           <h1 class="h1"><%=Listname%></h1>
+                           <!-- <div id="category-description">
+                              <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+                                 opposed to using 'Content here, content here', making it look like readable that it has a
+                                 more-or-less normal distribution of letters.
+                              </p>
+                           </div> -->
+                        </div>
+                        <section id="products">
+                           <!-- <div id="">
+                              <div id="js-product-list-top" class="products-selection">
+                                 <div class="col-md-6 hidden-md-down total-products">
+                                    <ul class="display hidden-xs grid_list">
+                                       <li id="grid" class="selected"><a href="#" title="Grid">Grid</a></li>
+                                       <li id="list"><a href="#" title="Lista">Lista</a></li>
+                                    </ul>
+                                    <p>Hay 15 productos.</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="row sort-by-row">
+                                       <span class="col-sm-3 col-md-3 hidden-sm-down sort-by">Ordenar por:</span>
+                                       <div class="col-sm-9 col-xs-8 col-md-9 products-sort-order dropdown">
+                                          <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true"
+                                             aria-expanded="false">
+                                          Relevancia <i class="material-icons pull-xs-right"></i>
+                                          </a>
+                                          <div class="dropdown-menu">
+                                             <a rel="nofollow"
+                                                href="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=category&amp;id_category=19&amp;id_lang=3&amp;order=product.position.asc"
+                                                class="select-list current js-search-link">
+                                             Relevancia
+                                             </a>
+                                             <a rel="nofollow"
+                                                href="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=category&amp;id_category=19&amp;id_lang=3&amp;order=product.name.asc"
+                                                class="select-list js-search-link">
+                                             Nombre, A a Z
+                                             </a>
+                                             <a rel="nofollow"
+                                                href="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=category&amp;id_category=19&amp;id_lang=3&amp;order=product.name.desc"
+                                                class="select-list js-search-link">
+                                             Nombre, Z a A
+                                             </a>
+                                             <a rel="nofollow"
+                                                href="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=category&amp;id_category=19&amp;id_lang=3&amp;order=product.price.asc"
+                                                class="select-list js-search-link">
+                                             Precio: de más bajo a más alto
+                                             </a>
+                                             <a rel="nofollow"
+                                                href="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=category&amp;id_category=19&amp;id_lang=3&amp;order=product.price.desc"
+                                                class="select-list js-search-link">
+                                             Precio, de más alto a más bajo
+                                             </a>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-3 col-xs-4 hidden-lg-up filter-button">
+                                          <button id="search_filter_toggler" class="btn btn-secondary">
+                                          Filtrar
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-12 hidden-lg-up showing">
+                                    Mostrando 1-12 de 15 artículo(s)
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="" class="hidden-sm-down">
+                              <section id="js-active-search-filters" class="hide">
+                                 <h1 class="h6 hidden-xs-up">Filtros activos</h1>
+                              </section>
+                           </div> -->
+                           <div id="">
+                              <div id="js-product-list">
+                                 <div class="products row">
+                                    <ul class="product_list grid gridcount">
+                                       <!-- removed product_grid-->
+                                       <style>
+                                          @media screen and (max-width: 992px) {
+                                                .thumbnail {
+                                                object-fit: contain;
+                                                width: 100%;
+                                                height: 200px;
+                                                cursor: pointer;
+                                                opacity: 1;
+                                                margin-top: 5px;
+                                                margin-bottom: 5px;
+                                                border: 1px solid #dcdcdc;
+                                             }
+                                          }
+                                          @media screen and (min-width: 993px) {
+                                          .thumbnail {
+                                                object-fit: contain;
+                                                width: 100%;
+                                                height: 300px;
+                                                cursor: pointer;
+                                                opacity: 1;
+                                                margin-top: 5px;
+                                                margin-bottom: 5px;
+                                                border: 1px solid #dcdcdc;
+                                             }
+                                          }
+                                       </style>
+                                       <%if(data.length){%>
+                                       <%for(var i = 0; i < data.length; i++){%>
+                                       <li class="product_item col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                          <div class="product-miniature js-product-miniature">
+                                             <div class="thumbnail-container">
+                                                <a href="<%=BaseUrl%>/productDetail?pid=<%=data[i]._id%> ">
+                                                <img class="ls-is-cached thumbnail"
+                                                   alt="Consectetur Hampden"
+                                                   src="<%=imgUrl%>/<%=data[i].productImage[0]%>">
+                                                </a>
+                                             </div>
+                                             <div class="product-description">
+                                                <div class="comments_note">
+                                                   <div class="Stars" style="--rating: <%=data[i].rating%>;" aria-label="Rating of this product is <%= data[i].rating %> out of 5">
+                                                   </div>
+                                                   (<%= data[i].rating %>) Rating
+                                                </div>
+                                                <h3 class="h3 product-title" itemprop="name">
+                                                   <a style="
+                                                       word-break: break-all;
+                                                      -webkit-box-orient: vertical;
+                                                      display: block;
+                                                      text-overflow: ellipsis;
+                                                      word-wrap: break-word;
+                                                      overflow: hidden;
+                                                      max-height: 3em;
+                                                      line-height: 1.5em;"><%=data[i].productName%></a>
+                                                </h3>
+                                                <div class="product-price-and-shipping">
+                                                   <!-- <span class="regular-price">104,86&nbsp;€</span>
+                                                      <span class="discount-percentage discount-product">-4%</span> -->
+                                                   <span itemprop="price" class="price">Rs <%=data[i].price%></span>
+                                                </div>
+                                                <div class="product-detail" itemprop="description">
+                                                   <p><%=data[i].description%>
+                                                   </p>
+                                                </div>
+                                                <div class="highlighted-informations hidden-sm-down">
+                                                   <span class="product-availability">
+                                                      <span class="product-available">
+                                                         <i class="material-icons"></i>
+                                                         In stock
+                                                      </span>
+                                                   </span>
+                                                </div>
+                                                <!-- <div class="product-actions">
+                                                   <form action="#" method="post">
+                                                      <button class="btn btn-primary add-to-cart" data-button-action="add-to-cart" type="submit">
+                                                         Buy Now
+                                                      </button>
+                                                   </form>
+                                                </div>    -->
+                                                <!-- <div class="product-actions">
+                                                   <form action="https://demo.codezeel.com/prestashop/PRS10/PRS100234/index.php?controller=cart" method="post" class="add-to-cart-or-refresh">
+                                                      <input type="hidden" name="token" value="2747f71540d13b5a51f5cdf5518a7521">
+                                                      <input type="hidden" name="id_product" value="1" class="product_page_product_id">
+                                                      <input type="hidden" name="id_customization" value="0" class="product_customization_id">
+                                                      <button class="btn btn-primary add-to-cart" data-button-action="add-to-cart" type="submit">
+                                                         Add to cart
+                                                      </button>
+                                                   </form>
+                                                </div> -->
+                                             </div>
+                                          </div>
+                                       </li>
+                                       <%}}else{%>
+                                          <h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">Product Not Found</h1>
+                                          <%}%>
+                                    </ul>
+                                 </div>
+                                 <nav class="pagination">
+                                    <div class="col-md-4">
+                                       Showing <%=count.startP%>-<%=count.endP%> of <%=count.pages%> Pages
+                                    </div>
+                                    <div class="col-md-8">
+                                       <% if (count.pages > 0) { %>
+                                          <ul class="page-list clearfix text-xs-right text-white">
+                                            <% if (count.current == 1) { %>
+                                             <li><a rel="prev"class="previous disabled"><i class="fa fa-long-arrow-left"></i></a></li>
+                                            <% } else { %>
+                                             <li><a class="previous" onclick="insertParam('page', '1')"><i class="fa fa-long-arrow-left"></i></a></li>
+                                            <% } %>
+                                            <% var i = (Number(count.current) > 5 ? Number(count.current) - 4 : 1) %>
+                                            <% if (i !== 1) { %>
+                                            <li class="disabled"><a>...</a></li>
+                                            <% } %>
+                                            <% for (; i <= (Number(count.current) + 4) && i <= count.pages; i++) { %>
+                                            <% if (i == count.current) { %>
+                                             <li class="current"><a class="disabled"><%= i %></a></li>
+                                            <% } else { %>
+                                             <li><a rel="nofollow" onclick="insertParam('page', '<%= i %>')"><%= i %></a></li>
+                                            <% } %>
+                                            <% if (i == Number(count.current) + 4 && i < count.pages) { %>
+                                            <li class="disabled"><a>...</a></li>
+                                            <% } %>
+                                            <% } %>
+                                            <% if (count.current == count.pages) { %>
+                                             <li><a class="next disabled"><i class="fa fa-long-arrow-right"></i></a></li>
+                                            <% } else { %>
+                                             <li><a class="next" onclick="insertParam('page', '<%= count.pages %>')"><i class="fa fa-long-arrow-right"></i></a></li>
+                                            <% } %>
+                                          </ul>
+                                          <% } %>
+                                    </div>
+                                 </nav>
+                              </div>
+                           </div>
+                           <div id="js-product-list-bottom">
+                              <div id="js-product-list-bottom"></div>
+                           </div>
+                        </section>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </section>
+         </section>
+         <%- include('footer.html') %>
+      <script type="text/javascript" src="web/assets/js/bottom-a0452e14.js" ></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script>
+
+         $(document).ready(() => {
+            $('#insert_formss').on("submit", function (event) {
+               _id = $('#insert_formss').serialize()
+               console.log(_id)
+
+               // insertParam2($('#insert_formss').serialize()[0], $('#insert_formss').serialize()[1])
+
+               // $.ajax({
+               //    url: "<%=BaseUrl%>/register",
+               //    method: "POST",
+               //    data: $('#insert_form').serialize(),
+               //    success: function (data) {
+               //       // location.reload();
+               //    }
+               // })
+            })
+         })
+
+         function call2func(value){
+            insertParam2(value.split('-')[0], value.split('-')[1])
+         }
+
+         function insertParam(key, value) {
+            key = encodeURIComponent(key);
+            value = encodeURIComponent(value);
+            var kvp = document.location.search.substr(1).split('&');
+            let i = 0;
+            for(; i < kvp.length; i++) {
+               if(kvp[i].startsWith(key + '=')) {
+                  let pair = kvp[i].split('=')
+                  pair[1] = value;
+                  kvp[i] = pair.join('=')
+                  break
+               }
+            }
+            console.log(kvp)
+            if(i >= kvp.length) {
+               kvp[kvp.length] = [key, value].join('=');
+            }
+            let params = kvp.join('&');
+            document.location.search = params;
+         }
+
+         function insertParam2(value1, value2) {
+            key1 = encodeURIComponent('minPrice');
+            key2 = encodeURIComponent('maxPrice');
+            value1 = encodeURIComponent(value1);
+            value2 = encodeURIComponent(value2);
+            var kvp = document.location.search.substr(1).split('&');
+            console.log(kvp)
+            for(var i = 0; i < kvp.length; i++) {
+               if(kvp[i].startsWith(key1 + '=')) {
+                  let pair = kvp[i].split('=');
+                  pair[1] = value1;
+                  kvp[i] = pair.join('=');
+                  break;
+               }
+            }
+            for(var j = 0; j < kvp.length; j++) {
+               if(kvp[j].startsWith(key2 + '=')) {
+                  let pair = kvp[j].split('=');
+                  console.log(pair, 'pair2')
+                  pair[1] = value2;
+                  kvp[j] = pair.join('=');
+                  break;
+               }
+            }
+            console.log(kvp, 'ssss')
+            if(i >= kvp.length) {
+               kvp[kvp.length] = [key1, value1].join('=')
+               kvp[kvp.length] = [key2, value2].join('=')
+            }
+            let params = kvp.join('&')
+            // console.log(params)
+            document.location.search = params;
+         }
+      </script>
+      <script>
+         $(function () {
+            $('.left-sidebar').StickySidebar({
+               // Settings
+               additionalMarginTop: 40
+            });
+         });
+
+!function(i){i.fn.StickySidebar=function(t){function o(t,o){return!0===t.initialized||!(i("body").width()<t.minWidth)&&(function(t,o){t.initialized=!0,i("head").append(i('<style>.StickySidebar:after {content: ""; display: table; clear: both;}</style>')),o.each(function(){var o={};o.sidebar=i(this),o.options=t||{},o.container=i(o.options.containerSelector),0==o.container.length&&(o.container=o.sidebar.parent()),o.sidebar.parents().css("-webkit-transform","none"),o.sidebar.css({position:"relative",overflow:"visible","-webkit-box-sizing":"border-box","-moz-box-sizing":"border-box","box-sizing":"border-box"}),o.stickySidebar=o.sidebar.find(".StickySidebar"),0==o.stickySidebar.length&&(o.sidebar.find("script").remove(),o.stickySidebar=i("<div>").addClass("StickySidebar").append(o.sidebar.children()),o.sidebar.append(o.stickySidebar)),o.marginTop=parseInt(o.sidebar.css("margin-top")),o.marginBottom=parseInt(o.sidebar.css("margin-bottom")),o.paddingTop=parseInt(o.sidebar.css("padding-top")),o.paddingBottom=parseInt(o.sidebar.css("padding-bottom"));var e=o.stickySidebar.offset().top,a=o.stickySidebar.outerHeight();function n(){o.fixedScrollTop=0,o.sidebar.css({"min-height":"1px"}),o.stickySidebar.css({position:"static",width:""})}o.stickySidebar.css("padding-top",1),o.stickySidebar.css("padding-bottom",1),e-=o.stickySidebar.offset().top,a=o.stickySidebar.outerHeight()-a-e,0==e?(o.stickySidebar.css("padding-top",0),o.stickySidebarPaddingTop=0):o.stickySidebarPaddingTop=1,0==a?(o.stickySidebar.css("padding-bottom",0),o.stickySidebarPaddingBottom=0):o.stickySidebarPaddingBottom=1,o.previousScrollTop=null,o.fixedScrollTop=0,n(),o.onScroll=function(o){if(o.stickySidebar.is(":visible"))if(i("body").width()<o.options.minWidth)n();else{if(o.options.disableOnResponsiveLayouts){var e=o.sidebar.outerWidth("none"==o.sidebar.css("float"));if(e+50>o.container.width())return void n()}var a,d,s=i(document).scrollTop(),r="static";if(s>=o.container.offset().top+(o.paddingTop+o.marginTop-o.options.additionalMarginTop)){var c,p=o.paddingTop+o.marginTop+t.additionalMarginTop,b=o.paddingBottom+o.marginBottom+t.additionalMarginBottom,l=o.container.offset().top,g=o.container.offset().top+(a=o.container,d=a.height(),a.children().each(function(){d=Math.max(d,i(this).height())}),d),f=0+t.additionalMarginTop,h=o.stickySidebar.outerHeight()+p+b<i(window).height();c=h?f+o.stickySidebar.outerHeight():i(window).height()-o.marginBottom-o.paddingBottom-t.additionalMarginBottom;var S=l-s+o.paddingTop+o.marginTop,m=g-s-o.paddingBottom-o.marginBottom,u=o.stickySidebar.offset().top-s,y=o.previousScrollTop-s;"fixed"==o.stickySidebar.css("position")&&"modern"==o.options.sidebarBehavior&&(u+=y),"stick-to-top"==o.options.sidebarBehavior&&(u=t.additionalMarginTop),"stick-to-bottom"==o.options.sidebarBehavior&&(u=c-o.stickySidebar.outerHeight()),u=y>0?Math.min(u,f):Math.max(u,c-o.stickySidebar.outerHeight()),u=Math.max(u,S),u=Math.min(u,m-o.stickySidebar.outerHeight());var k=o.container.height()==o.stickySidebar.outerHeight();r=(k||u!=f)&&(k||u!=c-o.stickySidebar.outerHeight())?s+u-o.sidebar.offset().top-o.paddingTop<=t.additionalMarginTop?"static":"absolute":"fixed"}if("fixed"==r)o.stickySidebar.css({position:"fixed",width:o.sidebar.width(),top:u,left:o.sidebar.offset().left+parseInt(o.sidebar.css("padding-left"))});else if("absolute"==r){var T={};"absolute"!=o.stickySidebar.css("position")&&(T.position="absolute",T.top=s+u-o.sidebar.offset().top-o.stickySidebarPaddingTop-o.stickySidebarPaddingBottom),T.width=o.sidebar.width(),T.left="",o.stickySidebar.css(T)}else"static"==r&&n();"static"!=r&&1==o.options.updateSidebarHeight&&o.sidebar.css({"min-height":o.stickySidebar.outerHeight()+o.stickySidebar.offset().top-o.sidebar.offset().top+o.paddingBottom}),o.previousScrollTop=s}},o.onScroll(o),i(document).scroll(function(i){return function(){i.onScroll(i)}}(o)),i(window).resize(function(i){return function(){i.stickySidebar.css({position:"static"}),i.onScroll(i)}}(o))})}(t,o),!0)}(t=i.extend({containerSelector:"",additionalMarginTop:0,additionalMarginBottom:0,updateSidebarHeight:!0,minWidth:0,disableOnResponsiveLayouts:!0,sidebarBehavior:"modern"},t)).additionalMarginTop=parseInt(t.additionalMarginTop)||0,t.additionalMarginBottom=parseInt(t.additionalMarginBottom)||0,function(t,e){o(t,e)||(console.log("TST: Body width smaller than options.minWidth. Init is delayed."),i(document).scroll(function(t,e){return function(a){var n=o(t,e);n&&i(this).unbind(a)}}(t,e)),i(window).resize(function(t,e){return function(a){var n=o(t,e);n&&i(this).unbind(a)}}(t,e)))}(t,this)}}(jQuery);
+
+
+      </script>
+   </body>
+</html>

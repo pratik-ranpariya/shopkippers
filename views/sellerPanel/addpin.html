@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GreenCoins</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v4.1.3 -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/bootstrap/css/bootstrap.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/style.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/et-line-font/et-line-font.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/css/skins/_all-skins.min.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="<%=BaseUrl%>/adminPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+<!-- bootstrap-switch -->
+<!-- <link rel="stylesheet" href="<%=BaseUrl%>/plugins/bootstrap-switch/bootstrap-switch.css"> -->
+<style>
+.myswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.myswitch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.myslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.myslider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .myslider {
+  background-color: #2196F3;
+}
+
+input:focus + .myslider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .myslider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myslider.myround {
+  border-radius: 34px;
+}
+
+.myslider.myround:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body class="sidebar-mini skin-black-light">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header"> 
+    <!-- Logo --> 
+    <a href="javascript:;" class="logo blue-bg d-none"> 
+    <!-- mini logo for sidebar mini 50x50 pixels --> 
+    <span class="logo-mini"><img src="<%=BaseUrl%>/adminPanel/img/sss.png" alt=""></span> 
+    <!-- logo for regular state and mobile devices --> 
+    <span class="logo-lg"><img src="<%=BaseUrl%>/adminPanel/img/sun.png" alt=""></span> </a> 
+    <!-- Header Navbar -->
+    <nav class="navbar blue-bg navbar-static-top"> 
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%- include ('left_layout.html') %>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"> 
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1>Add Today Pin</h1>
+      <ol class="breadcrumb">
+        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Add Pin</a></li>
+      </ol>
+    </div>
+    
+    <div class="content">
+      <div class="card">
+        <div class="card-body">
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="form-group col-md-2">
+                    <label>&nbsp;</label>
+                    <input type="submit" class="form-control btn btn-sm btn-success" data-toggle="modal" data-target="#categoryModal" value="Add Pin">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-12">  
+          <div class="table-responsive">
+             
+
+            <h3>Upcoming Pin</h3>
+                <table class="table table-hover table-bordered" id="personnel">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Total Pin</th>
+                            <th>Pin Amount</th>
+                            <th>Provider Amount</th>
+                            <th>Receiver Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <% if(data != null){ %>
+                        <tr>
+                            <td><%= data.starttime %></td>
+                            <td><%= data.endtime %></td>
+                            <td><%= data.total_pin %></td>
+                            <td><%= data.pin_amount %></td>
+                            <td><%= data.provider_amt %></td>
+                            <td><%= data.provider_amt %></td>
+                        </tr>
+                        <% }else{%>
+                            <tr>
+                                <td colspan="6"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                              </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+                
+                    
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- popup model -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+        <form action="<%=BaseUrl%>/insertpin" method="post" onsubmit="return checkvalidateForm();">
+        
+            <div class="modal-body">
+                <div class="form-group">
+                    <h5>From Date</h5>
+                    <input type="datetime-local" id="fromdate" value="" class="form-control" name="fromdate" required>
+                </div>
+                <div class="form-group">
+                    <h5>To Date</h5>
+                    <input type="datetime-local" id="todate" class="form-control" value="" name="todate" required>
+                </div>
+                <div class="form-group">
+                    <h5>Total Pin</h5>
+                    <input type="number" value="" class="form-control" name="total_pin" required>
+                </div>
+                <div class="form-group">
+                    <h5>Pin Amount</h5>
+                    <input type="number" class="form-control" value="" name="pin_amount" required>
+                </div>
+        
+                <div class="form-group">
+                    <h5>Provider Amount</h5>
+                    <input type="number" class="form-control" value="" name="provider_amt" required>
+                </div>
+        
+                <div class="form-group">
+                    <h5>Receiver Amount</h5>
+                    <input type="number" class="form-control" value="" name="receiver_amt" required>
+                </div>
+        
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add Pin</button>
+            </div>
+        </form>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2018 . All rights reserved.</footer>
+</div>
+<!-- ./wrapper --> 
+
+<!-- jQuery 3 --> 
+<script src="<%=BaseUrl%>/adminPanel/js/jquery.min.js" ></script>  
+<script src="<%=BaseUrl%>/adminPanel/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- template --> 
+<script src="<%=BaseUrl%>/adminPanel/js/bizadmin.js"></script>
+
+<!-- Jquery Sparklines -->
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script> 
+
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/filesaver.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/xls.core.min.js"></script>
+<script src="<%=BaseUrl%>/adminPanel/plugins/table-expo/tableexport.js"></script>
+<script>
+// $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+
+<!-- bootstrap-switch --> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/highlight.js"></script> 
+<script src="<%=BaseUrl%>/adminPanel/plugins/bootstrap-switch/main.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+
+<script>
+    function checkvalidateForm() {
+			var startDate = new Date($('#todate').val());
+			var endDate = new Date($('#fromdate').val());
+			var d = new Date();
+			d.setSeconds(0, 0);
+
+			if (endDate < d) {
+				swal("Oops!", "Please Not Insert Previous date!");
+				return false;
+			} else if (startDate < endDate) {
+				swal("Oops!", "To Date Should not Greater then From Date!");
+				return false;
+			}
+
+			return true;
+		}
+
+		function changePage(page) {
+			var isPostReq = false;
+
+			if ($('#orderno').val()) {
+				isPostReq = true;
+			}
+
+			if ($('#todate').val()) {
+				isPostReq = true;
+			}
+			if ($('#fromdate').val()) {
+				isPostReq = true;
+			}
+			var link = '<%=BaseUrl%>/ph_link/' + page;
+			if (isPostReq) {
+				$('#searchform').attr('action', link);
+				$('#searchform').submit();
+			}
+			else {
+				console.log('call2');
+				location.href = link;
+			}
+		}
+</script>
+
+</body>
+</html>

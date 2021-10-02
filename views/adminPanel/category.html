@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bank-Detail Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/adminPanel/bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/adminPanel/css/style.css">
+    <link rel="stylesheet" href="/adminPanel/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/adminPanel/css/et-line-font/et-line-font.css">
+    <link rel="stylesheet" href="/adminPanel/css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/adminPanel/css/simple-lineicon/simple-line-icons.css">
+    <link rel="stylesheet" href="/adminPanel/css/skins/_all-skins.min.css?v=1">
+    <link rel="stylesheet" href="/adminPanel/plugins/datatables/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="http://3.6.102.34:3005/adminPanel/css/sweetalert.min.css">
+    <style>
+        .myswitch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .myswitch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .myslider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .myslider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.myslider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.myslider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.myslider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        .myslider.myround {
+            border-radius: 34px;
+        }
+
+        .myslider.myround:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="sidebar-mini skin-black-light">
+    <div class="wrapper boxed-wrapper">
+        <header class="main-header">
+            <a href="javascript:;" class="logo blue-bg">
+                <span class="logo-mini"><img src="<%=BaseUrl%>/img/sss.png" alt=""></span>
+                <span class="logo-lg"><img src="<%=BaseUrl%>/img/sun.png" alt=""></span> </a>
+            <nav class="navbar blue-bg navbar-static-top">
+                <ul class="nav navbar-nav pull-left">
+                    <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+                </ul>
+            </nav>
+        </header>
+        <%- include ('left_layout.html') %>
+            <div class="content-wrapper">
+                <div class="content-header sty-one">
+                    <h1>Bank Detail</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="<%=BaseUrl%>/dashboard">Dashboard</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Bank Detail</a></li>
+                    </ol>
+                </div>
+
+                <div class="content">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#categorydata">Category</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#subcategorydata">Sub
+                        Category</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#petacategorydata">Peta
+                        Category</button>
+
+                        <div class="card">
+                            <div class="card-body">
+                            <br>
+                            <div class="col-md-12">  
+                              <div class="table-responsive">
+                                 <table class="table table-hover table-bordered" id="personnel">
+                                  <thead class="thead-light">
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Reseller</th>
+                                        <th>Account Number</th>
+                                      <th>Account Holder Name</th>
+                                      <!-- <th>Bank Name</th>
+                                      <th>IFSC</th>
+                                      <th>Status</th>
+                                      <th>Approve</th>
+                                      <th>Reject</th> -->
+                                    </tr>
+                                  </thead>
+                                  <tbody id="tbody">
+                                    <% if(data.length){ %>
+                                    <% for (var i = 0; i < data.length; i++) {%>
+                                    <tr>
+                                      <td><%=i+1%></td>
+                                      <td><%=data1[i]._id%></td>
+                                      <td><%=data1[i].name%></td>
+                                    <td>
+                                        <% for(var j=0; j < (data1[i].subcate).length; j++){ %>
+                                            <td>
+                                                <td>
+                                                    <%=data1[i].subcate[j].name%>
+                                                </td>
+                                            <td>
+                                                <% for(var k=0; k < (data1[i].subcate[j].petacate).length; k++){ %>
+                                                    <td>
+                                                        <%= data1[i].subcate[j].petacate[k].name %>
+                                                    </td>
+                                                    <%}%>
+                                            </td>
+                                            </td>
+                                            <%}%>
+                                    </td>
+                                      <!-- <td><%=data1[i].bankname%></td> -->
+                                      <!-- <td><%=data1[i].ifsc%></td> -->
+                                      <!-- <td><button class="<% if (data1[i].bankStatus == 0){%>newbuttonyellow<% }else if(data1[i].bankStatus == 1){ %>newbuttongreen<% }else if(data1[i].bankStatus == 2){%>newbuttonred<%}%>"><% if (data1[i].bankStatus == 0){%>&nbsp; &nbsp;Pending&nbsp; &nbsp;<% }else if(data1[i].bankStatus == 1){ %>&nbsp; Approve &nbsp;<% }else if(data1[i].bankStatus == 2){%>&nbsp; Reject &nbsp;<%}%></button></td>
+                                      <td>
+                                        <%if(data1[i].bankStatus == '0'){%>
+                                        <button class="btn btn-sm btn-success" id="<%= data[i]._id %>" style="margin:5px" type="button" onclick="ApproveP('<%=data1[i]._id%>');"><i class="fa fa-check"></i></button></a>
+                                        <%}%>
+                                      </td>
+                                      <td>
+                                        <%if(data1[i].bankStatus == '0'){%>
+                                        <button class="btn btn-sm btn-danger" style="margin:5px" type="button" onclick="RejectP('<%=data1[i]._id%>');"><i class="fa fa-times"></i></button>
+                                        <%}%>
+                                      </td> -->
+                                    </tr>
+                                    <% } %>
+                                      <%}else{%>
+                                    <tr>
+                                      <td colspan="13"> <center style="font-weight: 500;"> No Record Found ! </center> </td>
+                                    </tr>
+                                  <% } %>
+                                  </tbody>
+                                </table>
+                    
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                </div>
+            </div>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">Version 1.0</div>
+                Copyright © 2018 . All rights reserved.
+            </footer>
+    </div>
+
+    <!-- popup model -->
+    <div class="modal fade" id="categorydata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/addcategory" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="col-form-label">Category Name:</label>
+                            <input type="text" class="form-control" id="category" placeholder="Enter Category"
+                                name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="col-form-label">Image</label>
+                            <input type="file" class="form-control" id="picture1" value="" placeholder="Enter Category"
+                                name="photo" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" value="submit" name="submit" id="submit"
+                            class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="subcategorydata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Insert Sub Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/addsubcategory" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <label class="control-label">category</label>
+                            <select class="form-control view_data" data-size="7" name="category" maxlength="20"
+                                style="padding-bottom: 0px;padding-top: 0px;" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <% for(var i=0; i < data.length; i++){ %>
+                                    <option value="<%=data[i]._id%>">
+                                        <%=data[i].name%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Subcategory:</label>
+                            <input type="text" class="form-control" placeholder="Enter Subcategory" name="name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Image</label>
+                            <input type="file" class="form-control" id="picture2" placeholder="Enter Category"
+                                name="photo" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="petacategorydata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Insert Peta-Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/addpetacategory" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <label class="control-label">category</label>
+                            <select class="form-control view_data" data-size="7" name="category" maxlength="20"
+                                style="padding-bottom: 0px;padding-top: 0px;" onChange="getState3(this.value)" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <% for(var i=0; i < data.length; i++){ %>
+                                    <option value="<%=data[i]._id%>">
+                                        <%=data[i].name%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="control-label">Subcategory</label>
+                            <select class="form-control" id="state-list55" title="Select subCategory" name="subcategory"
+                                required>
+                                <option value="" disabled selected>Select SubCategory</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="petacate">PetaCategory:</label>
+                            <input type="text" class="form-control" placeholder="Enter PetaCategory" name="name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="petacate">CGST:</label>
+                            <input type="number" step="0.001" class="form-control" placeholder="Enter PetaCategory" name="cgst"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="petacate">IGST:</label>
+                            <input type="number" step="0.001" class="form-control" placeholder="Enter PetaCategory" name="igst"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="petacate">SGST:</label>
+                            <input type="number" step="0.001" class="form-control" placeholder="Enter PetaCategory" name="sgst"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Image</label>
+                            <input type="file" class="form-control" id="picture3" placeholder="Enter Category"
+                                name="photo" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script src="/adminPanel/js/jquery.min.js"></script>
+    <script src="/adminPanel/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/adminPanel/js/bizadmin.js"></script>
+    <script src="/adminPanel/plugins/jquery-sparklines/jquery.sparkline.min.js"></script>
+    <script src="/adminPanel/plugins/jquery-sparklines/sparkline-int.js"></script>
+    <script src="/adminPanel/plugins/table-expo/filesaver.min.js"></script>
+    <script src="/adminPanel/plugins/table-expo/xls.core.min.js"></script>
+    <script src="/adminPanel/plugins/table-expo/tableexport.js"></script>
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+    <script src="http://3.6.102.34:3005/adminPanel/js/sweetalert.min.js"></script>
+    <script src="/adminPanel/plugins/dropify/dropify.min.js"></script>
+    <script src="/adminPanel/plugins/bootstrap-switch/bootstrap-switch.js"></script>
+    <script src="/adminPanel/plugins/bootstrap-switch/highlight.js"></script>
+    <script src="/adminPanel/plugins/bootstrap-switch/main.js"></script>
+    <!-- <script src="/sellerPanel/plugins/select2/js/select2.full.min.js"></script> -->
+    <script>
+        function getState(val) {
+            $.ajax({
+                type: "GET",
+                url: "<%=BaseUrl%>/getsubcategory/" + val,
+                success: (data) => {
+                    if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                        swal({
+                            title: "Subcategory Not Found :(",
+                            text: "please insert Subcategry",
+                            type: "error",
+                            buttons: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "add subcategory"
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                // location.reload();
+                            }
+                        })
+                    }
+                    var output = ['<option value="" disabled selected>Select SubCategory </option> ']
+                    for (var i = 0; i < data.data.length; i++) {
+                        output.push(`<option value = "${data.data[i]['_id']}/////${data.data[i]['cate']}"> ${data.data[i]['name']}</option > `);
+                    }
+                    $('#state-list').html(output.join(''));
+                }
+            })
+        }
+
+        function getState2(val) {
+            $.ajax({
+                type: "GET",
+                url: "<%=BaseUrl%>/getpetacategory/" + val.split('/////')[0] + '/' + val.split('/////')[1],
+                success: (data) => {
+                    console.log(data)
+                    if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                        swal({
+                            title: "Petacategory Not Found :(",
+                            text: "please insert Subcategry",
+                            type: "error",
+                            buttons: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "add subcategory"
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                // location.reload();
+                            }
+                        })
+                    }
+                    var output = ['<option value="" disabled selected>Select PetaCategory </option> ']
+                    for (var i = 0; i < data.data.length; i++) {
+                        output.push('<option value = "' + data.data[i]['_id'] + '">' + data.data[i]['name'] + '</option>')
+                    }
+                    $('#petacate').html(output.join(''))
+                }
+            })
+        }
+
+        function getState3(val) {
+            $.ajax({
+                type: "GET",
+                url: "<%=BaseUrl%>/getsubcategory/" + val,
+                success: (data) => {
+                    if (data.data[0] == '' || data.data == null || data.data == undefined || data.data.length < 1 || data.error == true) {
+                        swal({
+                            title: "Subcategory Not Found :(",
+                            text: "please insert Subcategry",
+                            type: "error",
+                            buttons: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "add subcategory"
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                // location.reload();
+                            }
+                        })
+                    }
+                    var output = ['<option value="" disabled selected>Select SubCategory </option> ']
+                    for (var i = 0; i < data.data.length; i++) {
+                        output.push(`<option value = "${data.data[i]['_id']}/////${data.data[i]['cate']}"> ${data.data[i]['name']}</option > `);
+                    }
+                    $('#state-list55').html(output.join(''));
+                }
+            })
+        }
+    </script>
+
+
+</body>
+
+</html>
